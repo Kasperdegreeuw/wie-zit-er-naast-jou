@@ -40,8 +40,8 @@ Een nieuw paneel of een nieuwe laag die moet bewegen? Voeg hem toe in `js/scenes
 ## Wat er beweegt
 
 - **Jaartal linksboven** telt mee met het scrollen (2026 → 1996 → 2026).
-- **Panelen** komen per hoofdstuk los en schuin binnen en schuiven op hun plek.
-- **Tekstballonnen en captions** verschijnen na de panelen.
+- **Guided view:** de camera gaat per hoofdstuk paneel voor paneel in leesvolgorde (zoals een strip-app) en zoomt daarna uit naar de hele pagina. De volgorde van de panelen in `scenes.js` is de leesvolgorde.
+- **Tekstballonnen en captions** verschijnen als de camera bij hun paneel is.
 - **Eén groot woord** per periode (laag `woord`).
 - **Tijdlijn onderaan** loopt vol, met een stip per hoofdstuk.
 - **Overgangen per hoofdstuk** (`transition` in `scenes.js`): `assemble`, `slow`, `shock`, `cut` of `beat` (harde cuts, paneel voor paneel). Hoe meer jaren tussen twee hoofdstukken, hoe langer de overgang.
@@ -65,3 +65,4 @@ Elke versie blijft bewaard:
 - v5 (3 nov): assets in de stijl van *Prei ani assets*, hartslag in 03 vervangen door drie panelen (wijd → sneakers → zwart), mist op achterste rijen.
 - v5.1 (3 nov): soepeler scrollen.
 - v6 (3 nov): verhaal met één draad, Ruud en zijn rode sjaal (1996 → 2026). Rood komt alleen in die sjaal voor.
+- v7 (3 nov): guided view, één paneel tegelijk groot in beeld, dan de hele pagina.

@@ -2,7 +2,7 @@
   Hooligan-scrollytelling – opzet 2
   - Je scrolt omlaag, het verhaal schuift omhoog (GSAP ScrollTrigger, gepind).
   - Per hoofdstuk: laadt assets/svg/<id>.svg uit Figma, anders een storyboard-placeholder.
-  - Panelen komen los binnen en schuiven op hun plek; daarna ballonnen en captions.
+  - Guided view: de camera gaat paneel voor paneel (leesvolgorde), daarna zoomt hij uit naar de hele pagina.
   - Het jaartal linksboven telt mee (2026 → 1996 → 2026).
   - Lagen met fx "pulse" kloppen als een hart, "shake" trilt (zoals een telefoon).
 */
@@ -123,8 +123,7 @@
   const renderYear = () => { yearEl.textContent = Math.round(yearObj.v); };
   const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
   const starts = [];
-  const rand = (a) => gsap.utils.random(-a, a);
-
+  
   chapters.forEach(({ scene, svg }, i) => {
     const q = (sel) => { try { return svg.querySelector("#" + CSS.escape(sel)); } catch (e) { return null; } };
     const panels = scene.panels.map((p) => q(p.name)).filter(Boolean);
@@ -142,18 +141,43 @@
       starts.push(tl.duration() - moveDur / 2); // label wisselt halverwege de overgang
     } else starts.push(0);
 
-    // Panelen binnen laten komen, per sfeer anders
-    if (panels.length && i > 0) {
-      gsap.set(panels, { transformOrigin: "50% 50%" });
-      if (mode === "assemble") tl.fromTo(panels,
-        { opacity: 0, x: () => rand(200), y: () => rand(140) + 60, rotation: () => rand(7), scale: 0.9 },
-        { opacity: 1, x: 0, y: 0, rotation: 0, scale: 1, duration: 0.5, stagger: 0.25 }, ">-0.2");
-      if (mode === "slow") tl.fromTo(panels, { opacity: 0 }, { opacity: 1, duration: 0.9, stagger: 0.45, ease: "power1.inOut" }, ">-0.1");
-      if (mode === "beat") tl.fromTo(panels, { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: 0.7, ease: "none" }, ">"); // harde cuts, paneel voor paneel
-      if (mode === "shock") tl.fromTo(panels, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.18, stagger: 0.12, ease: "power4.out" }, ">");
-      // "cut": panelen staan er meteen
+    // GUIDED VIEW: de camera gaat paneel voor paneel, in leesvolgorde.
+    // Je ziet steeds één moment groot; daarna zoomt hij uit naar de hele pagina.
+    const camDur = { slow: 0.9, assemble: 0.6, shock: 0.25, beat: 0.01, cut: 0.01 }[mode] || 0.6;
+    const camEase = { slow: "sine.inOut", assemble: "power2.inOut", shock: "power4.out", beat: "none", cut: "none" }[mode] || "power2.inOut";
+    const guided = i > 0 && panels.length > 1;
+    const textsOf = (p) => p.layers.filter((l) => l.text).map((l) => q(l.name)).filter(Boolean);
+    if (guided) {
+      // Alles behalve het grote woord in een camera-groep
+      const cam = document.createElementNS(NS, "g"); cam.setAttribute("class", "cam");
+      [...svg.childNodes].forEach((n) => { if (n.id !== "woord" && n.nodeName !== "defs") cam.appendChild(n); });
+      svg.insertBefore(cam, word || null);
+      const camObj = { s: 1, x: 0, y: 0 };
+      const applyCam = () => cam.setAttribute("transform", `translate(${camObj.x} ${camObj.y}) scale(${camObj.s})`);
+      // Paneel passend in het beeld tussen jaartal (boven) en tijdlijn (onder)
+      const fit = (p) => { const s = Math.min(1280 / p.w, 700 / p.h, 2.4); return { s, x: 720 - s * (p.x + p.w / 2), y: 455 - s * (p.y + p.h / 2) }; };
+      const scenePanels = scene.panels.filter((p) => q(p.name));
+      Object.assign(camObj, fit(scenePanels[0])); applyCam();
+      gsap.set(panels, { opacity: 0 }); gsap.set(panels[0], { opacity: 1 });
+      scenePanels.forEach((p, j) => {
+        if (j > 0) {
+          tl.addLabel(`c${i}-${j}`);
+          tl.to(camObj, { ...fit(p), duration: camDur, ease: camEase, onUpdate: applyCam }, `c${i}-${j}`);
+          tl.to(panels[j - 1], { opacity: 0.12, duration: Math.max(camDur, 0.01), ease: "none" }, `c${i}-${j}`);
+          tl.to(panels[j], { opacity: 1, duration: Math.max(camDur * 0.6, 0.01), ease: "none" }, `c${i}-${j}`);
+        }
+        const tx = textsOf(p);
+        if (tx.length && mode !== "beat") tl.fromTo(tx, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.4 });
+        tl.to({}, { duration: 0.45 }); // even lezen
+      });
+      // Uitzoomen naar de hele pagina: nu zie je de stripbladzijde als geheel
+      tl.addLabel(`uit${i}`);
+      tl.to(camObj, { s: 1, x: 0, y: 0, duration: mode === "beat" ? 0.01 : 0.9, ease: "power2.inOut", onUpdate: applyCam }, `uit${i}`);
+      tl.to(panels, { opacity: 1, duration: mode === "beat" ? 0.01 : 0.6, ease: "none" }, `uit${i}`);
+    } else if (panels.length && i > 0) {
+      tl.fromTo(panels, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.inOut" }, ">-0.1");
+      if (texts.length) tl.fromTo(texts, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.45 });
     }
-    if (texts.length && i > 0 && mode !== "beat") tl.fromTo(texts, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: mode === "slow" ? 0.6 : 0.3, stagger: mode === "slow" ? 0.5 : 0.28 });
     if (word) {
       gsap.set(word, { transformOrigin: "100% 100%" });
       tl.fromTo(word, { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" });
@@ -179,7 +203,7 @@
     pin: true,
     scrub: 0.6,
     start: "top top",
-    end: () => "+=" + total * window.innerHeight * 1.1,
+    end: () => "+=" + total * window.innerHeight * 0.9,
     invalidateOnRefresh: true,
     onUpdate: (self) => {
       document.getElementById("hint").style.opacity = self.progress > 0.02 ? 0 : 1;
