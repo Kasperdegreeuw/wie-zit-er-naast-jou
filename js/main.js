@@ -73,9 +73,10 @@
           // Eerste versie van het asset (zelfde tekening als het Figma-component)
           const a = window.ASSETS[key];
           const cells = l.type === "crowd" ? window.crowdCells(l.w, l.h, l.n || 5) : [{ x: 0, y: 0, w: l.w, h: l.h }];
-          lg.innerHTML = cells.map((c) => { const fit = window.assetFit(key, c.w, c.h);
+          // swap: { celnummer: asset } zet één persoon in een groep (bijv. Mark en zijn zoon op de tribune)
+          lg.innerHTML = cells.map((c, ci) => { const k = (l.swap && l.swap[ci]) || key; const fit = window.assetFit(k, c.w, c.h);
             const mist = c.row ? ` opacity="${window.crowdMist(c.row)}"` : "";
-            return `<g transform="translate(${c.x + fit.x} ${c.y + fit.y}) scale(${fit.s})"${mist}>${a.svg}</g>`; }).join("");
+            return `<g transform="translate(${c.x + fit.x} ${c.y + fit.y}) scale(${fit.s})"${mist}>${window.ASSETS[k].svg}</g>`; }).join("");
         } else lg.innerHTML = window.shapeSVG(l);
         if (l.text) { wrapText(lg, l.text, 14, 8, l.w - 28, textSize(l)); if (l.dark) lg.classList.add("on-dark"); }
         else if (!key && (l.type === "object" || l.type === "round")) { const lab = el("text", { x: 8, y: 18, class: "ph-label" }, lg); lab.textContent = l.name; }
@@ -171,6 +172,7 @@
 
   /* ---------- 4. Koppelen aan scroll ---------- */
   const total = tl.duration();
+  window.__story = { tl, starts }; // voor testen: tijdlijn en starttijden per hoofdstuk
   ScrollTrigger.create({
     animation: tl,
     trigger: "#pin",

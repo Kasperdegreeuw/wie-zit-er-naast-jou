@@ -4,107 +4,107 @@
 */
 window.BRIEFS = {
   "00-kader": {
-    gebeurt: "Titelscherm. De kijker ziet in één beeld de hele periode: 1996 links, 2026 rechts, met waarom juist die jaren.",
-    voelt: "Rust en een belofte: hier wordt iets uitgelegd. Nog geen idee wie 'hij' is.",
-    beweging: "Overgang slow. Het jaartal linksboven staat op 1996 en rolt bij de eerste scroll vooruit naar 2026.",
+    gebeurt: "Titelscherm. 1996 links, 2026 rechts. Je bent 13, en dertig jaar later is je zoon 13.",
+    voelt: "Rust en een belofte. Nog geen idee wie 'je' bent.",
+    beweging: "Slow. Het jaartal staat op 1996 en rolt bij de eerste scroll naar 2026.",
     zij: "–",
-    tip: "Geef 1996 en 2026 hetzelfde gewicht; het zijn de twee helften van één cirkel. Titel mag groot en kaal.",
-    bron: "Opdracht: bewust gekozen begin en eind. Story spine: eind spiegelt begin."
+    tip: "Geef 1996 en 2026 hetzelfde gewicht: twee helften van één cirkel.",
+    bron: "Opdracht: bewust gekozen begin en eind. Story spine: het eind spiegelt het begin."
   },
   "01-maandag": {
-    gebeurt: "Maandag 08:47. Je staat in de lift naar kantoor, in pak, koffie in je hand. In de spiegel zie je je blauwe oog. Een collega vraagt wat er gebeurd is; je liegt.",
-    voelt: "Herkenbaar en normaal. Het blauwe oog is het enige wat niet klopt. De kijker moet denken: pech gehad.",
-    beweging: "Slow: panelen vloeien rustig in. Het oog klopt (pulse). Daarna de close-up van het oog.",
+    gebeurt: "Maandag 08:47. Lift naar kantoor, pak, koffie. In de spiegel je blauwe oog. Een collega vraagt wat er gebeurd is; je liegt.",
+    voelt: "Gewoon. Alleen het oog klopt niet.",
+    beweging: "Slow. Het oog klopt (pulse).",
     zij: "Collega's: \"Ja, ja. Dat zal wel!\"",
-    tip: "Spiegel = POV: de kijker kijkt naar 'zichzelf'. Houd Mark herkenbaar gewoon; geen hooligan-signalen behalve het oog.",
-    bron: "P. (FC Twente) in Vos 2006: blauw oog, 'iemand juichte wild', 'Ja, ja. Dat zal wel!'"
+    tip: "Spiegel = POV: de kijker kijkt naar zichzelf. Geen hooligan-signalen behalve het oog.",
+    bron: "P. (FC Twente) in Vos 2006."
   },
   "02-zaterdag": {
-    gebeurt: "Twee dagen eerder. De tweede telefoon trilt: za 14:00, loods 7, 20 tegen 20. Je liegt tegen Lisa. Op een industrieterrein staan twee groepen tegenover elkaar.",
-    voelt: "Spanning en stiekem plezier. Het gewone leven van hoofdstuk 01 klapt om.",
-    beweging: "Assemble: panelen vallen op hun plek. Prepaid telefoon trilt (shake).",
-    zij: "Lisa: \"Doe Ruud de groeten.\"",
-    tip: "Contrast met 01: zelfde man, andere kleding (capuchon, Air Max). Erecode in grote, kale captions.",
+    gebeurt: "Twee dagen eerder. De tweede telefoon trilt: za 14:00, loods 7. Je liegt tegen Lisa. Op het industrieterrein staan twee groepen tegenover elkaar.",
+    voelt: "Spanning en stiekem plezier. Het leven uit 01 klapt om.",
+    beweging: "Assemble. Prepaid trilt (shake).",
+    zij: "Lisa: \"Veel plezier met de jongens.\"",
+    tip: "Zelfde man als 01, andere kleren. Nog geen rode sjaal: die hangt thuis.",
     bron: "Vechtafspraken via prepaid (Politie & Wetenschap); erecode Kievits (FunX 2013)."
   },
   "03-zwart": {
-    gebeurt: "Drie panelen, steeds dichterbij. Wijd: twintig meter tussen de groepen, niemand zegt iets. Close-up: sneakers op het grind, iemand zet een stap. Dan zwart: 'Dan rent de eerste.' Het gevecht zelf zie je nooit.",
+    gebeurt: "Drie panelen, steeds dichterbij: twintig meter stilte, sneakers op het grind, dan zwart. 'Dan rent de eerste.' Het gevecht zie je nooit.",
     voelt: "De seconden ervoor: stil, gespannen, onvermijdelijk.",
-    beweging: "Beat: harde cuts, paneel na paneel. Geen beweging in de panelen zelf.",
+    beweging: "Beat: harde cuts, paneel na paneel.",
     zij: "–",
-    tip: "Moment-tot-moment (McCloud): elk paneel een stap dichterbij. Het derde paneel helemaal leeg en zwart. Het gevolg zag je al: het blauwe oog op maandag.",
-    bron: "McCloud, closure; Fite: geweld moet een functie hebben, en minder is sterker."
+    tip: "Moment-tot-moment (McCloud). Het derde paneel helemaal leeg. Het gevolg zag je al: het blauwe oog.",
+    bron: "McCloud, closure; Fite: minder geweld is sterker."
   },
   "04-terug": {
-    gebeurt: "Tussenscherm: 'Hoe word je iemand die dit doet?' Het jaartal rolt terug van 2026 naar 1996.",
-    voelt: "Vraag en verwachting. De kijker wil het antwoord.",
-    beweging: "Slow, en een lange overgang omdat er dertig jaar tussen zit.",
+    gebeurt: "'Hoe word je iemand die dit doet?' Het jaartal rolt terug naar 1996.",
+    voelt: "Vraag en verwachting.",
+    beweging: "Slow, lange overgang (dertig jaar).",
     zij: "–",
-    tip: "Laat het terugrollen van het jaartal het beeld zijn. Eventueel een visueel 'terugspoel'-effect.",
+    tip: "Het terugrollende jaartal is het beeld.",
     bron: "Carrow Brown: tijdsprongen hebben een visueel signaal nodig."
   },
   "05-1996": {
-    gebeurt: "Je bent 13. Je vader zong 'Hand in hand, kameraden' al bij je wieg. Op het station zie je de harde kern terugkomen. Met Jeroen naar De Kuip. In de kroeg vraagt een oudere jongen: 'Hoe oud ben jij?'",
-    voelt: "Fascinatie en angst tegelijk. 'Doodeng. En toch wil je meer.' Dit is het kantelpunt.",
-    beweging: "Assemble. De kroeg is het laatste en grootste paneel.",
+    gebeurt: "Je bent 13. Met Jeroen op het station zie je de harde kern terugkomen. Ruud (19) vraagt: 'Hoe oud ben jij?' Je zegt zestien. Hij weet dat je liegt en geeft je zijn rode sjaal.",
+    voelt: "Gezien worden door de stoerste jongen van het station. Dit is het begin.",
+    beweging: "Assemble. De sjaal komt als laatste.",
     zij: "Moeder: \"Hij is bij een vriendje.\"",
-    tip: "Kantelpunt duidelijk maken: de kroeg mag de meeste aandacht krijgen (oudere jongens groot, Mark klein).",
-    bron: "Kievits ('met de paplepel'); Martin (station); Spaaij p. 99; VICE ('doodeng, maar onweerstaanbaar')."
+    tip: "Introduceer Ruud duidelijk: pet, bomberjack, rode sjaal. Rood komt verder nergens voor, zodat je de sjaal het hele verhaal volgt.",
+    bron: "Martin (station); Spaaij p. 99; VICE ('doodeng, maar onweerstaanbaar')."
   },
   "06-beverwijk": {
-    gebeurt: "FOCAL POINT. 23 maart 1997. De krant op de keukentafel: 'Dode bij treffen Beverwijk'. 'Hij was een vader van twee kinderen.' Jij was er niet bij.",
-    voelt: "Stilte en schok. Het moment dat alles verandert in de hooliganwereld, en waardoor er plek komt voor jongens zoals jij.",
-    beweging: "Slow en de langste stilstand van het verhaal. Eén groot paneel.",
+    gebeurt: "FOCAL POINT. 23 maart 1997. De krant: 'Dode bij treffen Beverwijk'. Hij was een vader van twee kinderen. Ruud was erbij en zegt er niks over.",
+    voelt: "Stilte en schok. Voor het eerst zie je wat de groep kost, maar Ruud zwijgt.",
+    beweging: "Slow, langste stilstand. Eén groot paneel.",
     zij: "Vader, aan tafel: \"Wat een tuig.\"",
-    tip: "Respect voor het echte slachtoffer: geen naam, geen beeld van hem, geen geweld. Alleen de krant en de handen van je vader.",
-    bron: "Spaaij p. 104–106; P. in Vos 2006 ('een vader van twee kinderen'). Carlo Picornie bestond echt."
+    tip: "Geen naam en geen beeld van het echte slachtoffer. Alleen de krant en de handen van je vader. Ruud is verzonnen, Beverwijk niet.",
+    bron: "Spaaij p. 104–106; P. in Vos 2006."
   },
   "07-1997": {
-    gebeurt: "Op het schoolplein: de oude jongens stoppen, er komt plek. Je eerste rel: jij rent weg, Jeroen wordt opgepakt. Zijn vader haalt hem op: 'Jij komt daar nooit meer.' Bij jou thuis merkt niemand iets.",
-    voelt: "Opwinding en geluk gehad. Het contrast met Jeroen is het belangrijkste beeld.",
-    beweging: "Shock: panelen komen hard en snel binnen. Mark trilt (rennen).",
+    gebeurt: "Je eerste rel. Ruud roept 'Rennen!' en trekt je mee. Jeroen blijft staan en wordt opgepakt. Zijn vader: 'Jij komt daar nooit meer.' Jeroen verdwijnt uit het verhaal.",
+    voelt: "Opwinding en geluk gehad. Hier splitst het: Ruud kiest jou, Jeroens vader kiest Jeroen.",
+    beweging: "Shock. Ruud en jij trillen (rennen).",
     zij: "Moeder: \"Was het gezellig bij Jeroen?\"",
-    tip: "Bureau-paneel = contrast: zelfde leeftijd, andere ouders. Teken Jeroens vader groot en beschermend.",
-    bron: "Spaaij p. 106; De Generaal in Vos 2006 ('klappen, opgepakt of verkering')."
+    tip: "Twee vaderfiguren naast elkaar: Ruud trekt je mee, Jeroens vader trekt Jeroen weg.",
+    bron: "Spaaij p. 106; De Generaal in Vos 2006."
   },
   "08-1999": {
-    gebeurt: "Je bent 16. Met 150 jongens in de trein, capuchon en Air Max. Achter een vuilnisbak verstopt terwijl 'wij rennen nooit'. Eerste nacht in de cel, en je bent trots. Salou met veertig jongens.",
-    voelt: "Broederschap. De groep wordt je familie. Ook de angst hoort erbij.",
+    gebeurt: "Je bent 16. In de trein met 150 jongens; Ruud houdt een plek voor je vrij. Eerste nacht in de cel, je bent trots. Om zes uur 's ochtends staat Ruud buiten op je te wachten.",
+    voelt: "Broederschap. Ruud is er altijd.",
     beweging: "Assemble.",
     zij: "Ouders: \"Hij zit veel bij vrienden, maar zijn cijfers zijn prima.\"",
-    tip: "Groepen groot en dichtbij: je zit er middenin. Vuilnisbak-paneel mag humor hebben.",
-    bron: "Kievits (RJK, Alkmaar, Salou, 'elke week wordt onze band hechter'); Newson 2018 (identity fusion)."
+    tip: "Ruud en jij naast elkaar in de menigte, allebei met rood. Het ochtendpaneel is het warmste beeld van het verhaal.",
+    bron: "Kievits ('elke week wordt onze band hechter'); Newson 2018 (identity fusion)."
   },
   "09-2005": {
-    gebeurt: "Je bent 22, hbo af, kantoorbaan. Excel tot vijf uur, je telt de uren tot zondag. 17 april 2005, Feyenoord–Ajax: jij staat vooraan bij de ME. Maandag meld je je ziek.",
-    voelt: "Het dubbelleven. Saai tegenover vrij.",
-    beweging: "Shock. Mark trilt in de ME-linie.",
+    gebeurt: "Je bent 22. Kantoor, Excel tot vijf uur. Zondag sta je met Ruud vooraan bij de ME.",
+    voelt: "Het dubbelleven: saai tegenover vrij. 'Hier ben je iemand.'",
+    beweging: "Shock. Jij trilt in de ME-linie.",
     zij: "Collega's: \"Hij is goed bezig.\"",
-    tip: "Kantoor en ME-linie naast elkaar als spiegelbeeld: monitor tegenover schilden.",
-    bron: "Kievits ('aan de sleur ontsnappen'); Martin ('mijn ei kwijt'); Spaaij p. 113 (42 gewonde agenten); Stott 2011; Elitepauper (VICE)."
+    tip: "Kantoor en ME-linie als spiegelbeeld: monitor tegenover schilden.",
+    bron: "Kievits ('aan de sleur ontsnappen'); Martin ('mijn ei kwijt'); Spaaij p. 113; Stott 2011."
   },
   "10-2013": {
-    gebeurt: "Je bent 30. Je zoon slaapt en je denkt: nu stop ik. Vijf jaar stadionverbod. In het ziekenhuis met een gebroken kaak komen tweehonderd jongens langs. De begrafenis van Sander. Ruud zit aan de coke.",
-    voelt: "De prijs. Liefde en verlies tegelijk. De groep trekt harder dan het gezin.",
-    beweging: "Slow, met lange stilstand.",
+    gebeurt: "Je bent 30. Je zoon wordt geboren: nu stop ik, denk je. 03:12, Ruud belt. Je neemt niet op. Dan de begrafenis. Ruuds sjaal ligt op het graf; jij neemt hem mee.",
+    voelt: "De prijs. Je kiest één keer voor je gezin, en dat is de nacht dat Ruud je nodig had.",
+    beweging: "Slow, lange stilstand tussen de drie panelen.",
     zij: "Lisa: \"Hij is rustiger geworden.\"",
-    tip: "Hier zit de tegenkant van de broederschap. Ziekenhuis (warmte) en begrafenis (kou) dicht bij elkaar.",
-    bron: "Kievits (ziekenhuis, 200 supporters, vrienden kapot aan drugs); Danny ('dan komen de begrafenissen'); P.; Fozz (Vos 2006)."
+    tip: "Zeg niet waaraan Ruud overlijdt; de kijker vult het in (closure). Wieg (licht) en graf (donker) zo ver mogelijk uit elkaar.",
+    bron: "Kievits (vrienden kapot aan drugs); Danny ('dan komen de begrafenissen'); Fozz (Vos 2006)."
   },
   "11-2026": {
-    gebeurt: "WENDING. Je zoon is 13. 'Pap, ga jij zaterdag ook?' Op zijn scherm en het jouwe staat hetzelfde bericht. Jeroen, nu leraar, wacht bij het schoolhek op zijn dochter.",
-    voelt: "Herkenning en schrik. De kijker ziet de cirkel rond komen.",
-    beweging: "Assemble. Telefoon van de zoon klopt, die van Mark trilt.",
+    gebeurt: "WENDING. Je zoon is 13 en heeft Ruuds sjaal gevonden. 'Pap, ga jij zaterdag ook?' Op zijn telefoon en die van jou staat hetzelfde bericht.",
+    voelt: "Schrik. De cirkel is rond: nu ben jij Ruud.",
+    beweging: "Assemble. Jouw prepaid trilt.",
     zij: "Lisa: \"Hij lijkt steeds meer op jou.\"",
-    tip: "Twee telefoons even groot naast elkaar. Jeroen-paneel lichter en rustiger: het andere leven.",
+    tip: "De rode sjaal om je zoon is het beeld. De twee telefoons even groot naast elkaar.",
     bron: "Kievits ('jong geleerd is oud gedaan' / 'ten strengste afraden'); COT (nieuwe generatie)."
   },
   "12-einde": {
-    gebeurt: "Uitzoomen naar een tribune vol gewone mensen. Mark is één van hen. 'Mark bestaat niet. Jeroen ook niet. Elk moment wel.' 'Wie zit er naast jou?'",
-    voelt: "De vraag landt bij de kijker zelf.",
-    beweging: "Slow. Markering rond Mark klopt.",
+    gebeurt: "Uitzoomen naar een tribune vol gewone mensen. In de markering: jij, en naast je je zoon met de rode sjaal. 'Mark bestaat niet. Ruud ook niet. Elk moment wel.' 'Wie zit er naast jou?'",
+    voelt: "De titel landt: naast jou zit je zoon. Daarna landt de vraag bij de kijker zelf.",
+    beweging: "Slow. Markering klopt.",
     zij: "–",
-    tip: "Tribune zo vol en anoniem mogelijk; Mark alleen vindbaar via de markering. Verantwoording kort onderaan.",
-    bron: "Spaaij p. 130 en 192 (hooligans uit alle milieus); Rijnmond 2025 (nuance: ook moeilijke jeugd)."
+    tip: "Tribune grijs en anoniem; het enige rood is de sjaal van je zoon.",
+    bron: "Spaaij p. 130 en 192 (hooligans uit alle milieus); Rijnmond 2025 (nuance)."
   }
 };

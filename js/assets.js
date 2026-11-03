@@ -46,7 +46,7 @@
     if (o.pocket) s += R(38, 112, 24, 14, t[0], 5);
     if (o.lanyard) s += stick("M43 57 L50 84 L57 57", C.s2, 1.6) + R(45, 84, 10, 12, C.white, 2);
     if (o.vest) s += R(32, 74, 36, 46, "#e8e3a8", 6) + R(32, 92, 36, 6, C.white);
-    if (o.scarf) s += R(33, 52, 34, 10, C.red, 4) + R(39, 52, 6, 10, C.pale) + R(55, 52, 6, 10, C.pale) + R(56, 58, 9, 40, C.red, 3) + R(56, 70, 9, 6, C.pale) + R(56, 84, 9, 6, C.pale);
+    if (o.scarf) { const sc = o.scarfC || C.red; s += R(33, 52, 34, 10, sc, 4) + R(39, 52, 6, 10, C.pale) + R(55, 52, 6, 10, C.pale) + R(56, 58, 9, 40, sc, 3) + R(56, 70, 9, 6, C.pale) + R(56, 84, 9, 6, C.pale); }
     if (o.phone) s += R(76, 110, 12, 20, C.ink, 3) + R(78, 112, 8, 14, C.s1, 1);
     if (o.backpack) s += stick("M32 60 L32 110 M68 60 L68 110", C.s3, 3);
     // hoofd
@@ -86,6 +86,10 @@
     "p-mark-pak": P({ top: T.suit, suit: true, trousers: "#8f97a0", bruise: true, hair: C.wood }),
     "p-mark-capuchon": P({ top: T.hoodieGrey, hood: true, pocket: true, trousers: C.denim, sneakers: true }),
     "p-mark-jong": P({ top: T.jacket, hair: C.wood, trousers: C.denim, sneakers: true, scale: 0.8 }),
+    // Ruud: bomberjack, pet en de rode sjaal. De sjaal is de draad door het verhaal (1996 → 2026).
+    "p-ruud": P({ top: ["#4f5a48", "#5d6955", "#6c7863"], cap: true, scarf: true, trousers: C.denim2, sneakers: true }),
+    "p-mark-jong-sjaal": P({ top: T.jacket, hair: C.wood, scarf: true, trousers: C.denim, sneakers: true, scale: 0.8 }),
+    "p-mark-sjaal": P({ top: T.hoodieGrey, hood: true, pocket: true, scarf: true, trousers: C.denim, sneakers: true }),
     "p-jeroen-jong": P({ top: T.hoodieLight, hair: "#c9a56b", pocket: true, trousers: C.denim2, sneakers: true, scale: 0.8 }),
     "p-collega": P({ top: T.tshirt, hair: C.s3, lanyard: true, trousers: C.s2 }),
     "p-man": P({ top: T.jacket, hair: C.s3, trousers: C.s3 }),
@@ -93,12 +97,12 @@
     "p-vrouw": P({ top: T.coat, coat: true, hairLong: C.wood }),
     "p-agent": P({ top: ["#3f4a5c", "#4b5669", "#586377"], vest: true, cap: true, trousers: "#3f4a5c" }),
     "p-me": P({ top: T.hoodieDark, helmet: true, shield: true, trousers: C.s4 }),
-    "p-hool-voor": P({ top: T.hoodieGrey, hood: true, pocket: true, scarf: true, trousers: C.denim, sneakers: true }),
+    "p-hool-voor": P({ top: T.hoodieGrey, hood: true, pocket: true, scarf: true, scarfC: C.s3, trousers: C.denim, sneakers: true }),
     "p-hool-masker": P({ top: T.hoodieDark, hood: true, pocket: true, mask: C.s1, trousers: C.denim2, sneakers: true }),
     "p-hool-achter": P({ top: T.hoodieGrey, hood: true, back: true, trousers: C.denim, sneakers: true }),
     "p-zomer": P({ top: T.summer, hair: C.wood, sneakers: true, armC: C.cream, legC: C.cream }),
     "p-rouw": P({ top: T.black, coat: true, back: true, hair: C.s4, trousers: C.ink }),
-    "p-supporter": P({ top: T.jacket, hair: C.s3, scarf: true, trousers: C.s2, armsUp: true }),
+    "p-supporter": P({ top: T.jacket, hair: C.s3, scarf: true, scarfC: C.s1, trousers: C.s2, armsUp: true }),
     "p-zoon": P({ top: T.hoodieLight, hair: C.wood, scarf: true, phone: true, trousers: C.denim, sneakers: true, scale: 0.85 }),
     "p-kind": P({ top: ["#d9b7a6", "#e3c6b8", "#ecd6cb"], coat: true, hairLong: "#c9a56b", scale: 0.62 }),
     "p-gehurkt": { vb: [100, 130], svg:
@@ -148,6 +152,7 @@
     "o-ziekenhuisbed": { vb: [360, 140], svg: R(0, 40, 360, 42, C.white, 10) + R(0, 70, 360, 14, C.light, 4) + R(6, 82, 8, 46, C.s1, 3) + R(346, 82, 8, 46, C.s1, 3) + R(0, 14, 10, 70, C.s1, 4) + R(350, 26, 10, 58, C.s1, 4) +
       E(16, 132, 7, 7, C.s2) + E(344, 132, 7, 7, C.s2) + R(296, 0, 6, 40, C.mid, 3) + R(288, 6, 22, 26, "#dfe6e9", 6) },
     "o-deur": { vb: [130, 680], svg: R(0, 0, 130, 680, "#c9b69c", 6) + Pth("M130 0 L100 26 L100 654 L130 680 Z", "#a8957c") + E(108, 360, 6, 6, C.s3) + R(10, 0, 4, 680, "#b3a086") },
+    "o-sjaal": { vb: [240, 120], svg: R(10, 30, 220, 60, C.red, 10) + [40, 90, 140, 190].map((x) => R(x, 30, 18, 60, C.pale)).join("") + Array.from({ length: 9 }, (_, i) => R(14 + i * 3, 90, 2, 16, C.red, 1)).join("") + Array.from({ length: 9 }, (_, i) => R(200 + i * 3, 90, 2, 16, C.red, 1)).join("") + R(10, 30, 220, 12, C.red2, 6) },
     "o-markering": { vb: [60, 60], svg: `<circle cx="30" cy="30" r="25" fill="none" stroke="${C.red}" stroke-width="5" stroke-dasharray="7 5"/>` },
     "o-sneakers": { vb: [400, 300], svg: R(0, 180, 400, 120, "#b3aea4") + Array.from({ length: 40 }, (_, i) => E(12 + (i * 53) % 376, 200 + ((i * 37) % 90), 6 + (i % 4), 4 + (i % 3), i % 2 ? "#a19b90" : "#c7c2b8")).join("") +
       stick("M120 0 L130 170 M270 0 L262 170", C.denim, 30) + R(70, 160, 120, 46, C.white, 22) + R(70, 192, 120, 16, C.mid, 8) + E(98, 196, 10, 6, "#dfe6e9") +
@@ -165,12 +170,15 @@
     vader: "p-man", wieg: "o-wieg", terugkomers: "p-hool-voor", "mark-13": "p-mark-jong", stadion: "o-stadion", "mark-kuip": "p-mark-jong", "jeroen-kuip": "p-jeroen-jong",
     "oudere-jongens": "p-hool-voor", tafel: "o-tafel", "mark-kroeg": "p-mark-jong",
     "krant-pagina": "o-krant", "handen-vader": "o-handen",
-    fluisteraars: "p-jeroen-jong", "mark-rent": "p-mark-capuchon", "jeroen-opgepakt": "p-jeroen-jong", agent: "p-agent", "vader-jeroen": "p-man", "jeroen-bureau": "p-jeroen-jong",
+    fluisteraars: "p-jeroen-jong", "mark-rent": "p-mark-jong-sjaal", "jeroen-opgepakt": "p-jeroen-jong", agent: "p-agent", "vader-jeroen": "p-man", "jeroen-bureau": "p-jeroen-jong",
     treinraam: "o-treinraam", "jonge-kern": "p-hool-voor", "vuilnisbak-object": "o-vuilnisbak", "mark-verstopt": "p-gehurkt", celdeur: "o-celdeur", luikje: "o-luikje", veertig: "p-zomer", zon: "o-zon",
-    monitor: "o-monitor", "mark-pak": "p-mark-pak", schilden: "p-me", rook: "o-rook", "mark-voor": "p-mark-capuchon", "telefoon-ziek": "o-telefoon",
+    monitor: "o-monitor", "mark-pak": "p-mark-pak", schilden: "p-me", rook: "o-rook", "mark-voor": "p-mark-sjaal", "telefoon-ziek": "o-telefoon",
     "wieg-bed": "o-wieg-boven", baby: "o-baby", envelop: "o-envelop", bed: "o-ziekenhuisbed", "mark-bed": "p-liggend", bezoek: "p-hool-voor", rouw: "p-rouw", "ruud-persoon": "p-man",
     deur: "o-deur", zoon: "p-zoon", "telefoon-zoon": "o-telefoon", "scherm-zoon-groot": "o-telefoon-groot", "prepaid-mark": "o-prepaid", "jeroen-43": "p-jeroen-43", dochter: "p-kind",
-    "tribune-mensen": "p-supporter", "mark-tribune": "o-markering"
+    "tribune-mensen": "p-supporter", "mark-tribune": "o-markering",
+    // Verhaal met Ruud als draad (v6)
+    "jeroen-13": "p-jeroen-jong", "ruud-96": "p-ruud", "sjaal-om": "o-sjaal", "ruud-rent": "p-ruud", "ruud-trein": "p-ruud", "mark-trein": "p-mark-sjaal",
+    "ruud-wacht": "p-ruud", "ruud-linie": "p-ruud", "telefoon-nacht": "o-telefoon", "sjaal-graf": "o-sjaal"
   };
 
   // Plaatst een asset passend in een vak (w x h): op schaal, gecentreerd, onderaan uitgelijnd.
