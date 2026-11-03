@@ -17,6 +17,7 @@
   const outsideEl = document.getElementById("outside");
   const outsideWho = document.getElementById("outsideWho");
   const outsideText = document.getElementById("outsideText");
+  const contextEl = document.getElementById("context");
 
   /* ---------- 1. SVG per hoofdstuk: Figma-export of placeholder ---------- */
   async function loadFigmaSvg(id) {
@@ -100,8 +101,8 @@
   /* ---------- 2. Tijdlijn onderaan ---------- */
   const tickEls = SCENES.map((s, i) => {
     const t = document.createElement("div");
-    t.className = "tick"; t.style.left = (i / (SCENES.length - 1)) * 100 + "%";
-    t.textContent = s.id.slice(3);
+    t.className = "tick"; t.style.left = 1 + (i / (SCENES.length - 1)) * 98 + "%";
+    t.title = s.label || s.id;
     ticks.appendChild(t); return t;
   });
 
@@ -224,10 +225,15 @@
       outsideWho.textContent = o.who; outsideText.textContent = "\u201C" + o.text + "\u201D";
       gsap.to(outsideEl, { opacity: 1, duration: 0.4, overwrite: true });
     }});
+    const c = SCENES[cur].context || "";
+    gsap.to(contextEl, { opacity: 0, duration: 0.15, overwrite: true, onComplete: () => {
+      contextEl.textContent = c; if (c) gsap.to(contextEl, { opacity: 1, duration: 0.5, overwrite: true });
+    }});
     document.body.classList.toggle("is-dark", !!SCENES[cur].panels.some((p) => p.dark && p.w >= 1440));
     tickEls.forEach((el, i) => el.classList.toggle("done", i <= cur));
     fxByChapter.forEach((list, i) => list.forEach((tw) => (i === cur ? tw.play() : tw.pause())));
   });
   renderYear(); applyPos();
+  contextEl.textContent = SCENES[0].context || "";
   fxByChapter[0].forEach((tw) => tw.play());
 })();

@@ -43,7 +43,8 @@ Een nieuw paneel of een nieuwe laag die moet bewegen? Voeg hem toe in `js/scenes
 - **Guided view:** de camera gaat per hoofdstuk paneel voor paneel in leesvolgorde (zoals een strip-app) en zoomt daarna uit naar de hele pagina. De volgorde van de panelen in `scenes.js` is de leesvolgorde.
 - **Tekstballonnen en captions** verschijnen als de camera bij hun paneel is.
 - **Eén groot woord** per periode (laag `woord`).
-- **Tijdlijn onderaan** loopt vol, met een stip per hoofdstuk.
+- **Tijdlijn onderaan:** een dunne lijn over de volle breedte die volloopt, met een stip per hoofdstuk en zonder tekst.
+- **Context onderin** (`context` in `scenes.js`): één zin uitleg per hoofdstuk over wie, waar en wat. In Figma staat hij als `notitie-context`.
 - **Overgangen per hoofdstuk** (`transition` in `scenes.js`): `assemble`, `slow`, `shock`, `cut` of `beat` (harde cuts, paneel voor paneel). Hoe meer jaren tussen twee hoofdstukken, hoe langer de overgang.
 - **Wat zij zien** (`outside` in `scenes.js`) staat bovenin het midden en verandert per hoofdstuk. In Figma staat de plek als `notitie-zij-zien`.
 - Lagen met `fx: "pulse"` kloppen als een hart (oog, markering), `fx: "shake"` trilt (prepaid telefoon, rennen).
@@ -66,3 +67,4 @@ Elke versie blijft bewaard:
 - v5.1 (3 nov): soepeler scrollen.
 - v6 (3 nov): verhaal met één draad, Ruud en zijn rode sjaal (1996 → 2026). Rood komt alleen in die sjaal voor.
 - v7 (3 nov): guided view, één paneel tegelijk groot in beeld, dan de hele pagina.
+- v8 (3 nov): contextzin per hoofdstuk, rustige tijdlijn zonder tekst.

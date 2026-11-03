@@ -9,6 +9,7 @@
   Opties hoofdstuk:
     transition: "assemble" (panelen vallen op hun plek) | "slow" (traag invloeien) | "shock" (hard binnen) | "cut" (direct)
     outside:    { who, text }  → wat de buitenwereld ziet (vaste plek bovenin)
+    context:    één zin uitleg onderin (wie, waar, wat): de kijker moet het verhaal zonder voorkennis kunnen volgen
     duration:   hoe lang het hoofdstuk blijft staan. De overgang zelf duurt langer naarmate er meer jaren tussen zitten.
 
   Verhaalstructuur (v6, één draad: Ruud en zijn rode sjaal):
@@ -26,6 +27,7 @@
   window.SCENES = [
     {
       id: "00-kader", year: 1996, label: "1996 – 2026", word: "", transition: "slow", duration: 1.2,
+      context: "Een verzonnen leven, gebouwd uit echte verhalen van Nederlandse voetbalhooligans. Je scrolt door dertig jaar, van 1996 tot 2026.",
       // Begin en eind bewust gekozen: jij bent 13 als Ruud je ziet; je zoon is 13 als hij Ruuds sjaal vindt.
       panels: [
         P("titel", 320, 160, 800, 200, "", [
@@ -43,6 +45,7 @@
     },
     {
       id: "01-maandag", year: 2026, label: "MAANDAG 08:47 · 43 JAAR", word: "MAANDAG", transition: "slow", duration: 1.4,
+      context: "Rotterdam, 2026. Je bent Mark, 43, en werkt op kantoor. Al dertig jaar ben je hooligan bij Feyenoord. Op je werk weet niemand het.",
       outside: { who: "Collega's", text: "Ja, ja. Dat zal wel!" },
       // Bron: P. (FC Twente) in Vos 2006
       panels: [
@@ -64,6 +67,7 @@
     },
     {
       id: "02-zaterdag", year: 2026, label: "ZATERDAG · TWEE DAGEN EERDER", word: "KICK", transition: "assemble", duration: 1.2,
+      context: "Hooligans spreken vechtpartijen af buiten het stadion, met een prepaid telefoon zodat de politie niet meeleest. Twintig tegen twintig, op een verlaten plek.",
       outside: { who: "Lisa", text: "Veel plezier met de jongens." },
       // Bronnen: vechtafspraken via prepaid (Politie & Wetenschap); Kievits (erecode)
       panels: [
@@ -84,6 +88,7 @@
     },
     {
       id: "03-zwart", year: 2026, label: "14:20", word: "", transition: "beat", duration: 1.8,
+      context: "Zo'n gevecht duurt vaak maar een minuut. Het blauwe oog draag je de hele week.",
       // McCloud (closure): drie momenten steeds dichterbij, dan zwart. Het gevecht zelf gebeurt in het zwart.
       panels: [
         P("afstand", 80, 90, 400, 720, "WIJD · TWINTIG METER", [
@@ -102,6 +107,7 @@
     },
     {
       id: "04-terug", year: 1996, label: "DERTIG JAAR EERDER", word: "", transition: "slow", duration: 1.2,
+      context: "Bijna niemand wordt als volwassene hooligan. Het begint meestal rond je dertiende.",
       panels: [
         P("vraag-terug", 320, 300, 800, 300, "", [
           T("caption-terug", "caption", 0, 0, 800, 300, "Hoe word je iemand die dit doet?")
@@ -110,6 +116,7 @@
     },
     {
       id: "05-1996", year: 1996, label: "1996 · 13 JAAR", word: "RUUD", transition: "assemble", duration: 1.8,
+      context: "Rotterdam, 1996. Met je vriend Jeroen kijk je naar de harde kern van Feyenoord, die terugkomt van een uitwedstrijd. Ruud (19) hoort daarbij.",
       outside: { who: "Moeder", text: "Hij is bij een vriendje." },
       // Bronnen: Martin (station); Spaaij p. 99 (aantrekkingskracht van de harde kern); VICE ("doodeng, maar onweerstaanbaar")
       panels: [
@@ -132,6 +139,7 @@
     },
     {
       id: "06-beverwijk", year: 1997, label: "23 MAART 1997 · 14 JAAR", word: "BEVERWIJK", transition: "slow", duration: 2.4,
+      context: "Op 23 maart 1997 vechten hooligans van Feyenoord en Ajax bij Beverwijk. Een Ajax-supporter komt om het leven. Ruud is verzonnen, deze dag niet.",
       outside: { who: "Vader, aan tafel", text: "Wat een tuig." },
       // FOCAL POINT. Bronnen: Spaaij p. 104–106; P. in Vos 2006 ("een vader van twee kinderen").
       // Carlo Picornie is echt: geen naam, geen beeld van het slachtoffer, alleen de krant. Ruud is verzonnen.
@@ -147,6 +155,7 @@
     },
     {
       id: "07-1997", year: 1997, label: "1997 · 14 JAAR", word: "RENNEN", transition: "shock", duration: 1.6,
+      context: "Na Beverwijk stoppen veel oudere hooligans. Er komt plek voor jonge jongens. Je eerste rel is na een wedstrijd, buiten het stadion.",
       outside: { who: "Moeder", text: "Was het gezellig bij Jeroen?" },
       // Bronnen: Spaaij p. 106 (jongeren komen af op de reputatie); De Generaal ("klappen, opgepakt of verkering")
       panels: [
@@ -168,6 +177,7 @@
     },
     {
       id: "08-1999", year: 1999, label: "1999 · 16 JAAR", word: "BROERS", transition: "assemble", duration: 1.6,
+      context: "Je bent 16 en reist mee naar elke uitwedstrijd. De groep wordt belangrijker dan school of thuis.",
       outside: { who: "Ouders", text: "Hij zit veel bij vrienden, maar zijn cijfers zijn prima." },
       // Bronnen: Kievits ("elke week wordt onze band hechter"); Newson 2018 (identity fusion)
       panels: [
@@ -190,6 +200,7 @@
     },
     {
       id: "09-2005", year: 2005, label: "2005 · 22 JAAR", word: "UITLAATKLEP", transition: "shock", duration: 1.6,
+      context: "Je bent 22 en leidt een dubbelleven. Op 17 april 2005, rond Feyenoord–Ajax, raken tientallen agenten gewond.",
       outside: { who: "Collega's", text: "Hij is goed bezig." },
       // Bronnen: Kievits ("aan de sleur ontsnappen"); Martin ("mijn ei kwijt"); Spaaij p. 113; Stott 2011
       panels: [
@@ -210,6 +221,7 @@
     },
     {
       id: "10-2013", year: 2013, label: "2013 · 30 JAAR", word: "PRIJS", transition: "slow", duration: 2.4,
+      context: "Je bent 30 en wordt vader. Je wilt stoppen. Maar wie uit de groep stapt, laat ook zijn vrienden achter.",
       outside: { who: "Lisa", text: "Hij is rustiger geworden." },
       // Bronnen: Kievits (vrienden kapot aan drugs); Danny ("dan komen de begrafenissen"); Fozz (Vos 2006)
       panels: [
@@ -232,6 +244,7 @@
     },
     {
       id: "11-2026", year: 2026, label: "2026 · 43 JAAR", word: "13", transition: "assemble", duration: 2,
+      context: "Je zoon is 13, net zo oud als jij in 1996. Ook nu zoeken hooligangroepen jonge jongens, via apps en sociale media.",
       outside: { who: "Lisa", text: "Hij lijkt steeds meer op jou." },
       // TEN (de wending). Bronnen: Kievits ("jong geleerd is oud gedaan"); COT (nieuwe generatie)
       panels: [
@@ -252,6 +265,7 @@
     },
     {
       id: "12-einde", year: 2026, label: "", word: "", transition: "slow", duration: 1.8,
+      context: "Hooligans komen uit alle lagen van de samenleving. Aan de buitenkant zie je het niet.",
       // KETSU. Bronnen: Spaaij p. 130 en 192; Rijnmond 2025 (nuance). Cel 34 = jij, cel 35 = je zoon met de rode sjaal.
       panels: [
         P("tribune", 80, 90, 1280, 520, "UITZOOMEN", [
