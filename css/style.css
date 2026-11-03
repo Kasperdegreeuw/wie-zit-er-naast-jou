@@ -51,3 +51,7 @@ body.is-tijd .hud { opacity: 0; }
 body.is-dark .hud { opacity: 0.25; }
 .hud { transition: opacity .4s; }
 
+
+/* Los type (titel, slotvraag): geen kader */
+.ph-los.is-bold .ph-text { font-weight: 800; letter-spacing: -2px; }
+.ph-los.is-muted .ph-text { fill: var(--muted); }

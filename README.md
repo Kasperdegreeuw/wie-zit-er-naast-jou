@@ -65,3 +65,4 @@ Elke versie blijft bewaard:
 - v8 (3 nov): contextzin per hoofdstuk, rustige tijdlijn zonder tekst.
 - v9 (3 nov): "Wat zij zien" weg, dubbel blauw oog in 01 weg (zit al in het asset), koffiebeker in zijn hand.
 - v10 (3 nov): geen hoofdstukken meer, tijdlijnen tussen de scènes, tekstbalk onderin weg. Verhaal sluit: 2014 "voor Ruud", terug bij de avond van het gevecht, en de keuze tussen twee zinnen.
+- v11 (3 nov): nieuwe titelpagina (groot type en de rode sjaal, geen kaders), vraag-scène en "bestaan niet" weg, slotvraag groot onder de tribune.

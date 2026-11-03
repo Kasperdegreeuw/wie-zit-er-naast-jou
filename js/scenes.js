@@ -5,12 +5,13 @@
   Er zijn geen hoofdstukken meer. Tussen twee scènes met een ander jaar zet main.js automatisch
   een TIJDLIJN: een liniaal met jaren en Marks leeftijd die voorbijschuift (ook terug in de tijd).
 
-  Laagtypes: person · hood · crowd (n, swap) · phone · object · round · bubble · caption
+  Laagtypes: person · hood · crowd (n, swap) · phone · object · round · bubble · caption · text (los type, size/bold/c)
   Opties laag:  suit, n, swap { cel: asset }, dark (donkere caption), fx: "pulse" | "shake"
-  Opties panel: shot (camera-notitie, alleen in Figma), dark (donker paneel)
+  Opties panel: shot (camera-notitie, alleen in Figma), dark (donker paneel), plain (geen kader)
   Opties scène:
     transition: "assemble" | "slow" | "shock" | "beat" (harde cuts) | "cut" → hoe de camera beweegt
     duration:   hoe lang de scène blijft staan
+    hud: false  → geen jaartal linksboven (titel)
   De volgorde van de panelen is de leesvolgorde (de camera gaat paneel voor paneel).
   Plaats en tijd staan als klein stripkadertje (laag "plek-…") in het eerste paneel.
 
@@ -34,12 +35,14 @@
 
   window.SCENES = [
     {
-      id: "00-titel", year: 2026, label: "", transition: "slow", duration: 1.2,
+      id: "00-titel", year: 2026, label: "", transition: "slow", duration: 1.2, hud: false,
+      // Geen kaders: groot type links, rechts de rode sjaal (de draad door het verhaal)
       panels: [
-        P("titel", 320, 240, 800, 420, "", [
-          T("titel-tekst", "caption", 0, 0, 800, 240, "Wie zit er naast jou?"),
-          T("titel-sub", "caption", 0, 270, 800, 150, "Een verzonnen leven, gebouwd uit echte verhalen van Nederlandse voetbalhooligans.")
-        ])
+        P("titel", 0, 0, 1440, 900, "", [
+          T("titel-tekst", "text", 120, 250, 760, 260, "Wie zit er naast jou?", { size: 104, bold: true }),
+          T("titel-sub", "text", 124, 540, 600, 90, "Een verzonnen leven, gebouwd uit echte verhalen van Nederlandse voetbalhooligans.", { size: 22, c: "muted" }),
+          L("titel-sjaal", "object", 900, 330, 440, 220)
+        ], { plain: true })
       ]
     },
     {
@@ -99,14 +102,6 @@
         P("zwart", 960, 90, 400, 720, "ZWART · HET GEVECHT ZIE JE NIET", [
           T("caption-rent", "caption", 20, 300, 360, 120, "Dan rent de eerste.", { dark: true })
         ], { dark: true })
-      ]
-    },
-    {
-      id: "04-vraag", year: 2026, label: "", transition: "slow", duration: 1.2,
-      panels: [
-        P("vraag-terug", 320, 300, 800, 300, "", [
-          T("caption-terug", "caption", 0, 0, 800, 300, "Hoe word je iemand die dit doet?")
-        ])
       ]
     },
     {
@@ -289,12 +284,9 @@
           L("tribune-mensen", "crowd", 20, 20, 1240, 480, { n: 40, swap: { 34: "p-mark-capuchon" } }),
           L("mark-tribune", "round", 505, 280, 180, 230)
         ]),
-        P("niet-echt", 80, 640, 600, 170, "", [
-          T("caption-niet-echt", "caption", 20, 20, 560, 130, "Mark en Ruud bestaan niet. Wat ze meemaken wel: het komt uit interviews en onderzoek.")
-        ]),
-        P("vraag", 720, 640, 640, 170, "", [
-          T("vraag-tekst", "caption", 20, 20, 600, 130, "Wie zit er naast jou?")
-        ])
+        P("vraag", 0, 630, 1440, 200, "", [
+          T("vraag-tekst", "text", 80, 20, 1280, 120, "Wie zit er naast jou?", { size: 72, bold: true })
+        ], { plain: true })
       ]
     }
   ];

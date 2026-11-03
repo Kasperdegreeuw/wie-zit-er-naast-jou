@@ -61,7 +61,7 @@
     for (const p of scene.panels) {
       // Buitenste <g> draagt de id (zoals in een Figma-export), binnenste de positie
       const g = el("g", { transform: `translate(${p.x} ${p.y})` }, el("g", { id: p.name }, svg));
-      el("rect", { width: p.w, height: p.h, class: p.dark ? "ph-panel ph-dark" : "ph-panel" }, g);
+      if (!p.plain) el("rect", { width: p.w, height: p.h, class: p.dark ? "ph-panel ph-dark" : "ph-panel" }, g);
       for (const l of p.layers) {
         const lg = el("g", { transform: `translate(${l.x} ${l.y})` }, el("g", { id: l.name }, g));
         const key = window.ASSET_MAP && window.ASSET_MAP[l.name];
@@ -73,8 +73,11 @@
           lg.innerHTML = cells.map((c, ci) => { const k = (l.swap && l.swap[ci]) || key; const fit = window.assetFit(k, c.w, c.h);
             const mist = c.row ? ` opacity="${window.crowdMist(c.row)}"` : "";
             return `<g transform="translate(${c.x + fit.x} ${c.y + fit.y}) scale(${fit.s})"${mist}>${window.ASSETS[k].svg}</g>`; }).join("");
-        } else lg.innerHTML = window.shapeSVG(l);
-        if (l.text) { wrapText(lg, l.text, 14, 8, l.w - 28, textSize(l)); if (l.dark) lg.classList.add("on-dark"); }
+        } else if (l.type !== "text") lg.innerHTML = window.shapeSVG(l);
+        if (l.type === "text") { // los type, zonder kader
+          wrapText(lg, l.text, 0, 0, l.w, l.size || 24);
+          lg.classList.add("ph-los"); if (l.bold) lg.classList.add("is-bold"); if (l.c === "muted") lg.classList.add("is-muted");
+        } else if (l.text) { wrapText(lg, l.text, 14, 8, l.w - 28, textSize(l)); if (l.dark) lg.classList.add("on-dark"); }
         else if (!key && (l.type === "object" || l.type === "round")) { const lab = el("text", { x: 8, y: 18, class: "ph-label" }, lg); lab.textContent = l.name; }
       }
     }
@@ -250,10 +253,11 @@
     let cur = 0; starts.forEach((s, i) => { if (t >= s) cur = i; });
     if (cur === last) return; last = cur;
     labelEl.textContent = ITEMS[cur].label || "";
-    document.body.classList.toggle("is-tijd", !!ITEMS[cur].tijd);
+    document.body.classList.toggle("is-tijd", !!ITEMS[cur].tijd || ITEMS[cur].hud === false);
     document.body.classList.toggle("is-dark", !!ITEMS[cur].panels.some((p) => p.dark && p.w >= 1440));
     fxByChapter.forEach((list, i) => list.forEach((tw) => (i === cur ? tw.play() : tw.pause())));
   });
   renderYear(); applyPos();
+  document.body.classList.toggle("is-tijd", ITEMS[0].hud === false);
   fxByChapter[0].forEach((tw) => tw.play());
 })();
