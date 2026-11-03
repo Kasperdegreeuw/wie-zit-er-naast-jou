@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wie zit er naast jou</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Vaste HUD: jaartal dat meetelt + hoofdstuklabel -->
+  <div class="hud">
+    <div class="hud-year" id="year">1996</div>
+    <div class="hud-label" id="label">1996 – 2026</div>
+  </div>
+
+  <!-- Wat de buitenwereld ziet (vaste plek, verandert per hoofdstuk) -->
+  <div class="outside" id="outside" aria-live="polite">
+    <div class="outside-who" id="outsideWho"></div>
+    <div class="outside-text" id="outsideText"></div>
+  </div>
+
+  <!-- Tijdlijn onderaan, vult zich tijdens het scrollen -->
+  <div class="timeline" aria-hidden="true">
+    <div class="timeline-fill" id="timelineFill"></div>
+    <div class="timeline-ticks" id="ticks"></div>
+  </div>
+
+  <main class="pin" id="pin">
+    <div class="track" id="track"></div>
+  </main>
+
+  <div class="scroll-hint" id="hint">scroll ↓</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/shapes.js"></script>
+  <script src="js/assets.js"></script>
+  <script src="js/scenes.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* Eerste opzet: bewust neutraal en grijs. De stijl komt later uit Figma. */
+:root {
+  --bg: #ffffff;
+  --ink: #3f3f3f;
+  --muted: #8c8c8c;
+  --line: #c9c9c9;
+  --placeholder: #dbdbdb;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); }
+
+/* Horizontale track: elk hoofdstuk is één scherm breed */
+.pin { height: 100vh; overflow: hidden; }
+.track { display: flex; flex-direction: column; will-change: transform; }
+.chapter { flex: 0 0 100vh; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; }
+.chapter svg { width: 100%; height: 100%; display: block; }
+
+/* Placeholders (alleen zolang er geen Figma-SVG is) */
+.ph-panel { fill: #f7f7f7; stroke: var(--muted); stroke-width: 2; }
+.ph-layer { fill: var(--placeholder); stroke: #9a9a9a; stroke-width: 1.5; stroke-dasharray: 8 6; }
+.ph-text-box { fill: #fff; stroke: #666; stroke-width: 1.5; }
+.ph-label { fill: #666; font: 13px var(--font); }
+.ph-text { fill: var(--ink); font-family: var(--font); }
+.ph-note { fill: var(--ink); font: 700 20px var(--font); }
+.ph-word { fill: var(--ink); font: 800 48px var(--font); letter-spacing: 2px; }
+
+/* HUD */
+.hud { position: fixed; top: 18px; left: 32px; z-index: 10; pointer-events: none; display: flex; align-items: baseline; gap: 16px; }
+.hud-year { font: 800 52px/1 var(--font); font-variant-numeric: tabular-nums; letter-spacing: -1px; }
+.hud-label { font: 600 13px/1.4 var(--font); letter-spacing: 2px; color: var(--muted); }
+
+/* Tijdlijn */
+.timeline { position: fixed; left: 32px; right: 32px; bottom: 24px; height: 28px; z-index: 10; }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; height: 2px; background: var(--line); }
+.timeline-fill { position: absolute; left: 0; top: 6px; height: 2px; width: 0; background: var(--ink); }
+.timeline-ticks { position: absolute; inset: 0; }
+.tick { position: absolute; top: 0; transform: translateX(-50%); font: 600 11px var(--font); color: var(--muted); text-align: center; }
+.tick::before { content: ""; display: block; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); margin: 0 auto 4px; }
+.tick.done { color: var(--ink); }
+.tick.done::before { border-color: var(--ink); background: var(--ink); }
+
+.scroll-hint { position: fixed; right: 32px; bottom: 64px; z-index: 10; font: 600 13px var(--font); letter-spacing: 2px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Donkere panelen (stilte, splash) */
+.ph-dark { fill: #0d0d0d; stroke: #0d0d0d; }
+.on-dark .ph-text { fill: #f2f2f2; }
+body.is-dark .hud, body.is-dark .timeline, body.is-dark .outside { opacity: 0.25; }
+.hud, .timeline { transition: opacity .4s; }
+
+/* Wat zij zien: vaste plek bovenin, midden */
+.outside { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 10; width: 440px; max-width: 40vw;
+  pointer-events: none; opacity: 0; text-align: center; }
+.outside-who { font: 600 11px/1.3 var(--font); letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+.outside-who::before { content: "Wat zij zien · "; }
+.outside-text { font: italic 400 17px/1.35 var(--font); color: var(--ink); }
