@@ -106,6 +106,19 @@
 
   /* ---------- 3. Hoofdtijdlijn (gescrubd door scroll) ---------- */
   const yearObj = { v: SCENES[0].year };
+  // Positie in hoofdstukken (0 = eerste). Alleen de twee hoofdstukken rond de positie worden getekend.
+  const secs = chapters.map((c) => c.svg.parentNode);
+  const posObj = { v: 0 };
+  const applyPos = () => {
+    const p = posObj.v;
+    secs.forEach((sec, i) => {
+      const d = i - p;
+      const show = d > -1 && d < 1;
+      if (show) sec.style.transform = `translate3d(0, ${(d * 100).toFixed(3)}%, 0)`;
+      if (sec._show !== show) { sec.style.visibility = show ? "visible" : "hidden"; sec._show = show; }
+    });
+  };
+  const fxByChapter = chapters.map(() => []);
   const renderYear = () => { yearEl.textContent = Math.round(yearObj.v); };
   const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
   const starts = [];
@@ -123,7 +136,7 @@
       const gap = Math.abs(scene.year - SCENES[i - 1].year);
       const moveDur = mode === "cut" || mode === "beat" ? 0.05 : 0.8 + Math.min(2.2, gap * 0.08);
       tl.addLabel("move" + i);
-      tl.to(track, { y: () => -i * window.innerHeight, duration: moveDur, ease: mode === "cut" || mode === "beat" ? "none" : "power2.inOut" }, "move" + i);
+      tl.to(posObj, { v: i, duration: moveDur, ease: mode === "cut" || mode === "beat" ? "none" : "power2.inOut", onUpdate: applyPos }, "move" + i);
       tl.to(yearObj, { v: scene.year, duration: Math.max(moveDur, 0.05), ease: "none", onUpdate: renderYear }, "move" + i);
       starts.push(tl.duration() - moveDur / 2); // label wisselt halverwege de overgang
     } else starts.push(0);
@@ -144,14 +157,15 @@
       gsap.set(word, { transformOrigin: "100% 100%" });
       tl.fromTo(word, { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" });
     }
-    tl.to({}, { duration: 0.5 * (scene.duration || 1) }); // even blijven staan
+    tl.to({}, { duration: 0.4 * (scene.duration || 1) }); // even blijven staan
 
     // Doorlopende effecten (los van de scroll)
     scene.panels.forEach((p) => p.layers.forEach((l) => {
       const n = q(l.name); if (!n || !l.fx) return;
       gsap.set(n, { transformOrigin: "50% 50%", transformBox: "fill-box" });
-      if (l.fx === "pulse") gsap.to(n, { scale: 1.12, duration: 0.35, repeat: -1, yoyo: true, ease: "power1.inOut", repeatDelay: 0.25 });
-      if (l.fx === "shake") gsap.to(n, { x: "+=4", duration: 0.05, repeat: -1, yoyo: true, repeatDelay: 1.6, ease: "none" });
+      // Lussen draaien alleen in het hoofdstuk dat in beeld is
+      if (l.fx === "pulse") fxByChapter[i].push(gsap.to(n, { scale: 1.12, duration: 0.35, repeat: -1, yoyo: true, ease: "power1.inOut", repeatDelay: 0.25, paused: true }));
+      if (l.fx === "shake") fxByChapter[i].push(gsap.to(n, { x: "+=4", duration: 0.05, repeat: -1, yoyo: true, repeatDelay: 1.6, ease: "none", paused: true }));
     }));
   });
 
@@ -161,7 +175,7 @@
     animation: tl,
     trigger: "#pin",
     pin: true,
-    scrub: 1,
+    scrub: 0.6,
     start: "top top",
     end: () => "+=" + total * window.innerHeight * 1.1,
     invalidateOnRefresh: true,
@@ -186,6 +200,8 @@
     }});
     document.body.classList.toggle("is-dark", !!SCENES[cur].panels.some((p) => p.dark && p.w >= 1440));
     tickEls.forEach((el, i) => el.classList.toggle("done", i <= cur));
+    fxByChapter.forEach((list, i) => list.forEach((tw) => (i === cur ? tw.play() : tw.pause())));
   });
-  renderYear();
+  renderYear(); applyPos();
+  fxByChapter[0].forEach((tw) => tw.play());
 })();
