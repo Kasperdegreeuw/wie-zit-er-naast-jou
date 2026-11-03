@@ -1,7 +1,8 @@
 /*
-  Hooligan-scrollytelling – opzet 2
+  Hooligan-scrollytelling
   - Je scrolt omlaag, het verhaal schuift omhoog (GSAP ScrollTrigger, gepind).
-  - Per hoofdstuk: laadt assets/svg/<id>.svg uit Figma, anders een storyboard-placeholder.
+  - Per scène: laadt assets/svg/<id>.svg uit Figma, anders een storyboard-placeholder.
+  - Tussen scènes met een ander jaar: een tijdlijn (liniaal met jaren en Marks leeftijd) die voorbijschuift.
   - Guided view: de camera gaat paneel voor paneel (leesvolgorde), daarna zoomt hij uit naar de hele pagina.
   - Het jaartal linksboven telt mee (2026 → 1996 → 2026).
   - Lagen met fx "pulse" kloppen als een hart, "shake" trilt (zoals een telefoon).
@@ -12,9 +13,6 @@
   const track = document.getElementById("track");
   const yearEl = document.getElementById("year");
   const labelEl = document.getElementById("label");
-  const fill = document.getElementById("timelineFill");
-  const ticks = document.getElementById("ticks");
-  const contextEl = document.getElementById("context");
 
   /* ---------- 1. SVG per hoofdstuk: Figma-export of placeholder ---------- */
   async function loadFigmaSvg(id) {
@@ -83,10 +81,41 @@
     return svg;
   }
 
-  const chapters = await Promise.all(SCENES.map(async (scene) => {
+  /* Tijdlijn tussen scènes: een verticale liniaal. Elk jaar een streep, het jaartal en Marks leeftijd. */
+  const STEP = 150; // pixels per jaar
+  function rulerSvg(item) {
+    const lo = Math.min(item.from, item.to), hi = Math.max(item.from, item.to);
+    const svg = el("svg", { viewBox: "0 0 1440 900" });
+    const g = el("g", { id: "liniaal" }, svg);
+    el("rect", { x: 718, y: -STEP, width: 4, height: (hi - lo + 2) * STEP, class: "tl-lijn" }, g);
+    const marks = [];
+    const sceneYears = new Set(SCENES.map((s) => s.year));
+    for (let y = lo; y <= hi; y++) {
+      const yy = (y - lo) * STEP;
+      const m = el("g", { transform: `translate(0 ${yy})` }, g);
+      if (sceneYears.has(y)) el("circle", { cx: 720, cy: 0, r: 12, class: "tl-punt" }, m);
+      else el("rect", { x: 700, y: -2, width: 40, height: 4, class: "tl-streep" }, m);
+      const t = el("text", { x: 770, y: 16, class: "tl-jaar" }, m); t.textContent = y;
+      const a = el("text", { x: 770, y: 46, class: "tl-leeftijd" }, m); a.textContent = `Mark is ${y - window.MARK_GEBOREN}`;
+      marks.push({ y, m });
+    }
+    el("path", { d: "M640 450 L672 438 L672 462 Z", class: "tl-nu" }, svg); // het 'nu'
+    item.ruler = { g, marks, lo };
+    return svg;
+  }
+
+  // Scènes en tijdlijnen achter elkaar
+  const ITEMS = [];
+  SCENES.forEach((s, i) => {
+    const prev = SCENES[i - 1];
+    if (prev && prev.year !== s.year) ITEMS.push({ tijd: true, id: `tijd-${prev.year}-${s.year}`, from: prev.year, to: s.year, year: s.year, label: "", panels: [] });
+    ITEMS.push(s);
+  });
+
+  const chapters = await Promise.all(ITEMS.map(async (scene) => {
     const sec = document.createElement("section");
-    sec.className = "chapter"; sec.dataset.id = scene.id;
-    const svg = (await loadFigmaSvg(scene.id)) || placeholderSvg(scene);
+    sec.className = scene.tijd ? "chapter tijd" : "chapter"; sec.dataset.id = scene.id;
+    const svg = scene.tijd ? rulerSvg(scene) : (await loadFigmaSvg(scene.id)) || placeholderSvg(scene);
     svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
     svg.removeAttribute("width"); svg.removeAttribute("height");
     // Ontwerpnotities uit Figma (camera-aanwijzingen) niet tonen
@@ -94,14 +123,6 @@
     sec.appendChild(svg); track.appendChild(sec);
     return { scene, svg };
   }));
-
-  /* ---------- 2. Tijdlijn onderaan ---------- */
-  const tickEls = SCENES.map((s, i) => {
-    const t = document.createElement("div");
-    t.className = "tick"; t.style.left = 1 + (i / (SCENES.length - 1)) * 98 + "%";
-    t.title = s.label || s.id;
-    ticks.appendChild(t); return t;
-  });
 
   /* ---------- 3. Hoofdtijdlijn (gescrubd door scroll) ---------- */
   const yearObj = { v: SCENES[0].year };
@@ -128,16 +149,30 @@
     const texts = scene.panels.flatMap((p) => p.layers.filter((l) => l.text).map((l) => q(l.name))).filter(Boolean);
     const word = q("woord");
 
-    const mode = scene.transition || "assemble";
+    const mode = scene.tijd ? "slow" : scene.transition || "assemble";
     if (i > 0) {
-      // Hoe meer jaren ertussen, hoe langer de overgang: zo voel je de tijd
-      const gap = Math.abs(scene.year - SCENES[i - 1].year);
-      const moveDur = mode === "cut" || mode === "beat" ? 0.05 : 0.8 + Math.min(2.2, gap * 0.08);
+      const moveDur = mode === "cut" || mode === "beat" ? 0.05 : 0.8;
       tl.addLabel("move" + i);
       tl.to(posObj, { v: i, duration: moveDur, ease: mode === "cut" || mode === "beat" ? "none" : "power2.inOut", onUpdate: applyPos }, "move" + i);
-      tl.to(yearObj, { v: scene.year, duration: Math.max(moveDur, 0.05), ease: "none", onUpdate: renderYear }, "move" + i);
+      if (!scene.tijd) tl.to(yearObj, { v: scene.year, duration: Math.max(moveDur, 0.05), ease: "none", onUpdate: renderYear }, "move" + i);
       starts.push(tl.duration() - moveDur / 2); // label wisselt halverwege de overgang
     } else starts.push(0);
+
+    // TIJDLIJN: de liniaal schuift langs het 'nu', jaar voor jaar. Hoe meer jaren, hoe langer.
+    if (scene.tijd) {
+      const r = scene.ruler, cur = { v: scene.from };
+      const apply = () => {
+        r.g.setAttribute("transform", `translate(0 ${450 - (cur.v - r.lo) * STEP})`);
+        r.marks.forEach(({ y, m }) => { const d = Math.abs(y - cur.v); m.setAttribute("opacity", Math.max(0.18, 1 - d * 0.4).toFixed(2)); });
+        yearObj.v = cur.v; renderYear();
+      };
+      apply();
+      const gap = Math.abs(scene.to - scene.from);
+      tl.to({}, { duration: 0.25 });
+      tl.to(cur, { v: scene.to, duration: 0.6 + Math.min(2.4, gap * 0.12), ease: "power1.inOut", onUpdate: apply });
+      tl.to({}, { duration: 0.5 });
+      return;
+    }
 
     // GUIDED VIEW: de camera gaat paneel voor paneel, in leesvolgorde.
     // Je ziet steeds één moment groot; daarna zoomt hij uit naar de hele pagina.
@@ -184,7 +219,7 @@
 
     // Doorlopende effecten (los van de scroll)
     scene.panels.forEach((p) => p.layers.forEach((l) => {
-      const n = q(l.name); if (!n || !l.fx) return;
+      const n = q(l.name); if (!n || !l.fx) return; // tijdlijnen hebben geen panelen
       gsap.set(n, { transformOrigin: "50% 50%", transformBox: "fill-box" });
       // Lussen draaien alleen in het hoofdstuk dat in beeld is
       if (l.fx === "pulse") fxByChapter[i].push(gsap.to(n, { scale: 1.12, duration: 0.35, repeat: -1, yoyo: true, ease: "power1.inOut", repeatDelay: 0.25, paused: true }));
@@ -213,18 +248,12 @@
   tl.eventCallback("onUpdate", () => {
     const t = tl.time();
     let cur = 0; starts.forEach((s, i) => { if (t >= s) cur = i; });
-    fill.style.width = (t / total) * 100 + "%";
     if (cur === last) return; last = cur;
-    labelEl.textContent = SCENES[cur].label || "";
-    const c = SCENES[cur].context || "";
-    gsap.to(contextEl, { opacity: 0, duration: 0.15, overwrite: true, onComplete: () => {
-      contextEl.textContent = c; if (c) gsap.to(contextEl, { opacity: 1, duration: 0.5, overwrite: true });
-    }});
-    document.body.classList.toggle("is-dark", !!SCENES[cur].panels.some((p) => p.dark && p.w >= 1440));
-    tickEls.forEach((el, i) => el.classList.toggle("done", i <= cur));
+    labelEl.textContent = ITEMS[cur].label || "";
+    document.body.classList.toggle("is-tijd", !!ITEMS[cur].tijd);
+    document.body.classList.toggle("is-dark", !!ITEMS[cur].panels.some((p) => p.dark && p.w >= 1440));
     fxByChapter.forEach((list, i) => list.forEach((tw) => (i === cur ? tw.play() : tw.pause())));
   });
   renderYear(); applyPos();
-  contextEl.textContent = SCENES[0].context || "";
   fxByChapter[0].forEach((tw) => tw.play());
 })();

@@ -178,7 +178,10 @@
     "tribune-mensen": "p-supporter", "mark-tribune": "o-markering",
     // Verhaal met Ruud als draad (v6)
     "jeroen-13": "p-jeroen-jong", "ruud-96": "p-ruud", "sjaal-om": "o-sjaal", "ruud-rent": "p-ruud", "ruud-trein": "p-ruud", "mark-trein": "p-mark-sjaal",
-    "ruud-wacht": "p-ruud", "ruud-linie": "p-ruud", "telefoon-nacht": "o-telefoon", "sjaal-graf": "o-sjaal"
+    "ruud-wacht": "p-ruud", "ruud-linie": "p-ruud", "telefoon-nacht": "o-telefoon", "sjaal-graf": "o-sjaal",
+    // v10: zonder hoofdstukken, met 2014 en de keuze
+    "groep-terug": "p-hool-voor", "mark-terug": "p-mark-sjaal", "lisa-persoon": "p-vrouw",
+    "ruud-echo": "p-ruud", "vader-echo": "p-man", "mark-rug": "p-hool-achter", "zoon-wacht": "p-zoon"
   };
 
   // Plaatst een asset passend in een vak (w x h): op schaal, gecentreerd, onderaan uitgelijnd.
