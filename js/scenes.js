@@ -39,14 +39,14 @@
       // Geen kaders: groot type links, rechts de rode sjaal (de draad door het verhaal)
       panels: [
         P("titel", 0, 0, 1440, 900, "", [
-          T("titel-tekst", "text", 80, 250, 760, 260, "Wie zit er naast jou?", { size: 104, bold: true }),
-          T("titel-sub", "text", 84, 540, 600, 90, "Een verzonnen leven, gebouwd uit echte verhalen van Nederlandse voetbalhooligans.", { size: 22, c: "muted" }),
+          T("titel-tekst", "text", 80, 190, 760, 340, "Wie zit er naast jou?", { size: 150, bold: true }),
+          T("titel-sub", "text", 84, 560, 560, 90, "Een verzonnen leven, gebouwd uit echte verhalen van Nederlandse voetbalhooligans.", { size: 22, c: "muted" }),
           L("titel-sjaal", "object", 900, 330, 440, 220)
         ], { plain: true })
       ]
     },
     {
-      id: "01-maandag", year: 2026, label: "43 JAAR", transition: "slow", duration: 1.4,
+      id: "01-maandag", year: 2026, label: "43 jaar", transition: "slow", duration: 1.4,
       // Bron: P. (FC Twente) in Vos 2006
       panels: [
         P("lift", 80, 90, 620, 720, "POV · SPIEGEL IN DE LIFT", [
@@ -67,7 +67,7 @@
       ]
     },
     {
-      id: "02-zaterdag", year: 2026, label: "TWEE DAGEN EERDER", transition: "assemble", duration: 1.2,
+      id: "02-zaterdag", year: 2026, label: "Twee dagen eerder", transition: "assemble", duration: 1.2,
       // Bronnen: vechtafspraken via prepaid (Politie & Wetenschap); Kievits (erecode)
       panels: [
         P("telefoon", 80, 90, 360, 720, "POV · TWEEDE TELEFOON", [
@@ -105,7 +105,7 @@
       ]
     },
     {
-      id: "05-1996", year: 1996, label: "13 JAAR", transition: "assemble", duration: 1.8,
+      id: "05-1996", year: 1996, label: "13 jaar", transition: "assemble", duration: 1.8,
       // Bronnen: Martin (station); Spaaij p. 99; VICE ("doodeng, maar onweerstaanbaar")
       panels: [
         P("station", 80, 90, 640, 720, "WIJD · STATION, DE HARDE KERN KOMT TERUG", [
@@ -126,12 +126,12 @@
       ]
     },
     {
-      id: "06-beverwijk", year: 1997, label: "14 JAAR", transition: "slow", duration: 2.4,
+      id: "06-beverwijk", year: 1997, label: "14 jaar", transition: "slow", duration: 2.4,
       // FOCAL POINT. Spaaij p. 104–106; P. in Vos 2006. Geen naam, geen beeld van het echte slachtoffer.
       panels: [
         P("krant-groot", 80, 90, 1280, 720, "SPLASH · POV KEUKENTAFEL", [
           L("krant-pagina", "object", 300, 40, 680, 560),
-          T("krant-kop", "caption", 340, 80, 600, 110, "DODE BIJ TREFFEN BEVERWIJK"),
+          T("krant-kop", "text", 340, 70, 600, 140, "Dode bij treffen Beverwijk", { size: 64, bold: true }),
           T("caption-vader", "caption", 340, 420, 600, 120, "Feyenoord tegen Ajax. Een Ajax-supporter, vader van twee kinderen, overlijdt."),
           L("handen-vader", "object", 260, 600, 760, 110),
           T("plek-beverwijk", "caption", 20, 20, 260, 90, "23 maart 1997."),
@@ -140,7 +140,7 @@
       ]
     },
     {
-      id: "07-1997", year: 1997, label: "14 JAAR", transition: "shock", duration: 1.6,
+      id: "07-1997", year: 1997, label: "14 jaar", transition: "shock", duration: 1.6,
       // Spaaij p. 106 (jongeren komen af op de reputatie); De Generaal in Vos 2006
       panels: [
         P("rennen", 80, 90, 760, 720, "ACTIE · JE EERSTE REL", [
@@ -160,7 +160,7 @@
       ]
     },
     {
-      id: "08-1999", year: 1999, label: "16 JAAR", transition: "assemble", duration: 1.6,
+      id: "08-1999", year: 1999, label: "16 jaar", transition: "assemble", duration: 1.6,
       // Kievits ("elke week wordt onze band hechter"); Newson 2018 (identity fusion)
       panels: [
         P("trein", 80, 90, 1280, 400, "WIJD · DE TREIN", [
@@ -181,7 +181,7 @@
       ]
     },
     {
-      id: "09-2005", year: 2005, label: "22 JAAR", transition: "shock", duration: 1.6,
+      id: "09-2005", year: 2005, label: "22 jaar", transition: "shock", duration: 1.6,
       // Kievits ("aan de sleur ontsnappen"); Martin ("mijn ei kwijt"); Spaaij p. 113; Stott 2011
       panels: [
         P("kantoor", 80, 90, 620, 720, "HALF-TOTAAL · KANTOOR", [
@@ -200,7 +200,7 @@
       ]
     },
     {
-      id: "10-2013", year: 2013, label: "30 JAAR", transition: "slow", duration: 2.4,
+      id: "10-2013", year: 2013, label: "30 jaar", transition: "slow", duration: 2.4,
       // Kievits (vrienden kapot aan drugs); Danny ("dan komen de begrafenissen"); Fozz (Vos 2006)
       panels: [
         P("wieg", 80, 90, 400, 720, "BOVENAANZICHT", [
@@ -221,7 +221,7 @@
       ]
     },
     {
-      id: "11-2014", year: 2014, label: "31 JAAR", transition: "slow", duration: 1.8,
+      id: "11-2014", year: 2014, label: "31 jaar", transition: "slow", duration: 1.8,
       // Waarom je niet stopt: schuld en trouw aan de groep. Kievits (groep als familie)
       panels: [
         P("terug", 80, 90, 760, 720, "WIJD · DE GROEP", [
@@ -238,7 +238,7 @@
       ]
     },
     {
-      id: "12-thuis", year: 2026, label: "43 JAAR", transition: "assemble", duration: 2,
+      id: "12-thuis", year: 2026, label: "43 jaar", transition: "assemble", duration: 2,
       // Terug bij het begin: de avond van het gevecht. Kievits ("jong geleerd is oud gedaan"); COT (nieuwe generatie)
       panels: [
         P("kamer", 80, 90, 700, 720, "POV · DEUROPENING", [
@@ -257,7 +257,7 @@
       ]
     },
     {
-      id: "13-keuze", year: 2026, label: "43 JAAR", transition: "slow", duration: 2.4,
+      id: "13-keuze", year: 2026, label: "43 jaar", transition: "slow", duration: 2.4,
       // Twee zinnen uit je eigen leven. Het einde blijft open: de kijker beslist.
       panels: [
         P("echo-ruud", 80, 90, 620, 340, "HERINNERING · 1996", [
@@ -285,7 +285,7 @@
           L("mark-tribune", "round", 505, 280, 180, 230)
         ]),
         P("vraag", 0, 630, 1440, 200, "", [
-          T("vraag-tekst", "text", 80, 20, 1280, 120, "Wie zit er naast jou?", { size: 72, bold: true })
+          T("vraag-tekst", "text", 80, 20, 1280, 120, "Wie zit er naast jou?", { size: 96, bold: true })
         ], { plain: true })
       ]
     }

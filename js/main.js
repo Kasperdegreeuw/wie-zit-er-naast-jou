@@ -35,19 +35,19 @@
     return n;
   };
 
-  function wrapText(parent, text, x, y, w, size) {
-    const perLine = Math.max(6, Math.floor(w / (size * 0.54)));
+  function wrapText(parent, text, x, y, w, size, cw = 0.54, lh = 1.3) {
+    const perLine = Math.max(6, Math.floor(w / (size * cw)));
     const lines = []; let cur = "";
     for (const wd of text.split(" ")) { if ((cur + " " + wd).trim().length > perLine) { lines.push(cur.trim()); cur = wd; } else cur += " " + wd; }
     lines.push(cur.trim());
     const t = el("text", { x, y, class: "ph-text", "font-size": size }, parent);
-    lines.forEach((ln, i) => { const s = el("tspan", { x, dy: i === 0 ? size : size * 1.3 }, t); s.textContent = ln; });
+    lines.forEach((ln, i) => { const s = el("tspan", { x, dy: i === 0 ? size : size * lh }, t); s.textContent = ln; });
   }
 
   // Grootste lettergrootte waarbij de tekst in het vak past
   const textSize = (l) => {
     const avail = (l.type === "bubble" ? l.h - 14 : l.h) - 14;
-    for (let size = l.type === "bubble" ? 22 : 20; size > 13; size--) {
+    for (let size = l.type === "bubble" ? 24 : 22; size > 13; size--) {
       const perLine = Math.max(6, Math.floor((l.w - 36) / (size * 0.54)));
       let lines = 1, cur = 0;
       for (const wd of l.text.split(" ")) { if (cur && cur + 1 + wd.length > perLine) { lines++; cur = wd.length; } else cur += (cur ? 1 : 0) + wd.length; }
@@ -87,7 +87,7 @@
           lg.innerHTML = window.shapeSVG(fitted);
         }
         if (l.type === "text") { // los type, zonder kader
-          wrapText(lg, l.text, 0, 0, l.w, l.size || 24);
+          wrapText(lg, l.text, 0, 0, l.w, l.size || 24, l.bold ? 0.42 : 0.54, l.bold ? 0.98 : 1.4);
           lg.classList.add("ph-los"); if (l.bold) lg.classList.add("is-bold"); if (l.c === "muted") lg.classList.add("is-muted");
         } else if (l.text) { wrapText(lg, l.text, 18, 12, l.w - 36, textSize(l)); if (l.dark) lg.classList.add("on-dark"); }
         else if (!key && (l.type === "object" || l.type === "round")) { const lab = el("text", { x: 8, y: 18, class: "ph-label" }, lg); lab.textContent = l.name; }
@@ -97,7 +97,7 @@
   }
 
   /* Tijdlijn tussen scènes: een verticale liniaal. Elk jaar een streep, het jaartal en Marks leeftijd. */
-  const STEP = 150; // pixels per jaar
+  const STEP = 190; // pixels per jaar
   function rulerSvg(item) {
     const lo = Math.min(item.from, item.to), hi = Math.max(item.from, item.to);
     const svg = el("svg", { viewBox: "0 0 1440 900" });
@@ -110,11 +110,11 @@
       const m = el("g", { transform: `translate(0 ${yy})` }, g);
       if (sceneYears.has(y)) el("circle", { cx: 720, cy: 0, r: 12, class: "tl-punt" }, m);
       else el("rect", { x: 700, y: -2, width: 40, height: 4, class: "tl-streep" }, m);
-      const t = el("text", { x: 770, y: 22, class: "tl-jaar" }, m); t.textContent = y;
-      const a = el("text", { x: 774, y: 52, class: "tl-leeftijd" }, m); a.textContent = `Mark is ${y - window.MARK_GEBOREN}`;
+      const t = el("text", { x: 772, y: 40, class: "tl-jaar" }, m); t.textContent = y;
+      const a = el("text", { x: 776, y: 74, class: "tl-leeftijd" }, m); a.textContent = `Mark is ${y - window.MARK_GEBOREN}`;
       marks.push({ y, m });
     }
-    el("path", { d: "M640 450 L672 438 L672 462 Z", class: "tl-nu" }, svg); // het 'nu'
+    el("path", { d: "M650 450 L680 436 L680 464 Z", class: "tl-nu" }, svg); // het 'nu'
     item.ruler = { g, marks, lo };
     return svg;
   }
@@ -249,9 +249,9 @@
     animation: tl,
     trigger: "#pin",
     pin: true,
-    scrub: 0.6,
+    scrub: 1,
     start: "top top",
-    end: () => "+=" + total * window.innerHeight * 0.9,
+    end: () => "+=" + total * window.innerHeight * 1.6,
     invalidateOnRefresh: true,
     onUpdate: (self) => {
       document.getElementById("hint").style.opacity = self.progress > 0.02 ? 0 : 1;
