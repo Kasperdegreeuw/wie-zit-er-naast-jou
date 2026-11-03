@@ -14,9 +14,6 @@
   const labelEl = document.getElementById("label");
   const fill = document.getElementById("timelineFill");
   const ticks = document.getElementById("ticks");
-  const outsideEl = document.getElementById("outside");
-  const outsideWho = document.getElementById("outsideWho");
-  const outsideText = document.getElementById("outsideText");
   const contextEl = document.getElementById("context");
 
   /* ---------- 1. SVG per hoofdstuk: Figma-export of placeholder ---------- */
@@ -219,12 +216,6 @@
     fill.style.width = (t / total) * 100 + "%";
     if (cur === last) return; last = cur;
     labelEl.textContent = SCENES[cur].label || "";
-    const o = SCENES[cur].outside;
-    gsap.to(outsideEl, { opacity: 0, duration: 0.15, overwrite: true, onComplete: () => {
-      if (!o) return;
-      outsideWho.textContent = o.who; outsideText.textContent = "\u201C" + o.text + "\u201D";
-      gsap.to(outsideEl, { opacity: 1, duration: 0.4, overwrite: true });
-    }});
     const c = SCENES[cur].context || "";
     gsap.to(contextEl, { opacity: 0, duration: 0.15, overwrite: true, onComplete: () => {
       contextEl.textContent = c; if (c) gsap.to(contextEl, { opacity: 1, duration: 0.5, overwrite: true });

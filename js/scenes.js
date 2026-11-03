@@ -52,8 +52,7 @@
         P("lift", 80, 90, 620, 720, "POV · SPIEGEL IN DE LIFT", [
           L("spiegel", "object", 40, 30, 540, 640),
           L("mark", "person", 190, 120, 240, 600, { suit: true }),
-          L("oog", "round", 330, 196, 36, 26, { fx: "pulse" }),
-          L("koffie", "object", 440, 430, 50, 70)
+          L("koffie", "object", 372, 410, 44, 62)
         ]),
         P("close-up-oog", 740, 90, 620, 330, "EXTREME CLOSE-UP", [
           L("oog-groot", "round", 210, 40, 250, 250)
