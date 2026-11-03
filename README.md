@@ -44,9 +44,9 @@ Een nieuw paneel of een nieuwe laag die moet bewegen? Voeg hem toe in `js/scenes
 - **Tekstballonnen en captions** verschijnen na de panelen.
 - **Eén groot woord** per periode (laag `woord`).
 - **Tijdlijn onderaan** loopt vol, met een stip per hoofdstuk.
-- **Overgangen per hoofdstuk** (`transition` in `scenes.js`): `assemble`, `slow`, `shock` of `cut`. Hoe meer jaren tussen twee hoofdstukken, hoe langer de overgang.
+- **Overgangen per hoofdstuk** (`transition` in `scenes.js`): `assemble`, `slow`, `shock`, `cut` of `beat` (harde cuts, paneel voor paneel). Hoe meer jaren tussen twee hoofdstukken, hoe langer de overgang.
 - **Wat zij zien** (`outside` in `scenes.js`) staat bovenin het midden en verandert per hoofdstuk. In Figma staat de plek als `notitie-zij-zien`.
-- Lagen met `fx: "pulse"` kloppen als een hart (oog, hartslag, telefoon van de zoon), `fx: "shake"` trilt (prepaid telefoon, rennen).
+- Lagen met `fx: "pulse"` kloppen als een hart (oog, telefoon van de zoon, markering), `fx: "shake"` trilt (prepaid telefoon, rennen).
 - Laagnamen die beginnen met `notitie` (camera-aanwijzingen in Figma) worden op de site verborgen.
 - `duration` in `scenes.js` bepaalt hoe lang een hoofdstuk blijft staan.
 
@@ -55,3 +55,11 @@ Een nieuw paneel of een nieuwe laag die moet bewegen? Voeg hem toe in `js/scenes
 Op de Figma-pagina **Assets** staat elk personage en object als component (`asset/p-mark-pak`, `asset/o-krant` …).
 Pas je het component aan, dan verandert het overal in de hoofdstukken mee. Exporteer daarna de hoofdstukframes opnieuw als SVG.
 Naast elk hoofdstukframe staat een beschrijving: wat er gebeurt, wat de kijker voelt, beweging, wat zij zien, ontwerptip en bronnen.
+
+## Versies
+
+Elke versie blijft bewaard:
+
+- **Code:** git-tags (`git tag` → `v4`, `v5` …) en een zip per versie in `versies/`.
+- **Figma:** per versie een pagina *Versie N* met een bevroren kopie van alle hoofdstukken.
+- v5 (3 nov): assets in de stijl van *Prei ani assets*, hartslag in 03 vervangen door drie panelen (wijd → sneakers → zwart), mist op achterste rijen.

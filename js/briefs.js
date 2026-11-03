@@ -28,12 +28,12 @@ window.BRIEFS = {
     bron: "Vechtafspraken via prepaid (Politie & Wetenschap); erecode Kievits (FunX 2013)."
   },
   "03-zwart": {
-    gebeurt: "Een volledig zwart scherm met een hartslag. 'Niemand zegt iets.' 'Dan rent de eerste.' Het gevecht zelf zie je nooit.",
-    voelt: "Adrenaline en stilte. De kijker vult zelf in wat er gebeurt.",
-    beweging: "Cut: harde, directe overgang naar zwart. Hart klopt. Captions één voor één.",
+    gebeurt: "Drie panelen, steeds dichterbij. Wijd: twintig meter tussen de groepen, niemand zegt iets. Close-up: sneakers op het grind, iemand zet een stap. Dan zwart: 'Dan rent de eerste.' Het gevecht zelf zie je nooit.",
+    voelt: "De seconden ervoor: stil, gespannen, onvermijdelijk.",
+    beweging: "Beat: harde cuts, paneel na paneel. Geen beweging in de panelen zelf.",
     zij: "–",
-    tip: "Hoe leger, hoe sterker. Geen geweld tekenen. Het gevolg zag je al: het blauwe oog op maandag.",
-    bron: "McCloud, closure (het gevecht gebeurt in de gutter); Fite: geweld moet een functie hebben."
+    tip: "Moment-tot-moment (McCloud): elk paneel een stap dichterbij. Het derde paneel helemaal leeg en zwart. Het gevolg zag je al: het blauwe oog op maandag.",
+    bron: "McCloud, closure; Fite: geweld moet een functie hebben, en minder is sterker."
   },
   "04-terug": {
     gebeurt: "Tussenscherm: 'Hoe word je iemand die dit doet?' Het jaartal rolt terug van 2026 naar 1996.",

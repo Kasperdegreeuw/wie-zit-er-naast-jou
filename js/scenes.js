@@ -85,13 +85,20 @@
       ]
     },
     {
-      id: "03-zwart", year: 2026, label: "14:20", word: "", transition: "cut", duration: 1.6,
-      // McCloud (closure): het gevecht zelf zie je nooit; het gebeurt in de witruimte tussen dit scherm en het volgende.
+      id: "03-zwart", year: 2026, label: "14:20", word: "", transition: "beat", duration: 1.8,
+      // McCloud (closure): drie momenten steeds dichterbij, dan zwart. Het gevecht zelf gebeurt in het zwart.
       panels: [
-        P("seconde", 0, 0, 1440, 900, "SPLASH · STILTE", [
-          L("hartslag", "round", 660, 300, 120, 120, { fx: "pulse" }),
-          T("caption-stil", "caption", 420, 480, 600, 90, "Niemand zegt iets.", { dark: true }),
-          T("caption-rent", "caption", 420, 590, 600, 90, "Dan rent de eerste.", { dark: true })
+        P("afstand", 80, 90, 400, 720, "WIJD · TWINTIG METER", [
+          L("groep-links", "crowd", 20, 470, 160, 210, { n: 4 }),
+          L("groep-rechts", "crowd", 220, 470, 160, 210, { n: 4 }),
+          T("caption-stil", "caption", 20, 20, 360, 90, "Niemand zegt iets.")
+        ]),
+        P("dichterbij", 520, 90, 400, 720, "CLOSE-UP · SNEAKERS OP HET GRIND", [
+          L("sneakers", "object", 0, 240, 400, 300),
+          T("caption-stap", "caption", 20, 20, 360, 90, "Iemand zet een stap.")
+        ]),
+        P("zwart", 960, 90, 400, 720, "ZWART · HET GEVECHT ZIE JE NIET", [
+          T("caption-rent", "caption", 20, 300, 360, 120, "Dan rent de eerste.", { dark: true })
         ], { dark: true })
       ]
     },

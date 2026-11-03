@@ -74,7 +74,8 @@
           const a = window.ASSETS[key];
           const cells = l.type === "crowd" ? window.crowdCells(l.w, l.h, l.n || 5) : [{ x: 0, y: 0, w: l.w, h: l.h }];
           lg.innerHTML = cells.map((c) => { const fit = window.assetFit(key, c.w, c.h);
-            return `<g transform="translate(${c.x + fit.x} ${c.y + fit.y}) scale(${fit.s})">${a.svg}</g>`; }).join("");
+            const mist = c.row ? ` opacity="${window.crowdMist(c.row)}"` : "";
+            return `<g transform="translate(${c.x + fit.x} ${c.y + fit.y}) scale(${fit.s})"${mist}>${a.svg}</g>`; }).join("");
         } else lg.innerHTML = window.shapeSVG(l);
         if (l.text) { wrapText(lg, l.text, 14, 8, l.w - 28, textSize(l)); if (l.dark) lg.classList.add("on-dark"); }
         else if (!key && (l.type === "object" || l.type === "round")) { const lab = el("text", { x: 8, y: 18, class: "ph-label" }, lg); lab.textContent = l.name; }
@@ -120,9 +121,9 @@
     if (i > 0) {
       // Hoe meer jaren ertussen, hoe langer de overgang: zo voel je de tijd
       const gap = Math.abs(scene.year - SCENES[i - 1].year);
-      const moveDur = mode === "cut" ? 0.05 : 0.8 + Math.min(2.2, gap * 0.08);
+      const moveDur = mode === "cut" || mode === "beat" ? 0.05 : 0.8 + Math.min(2.2, gap * 0.08);
       tl.addLabel("move" + i);
-      tl.to(track, { y: () => -i * window.innerHeight, duration: moveDur, ease: mode === "cut" ? "none" : "power2.inOut" }, "move" + i);
+      tl.to(track, { y: () => -i * window.innerHeight, duration: moveDur, ease: mode === "cut" || mode === "beat" ? "none" : "power2.inOut" }, "move" + i);
       tl.to(yearObj, { v: scene.year, duration: Math.max(moveDur, 0.05), ease: "none", onUpdate: renderYear }, "move" + i);
       starts.push(tl.duration() - moveDur / 2); // label wisselt halverwege de overgang
     } else starts.push(0);
@@ -134,10 +135,11 @@
         { opacity: 0, x: () => rand(200), y: () => rand(140) + 60, rotation: () => rand(7), scale: 0.9 },
         { opacity: 1, x: 0, y: 0, rotation: 0, scale: 1, duration: 0.5, stagger: 0.25 }, ">-0.2");
       if (mode === "slow") tl.fromTo(panels, { opacity: 0 }, { opacity: 1, duration: 0.9, stagger: 0.45, ease: "power1.inOut" }, ">-0.1");
+      if (mode === "beat") tl.fromTo(panels, { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: 0.7, ease: "none" }, ">"); // harde cuts, paneel voor paneel
       if (mode === "shock") tl.fromTo(panels, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.18, stagger: 0.12, ease: "power4.out" }, ">");
       // "cut": panelen staan er meteen
     }
-    if (texts.length && i > 0) tl.fromTo(texts, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: mode === "slow" ? 0.6 : 0.3, stagger: mode === "slow" ? 0.5 : 0.28 });
+    if (texts.length && i > 0 && mode !== "beat") tl.fromTo(texts, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: mode === "slow" ? 0.6 : 0.3, stagger: mode === "slow" ? 0.5 : 0.28 });
     if (word) {
       gsap.set(word, { transformOrigin: "100% 100%" });
       tl.fromTo(word, { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" });
