@@ -66,3 +66,4 @@ Elke versie blijft bewaard:
 - v9 (3 nov): "Wat zij zien" weg, dubbel blauw oog in 01 weg (zit al in het asset), koffiebeker in zijn hand.
 - v10 (3 nov): geen hoofdstukken meer, tijdlijnen tussen de scènes, tekstbalk onderin weg. Verhaal sluit: 2014 "voor Ruud", terug bij de avond van het gevecht, en de keuze tussen twee zinnen.
 - v11 (3 nov): nieuwe titelpagina (groot type en de rode sjaal, geen kaders), vraag-scène en "bestaan niet" weg, slotvraag groot onder de tribune.
+- v12 (3 nov): fine-tuning met de UI/UX-skill: Inter + JetBrains Mono, donkere inkt (#18181b) voor kaders en tekst, vaste tekstmaten (captions 20, ballonnen 22), kaders zo hoog als de tekst, grotere jaartallen op de tijdlijn, scroll-hint in het midden, respect voor "minder beweging".

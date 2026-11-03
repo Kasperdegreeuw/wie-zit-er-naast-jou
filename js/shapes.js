@@ -41,14 +41,14 @@ window.shapeSVG = function shapeSVG(l) {
         `<path d="M${r(w * 0.15)} ${r(h * 0.15)} L${r(w * 0.85)} ${r(h * 0.85)} M${r(w * 0.85)} ${r(h * 0.15)} L${r(w * 0.15)} ${r(h * 0.85)}" stroke="#999" stroke-width="1"/>`;
     case "bubble": {
       const bh = h - 14;
-      return `<rect x="1" y="1" width="${w - 2}" height="${bh}" rx="16" fill="#fff" stroke="#333" stroke-width="2"/>` +
-        `<path d="M24 ${bh} L18 ${h - 1} L44 ${bh}" fill="#fff" stroke="#333" stroke-width="2" stroke-linejoin="round"/>` +
-        `<path d="M26 ${bh - 1} L42 ${bh - 1}" stroke="#fff" stroke-width="3"/>`;
+      return `<rect x="1" y="1" width="${w - 2}" height="${bh}" rx="22" fill="#fff" stroke="#18181b" stroke-width="2.5"/>` +
+        `<path d="M24 ${bh} L18 ${h - 1} L44 ${bh}" fill="#fff" stroke="#18181b" stroke-width="2.5" stroke-linejoin="round"/>` +
+        `<path d="M26 ${bh - 1.5} L42 ${bh - 1.5}" stroke="#fff" stroke-width="4"/>`;
     }
     case "caption":
       return l.dark
-        ? `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" fill="#111" stroke="#111" stroke-width="2"/>`
-        : `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" fill="#fff" stroke="#333" stroke-width="2"/>`;
+        ? `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" fill="#18181b" stroke="#18181b" stroke-width="2"/>`
+        : `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" fill="#fff" stroke="#18181b" stroke-width="2"/>`;
     default: // object
       return `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" ${F}/>` +
         `<path d="M1 1 L${w - 1} ${h - 1} M${w - 1} 1 L1 ${h - 1}" stroke="#aaa" stroke-width="1"/>`;

@@ -9,6 +9,7 @@
 */
 (async function () {
   gsap.registerPlugin(ScrollTrigger);
+  const RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // minder beweging: geen lussen, camera springt
   const NS = "http://www.w3.org/2000/svg";
   const track = document.getElementById("track");
   const yearEl = document.getElementById("year");
@@ -35,24 +36,31 @@
   };
 
   function wrapText(parent, text, x, y, w, size) {
-    const perLine = Math.max(6, Math.floor(w / (size * 0.52)));
+    const perLine = Math.max(6, Math.floor(w / (size * 0.54)));
     const lines = []; let cur = "";
     for (const wd of text.split(" ")) { if ((cur + " " + wd).trim().length > perLine) { lines.push(cur.trim()); cur = wd; } else cur += " " + wd; }
     lines.push(cur.trim());
     const t = el("text", { x, y, class: "ph-text", "font-size": size }, parent);
-    lines.forEach((ln, i) => { const s = el("tspan", { x, dy: i === 0 ? size : size * 1.2 }, t); s.textContent = ln; });
+    lines.forEach((ln, i) => { const s = el("tspan", { x, dy: i === 0 ? size : size * 1.3 }, t); s.textContent = ln; });
   }
 
   // Grootste lettergrootte waarbij de tekst in het vak past
   const textSize = (l) => {
     const avail = (l.type === "bubble" ? l.h - 14 : l.h) - 14;
-    for (let size = 26; size > 11; size--) {
-      const perLine = Math.max(6, Math.floor((l.w - 28) / (size * 0.52)));
+    for (let size = l.type === "bubble" ? 22 : 20; size > 13; size--) {
+      const perLine = Math.max(6, Math.floor((l.w - 36) / (size * 0.54)));
       let lines = 1, cur = 0;
       for (const wd of l.text.split(" ")) { if (cur && cur + 1 + wd.length > perLine) { lines++; cur = wd.length; } else cur += (cur ? 1 : 0) + wd.length; }
-      if (lines * size * 1.2 <= avail) return size;
+      if (lines * size * 1.3 <= avail) return size;
     }
-    return 12;
+    return 14;
+  };
+
+  const fitHeight = (l) => {
+    const size = textSize(l), perLine = Math.max(6, Math.floor((l.w - 36) / (size * 0.54)));
+    let lines = 1, cur = 0;
+    for (const wd of l.text.split(" ")) { if (cur && cur + 1 + wd.length > perLine) { lines++; cur = wd.length; } else cur += (cur ? 1 : 0) + wd.length; }
+    return Math.min(l.h, Math.round(lines * size * 1.3 + 26 + (l.type === "bubble" ? 14 : 0)));
   };
 
   function placeholderSvg(scene) {
@@ -73,11 +81,15 @@
           lg.innerHTML = cells.map((c, ci) => { const k = (l.swap && l.swap[ci]) || key; const fit = window.assetFit(k, c.w, c.h);
             const mist = c.row ? ` opacity="${window.crowdMist(c.row)}"` : "";
             return `<g transform="translate(${c.x + fit.x} ${c.y + fit.y}) scale(${fit.s})"${mist}>${window.ASSETS[k].svg}</g>`; }).join("");
-        } else if (l.type !== "text") lg.innerHTML = window.shapeSVG(l);
+        } else if (l.type !== "text") {
+          // Kaders en ballonnen zo hoog als de tekst (geen lege ruimte onderin)
+          const fitted = l.text && (l.type === "caption" || l.type === "bubble") ? Object.assign({}, l, { h: fitHeight(l) }) : l;
+          lg.innerHTML = window.shapeSVG(fitted);
+        }
         if (l.type === "text") { // los type, zonder kader
           wrapText(lg, l.text, 0, 0, l.w, l.size || 24);
           lg.classList.add("ph-los"); if (l.bold) lg.classList.add("is-bold"); if (l.c === "muted") lg.classList.add("is-muted");
-        } else if (l.text) { wrapText(lg, l.text, 14, 8, l.w - 28, textSize(l)); if (l.dark) lg.classList.add("on-dark"); }
+        } else if (l.text) { wrapText(lg, l.text, 18, 12, l.w - 36, textSize(l)); if (l.dark) lg.classList.add("on-dark"); }
         else if (!key && (l.type === "object" || l.type === "round")) { const lab = el("text", { x: 8, y: 18, class: "ph-label" }, lg); lab.textContent = l.name; }
       }
     }
@@ -98,8 +110,8 @@
       const m = el("g", { transform: `translate(0 ${yy})` }, g);
       if (sceneYears.has(y)) el("circle", { cx: 720, cy: 0, r: 12, class: "tl-punt" }, m);
       else el("rect", { x: 700, y: -2, width: 40, height: 4, class: "tl-streep" }, m);
-      const t = el("text", { x: 770, y: 16, class: "tl-jaar" }, m); t.textContent = y;
-      const a = el("text", { x: 770, y: 46, class: "tl-leeftijd" }, m); a.textContent = `Mark is ${y - window.MARK_GEBOREN}`;
+      const t = el("text", { x: 770, y: 22, class: "tl-jaar" }, m); t.textContent = y;
+      const a = el("text", { x: 774, y: 52, class: "tl-leeftijd" }, m); a.textContent = `Mark is ${y - window.MARK_GEBOREN}`;
       marks.push({ y, m });
     }
     el("path", { d: "M640 450 L672 438 L672 462 Z", class: "tl-nu" }, svg); // het 'nu'
@@ -179,7 +191,7 @@
 
     // GUIDED VIEW: de camera gaat paneel voor paneel, in leesvolgorde.
     // Je ziet steeds één moment groot; daarna zoomt hij uit naar de hele pagina.
-    const camDur = { slow: 0.9, assemble: 0.6, shock: 0.25, beat: 0.01, cut: 0.01 }[mode] || 0.6;
+    const camDur = RM ? 0.01 : { slow: 0.9, assemble: 0.6, shock: 0.25, beat: 0.01, cut: 0.01 }[mode] || 0.6;
     const camEase = { slow: "sine.inOut", assemble: "power2.inOut", shock: "power4.out", beat: "none", cut: "none" }[mode] || "power2.inOut";
     const guided = i > 0 && panels.length > 1;
     const textsOf = (p) => p.layers.filter((l) => l.text).map((l) => q(l.name)).filter(Boolean);
@@ -222,7 +234,7 @@
 
     // Doorlopende effecten (los van de scroll)
     scene.panels.forEach((p) => p.layers.forEach((l) => {
-      const n = q(l.name); if (!n || !l.fx) return; // tijdlijnen hebben geen panelen
+      const n = q(l.name); if (!n || !l.fx || RM) return; // tijdlijnen hebben geen panelen
       gsap.set(n, { transformOrigin: "50% 50%", transformBox: "fill-box" });
       // Lussen draaien alleen in het hoofdstuk dat in beeld is
       if (l.fx === "pulse") fxByChapter[i].push(gsap.to(n, { scale: 1.12, duration: 0.35, repeat: -1, yoyo: true, ease: "power1.inOut", repeatDelay: 0.25, paused: true }));
@@ -258,6 +270,7 @@
     fxByChapter.forEach((list, i) => list.forEach((tw) => (i === cur ? tw.play() : tw.pause())));
   });
   renderYear(); applyPos();
+  if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
   document.body.classList.toggle("is-tijd", ITEMS[0].hud === false);
   fxByChapter[0].forEach((tw) => tw.play());
 })();

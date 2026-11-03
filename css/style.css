@@ -1,11 +1,17 @@
-/* Eerste opzet: bewust neutraal en grijs. De stijl komt later uit Figma. */
+/* Neutraal en grijs; de illustratiestijl komt uit Figma.
+   Type: Inter (beeld en tekst) + JetBrains Mono (labels, leeftijd, jaartal-labels).
+   Rood (#b5534c) is alleen voor Ruuds sjaal en komt in de interface niet voor. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap");
 :root {
-  --bg: #ffffff;
-  --ink: #3f3f3f;
-  --muted: #8c8c8c;
-  --line: #c9c9c9;
+  --bg: #fafafa;
+  --paper: #ffffff;
+  --ink: #18181b;
+  --muted: #5f6672;      /* 5.6:1 op --bg */
+  --line: #d4d4d8;
+  --panel: #f2f2f3;
   --placeholder: #dbdbdb;
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -18,18 +24,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: v
 .chapter svg { width: 100%; height: 100%; display: block; }
 
 /* Placeholders (alleen zolang er geen Figma-SVG is) */
-.ph-panel { fill: #f7f7f7; stroke: var(--muted); stroke-width: 2; }
+.ph-panel { fill: var(--panel); stroke: var(--ink); stroke-width: 2.5; }
 .ph-layer { fill: var(--placeholder); stroke: #9a9a9a; stroke-width: 1.5; stroke-dasharray: 8 6; }
 .ph-text-box { fill: #fff; stroke: #666; stroke-width: 1.5; }
 .ph-label { fill: #666; font: 13px var(--font); }
-.ph-text { fill: var(--ink); font-family: var(--font); }
+.ph-text { fill: var(--ink); font-family: var(--font); font-weight: 500; letter-spacing: -0.2px; }
 .ph-note { fill: var(--ink); font: 700 20px var(--font); }
 .ph-word { fill: var(--ink); font: 800 48px var(--font); letter-spacing: 2px; }
 
 /* HUD */
-.hud { position: fixed; top: 18px; left: 32px; z-index: 10; pointer-events: none; display: flex; align-items: baseline; gap: 16px; }
-.hud-year { font: 800 52px/1 var(--font); font-variant-numeric: tabular-nums; letter-spacing: -1px; }
-.hud-label { font: 600 13px/1.4 var(--font); letter-spacing: 2px; color: var(--muted); }
+.hud { position: fixed; top: 20px; left: 80px; z-index: 10; pointer-events: none; display: flex; align-items: baseline; gap: 14px; }
+.hud-year { font: 800 48px/1 var(--font); font-variant-numeric: tabular-nums; letter-spacing: -1.5px; }
+.hud-label { font: 500 12px/1.4 var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
 
 /* Tijdlijn */
 /* Tijdlijn tussen de scènes */
@@ -37,11 +43,13 @@ html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: v
 .tl-streep { fill: var(--muted); }
 .tl-punt { fill: var(--ink); }
 .tl-nu { fill: var(--ink); }
-.tl-jaar { font: 800 44px var(--font); fill: var(--ink); font-variant-numeric: tabular-nums; }
-.tl-leeftijd { font: 500 16px var(--font); fill: var(--muted); letter-spacing: 1px; }
+.tl-jaar { font: 800 64px var(--font); fill: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -2px; }
+.tl-leeftijd { font: 500 14px var(--mono); fill: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; }
 body.is-tijd .hud { opacity: 0; }
 
-.scroll-hint { position: fixed; right: 32px; bottom: 64px; z-index: 10; font: 600 13px var(--font); letter-spacing: 2px; color: var(--muted); }
+.scroll-hint { position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%); z-index: 10; font: 500 12px var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); transition: opacity .3s; }
+.scroll-hint::after { content: ""; display: block; width: 1px; height: 28px; margin: 10px auto 0; background: var(--muted); transform-origin: top; animation: hint 1.8s ease-in-out infinite; }
+@keyframes hint { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
@@ -55,3 +63,9 @@ body.is-dark .hud { opacity: 0.25; }
 /* Los type (titel, slotvraag): geen kader */
 .ph-los.is-bold .ph-text { font-weight: 800; letter-spacing: -2px; }
 .ph-los.is-muted .ph-text { fill: var(--muted); }
+
+/* Minder beweging: geen trillen of kloppen, camera springt direct */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint::after { animation: none; }
+  .hud { transition: none; }
+}

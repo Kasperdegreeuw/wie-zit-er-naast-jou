@@ -39,8 +39,8 @@
       // Geen kaders: groot type links, rechts de rode sjaal (de draad door het verhaal)
       panels: [
         P("titel", 0, 0, 1440, 900, "", [
-          T("titel-tekst", "text", 120, 250, 760, 260, "Wie zit er naast jou?", { size: 104, bold: true }),
-          T("titel-sub", "text", 124, 540, 600, 90, "Een verzonnen leven, gebouwd uit echte verhalen van Nederlandse voetbalhooligans.", { size: 22, c: "muted" }),
+          T("titel-tekst", "text", 80, 250, 760, 260, "Wie zit er naast jou?", { size: 104, bold: true }),
+          T("titel-sub", "text", 84, 540, 600, 90, "Een verzonnen leven, gebouwd uit echte verhalen van Nederlandse voetbalhooligans.", { size: 22, c: "muted" }),
           L("titel-sjaal", "object", 900, 330, 440, 220)
         ], { plain: true })
       ]
