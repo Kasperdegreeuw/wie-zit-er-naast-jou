@@ -265,13 +265,14 @@
         if (j > 0) {
           tl.addLabel(`c${i}-${j}`);
           tl.to(camObj, { ...fit(p), duration: camDur, ease: camEase, onUpdate: applyCam }, `c${i}-${j}`);
-          tl.to(panels[j - 1], { opacity: 0.12, duration: Math.max(camDur, 0.01), ease: "none" }, `c${i}-${j}`);
+          // vorige panelen blijven zichtbaar (verleden en toekomst om het huidige paneel heen, McCloud H4)
+          tl.to(panels[j - 1], { opacity: 0.3, duration: Math.max(camDur, 0.01), ease: "none" }, `c${i}-${j}`);
           tl.to(panels[j], { opacity: 1, duration: Math.max(camDur * 0.6, 0.01), ease: "none" }, `c${i}-${j}`);
           if (p.vol) volStart[i] = tl.labels[`c${i}-${j}`];
         }
         const tx = textsOf(p);
         if (tx.length && mode !== "beat") tl.fromTo(tx, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.4 });
-        tl.to({}, { duration: 0.45 }); // even lezen
+        tl.to({}, { duration: 0.45 * (p.pauze || 1) }); // even lezen; stiltes (pauze) blijven langer staan
       });
       // Uitzoomen naar de hele pagina: nu zie je de stripbladzijde als geheel (niet als de scène op één paneel eindigt)
       if (scene.uitzoomen !== false) {

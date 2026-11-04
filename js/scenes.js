@@ -9,7 +9,8 @@
   Opties laag:  suit, n, swap { cel: asset }, dark (donkere caption), tail: "right" (ballon), fx: "pulse" | "shake"
   Opties panel: shot (camera-notitie, alleen in Figma), dark (donker paneel), plain (geen kader),
                 herinnering (stippelrand in staal, figuren lichter; tekst blijft leesbaar),
-                vol (de camera vult het hele scherm met dit paneel, bijv. het zwart in 03)
+                vol (de camera vult het hele scherm met dit paneel; niet gebruikt),
+                pauze (zoveel keer langer blijven staan op dit paneel; voor stiltes, zie McCloud H4: meer ruimte = meer tijd)
     uitzoomen: false → na het laatste paneel niet terug naar de hele pagina (de scène eindigt op dat paneel)
   Opties scène:
     transition: "assemble" | "slow" | "shock" | "beat" (harde cuts) | "cut" → hoe de camera beweegt
@@ -219,7 +220,7 @@
           L("telefoon-nacht", "phone", 100, 140, 200, 380),
           T("bericht-nacht", "bubble", 110, 260, 180, 80, "Ruud belt…"),
           T("caption-nacht", "caption", 20, 560, 360, 120, "Je neemt niet op. Je bent gestopt.")
-        ]),
+        ], { pauze: 3 }),
         P("begrafenis", 960, 90, 400, 720, "WIJD · BEGRAAFPLAATS", [
           L("rouw", "crowd", 20, 230, 360, 340, { n: 4 }),
           L("sjaal-graf", "object", 100, 590, 200, 100),
@@ -241,7 +242,7 @@
           L("lisa-persoon", "person", 60, 260, 170, 420),
           T("ballon-lisa", "bubble", 20, 30, 440, 90, "Je zou stoppen."),
           T("caption-lisa", "caption", 240, 520, 220, 120, "Je zegt niks.")
-        ])
+        ], { pauze: 2.5 })
       ]
     },
     {
@@ -280,7 +281,7 @@
           L("zoon-wacht", "person", 360, 330, 180, 370),
           T("ballon-leeg", "bubble", 60, 60, 500, 110, "…"),
           T("caption-wat", "caption", 300, 200, 300, 90, "Wat zeg jij?")
-        ])
+        ], { pauze: 3 })
       ]
     },
     {

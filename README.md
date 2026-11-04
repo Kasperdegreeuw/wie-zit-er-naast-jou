@@ -88,3 +88,4 @@ Elke versie blijft bewaard:
 - v30 (4 nov): op kleine schermen (smaller dan 900 px of lager dan 500 px) een korte melding dat de strip voor een groter scherm is, met de knop "Toch bekijken".
 - v31 (4 nov): tekstversie voor schermlezers: alle captions en ballonnen in leesvolgorde, met per scène het jaartal als kop; tekeningen en jaartal worden overgeslagen.
 - v32 (4 nov): v28 teruggedraaid: 03-zwart weer als drie panelen naast elkaar met uitzoomen (schermvullend zwart zag er raar uit).
+- v33 (4 nov): naar McCloud (Understanding Comics H4): stiltes duren langer (paneeloptie pauze bij "Ruud belt", "Je zegt niks" en "Wat zeg jij?"), en vorige panelen blijven op 30 % zichtbaar in plaats van 12 %.

@@ -52,6 +52,7 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
   - `window.__story` voor tests (`tl`, `starts`; labels `move<i>` en `c<i>-<j>` om naar een scène of paneel te scrollen)
 - Scrolllengte: `SCROLL_PER_SEC` in `main.js` (1,3 schermhoogte per seconde tijdlijn, ± 1.060 wieltikken in totaal, ± 4 min). Onderbouwing (4 nov): gangbaar is 1–3 schermhoogtes per stap en 3–5 minuten voor het hele verhaal. Tijdlijnen zijn bewust kort (2026 → 1996 ± 35 tikken).
 - Paneeloptie `vol` en scèneoptie `uitzoomen: false` bestaan nog in de code, maar worden niet gebruikt: Kasper vond 03-zwart schermvullend er raar uitzien (v28 teruggedraaid in v32). Niet opnieuw toepassen.
+- Tijd volgens McCloud (*Understanding Comics* H4, ruimte = tijd): stille panelen krijgen meer scroll met paneeloptie `pauze` (10 nacht, 11 lisa, 13 antwoord). In de guided view blijven vorige panelen op 30 % zichtbaar; volgende panelen blijven verborgen (geen spoilers).
 - Jaartal en label schalen mee met de strip (`--u` in de CSS). Op schermen smaller dan 900 px of lager dan 500 px staat een melding met "Toch bekijken".
 - Schermlezers krijgen een verborgen tekstversie (`article.sr-only`, gebouwd uit `SCENES`); de SVG's zijn `aria-hidden`.
 - Jaartal en label linksboven vervagen terwijl de strip naar de volgende scène schuift (`applyPos`).
