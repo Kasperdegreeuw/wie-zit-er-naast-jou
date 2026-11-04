@@ -233,7 +233,7 @@
           T("plek-2014", "caption", 20, 20, 720, 90, "Een jaar later sta je er weer. Met zijn sjaal om."),
           L("groep-terug", "crowd", 20, 300, 720, 380, { n: 5 }),
           L("mark-terug", "hood", 300, 240, 160, 440),
-          T("ballon-voor-ruud", "bubble", 440, 140, 300, 80, "Voor Ruud.")
+          T("ballon-voor-ruud", "bubble", 362, 150, 300, 80, "Voor Ruud.")
         ]),
         P("lisa", 880, 90, 480, 720, "HALF-TOTAAL · THUIS", [
           L("lisa-persoon", "person", 60, 260, 170, 420),
