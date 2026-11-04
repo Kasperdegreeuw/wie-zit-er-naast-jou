@@ -90,3 +90,4 @@ Elke versie blijft bewaard:
 - v32 (4 nov): v28 teruggedraaid: 03-zwart weer als drie panelen naast elkaar met uitzoomen (schermvullend zwart zag er raar uit).
 - v33 (4 nov): naar McCloud (Understanding Comics H4): stiltes duren langer (paneeloptie pauze bij "Ruud belt", "Je zegt niks" en "Wat zeg jij?"), en vorige panelen blijven op 30 % zichtbaar in plaats van 12 %.
 - v34 (4 nov): snelheidslijnen achter Ruud en Mark in 07-1997 (nieuw asset o-snelheid, laag snelheid-rennen), naar McCloud H4: beweging binnen één paneel.
+- v35 (4 nov): het antwoordpaneel in 13-keuze (jij en je zoon, "Wat zeg jij?") heeft geen kader meer: het open einde blijft hangen (McCloud H4).

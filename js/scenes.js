@@ -282,7 +282,7 @@
           L("zoon-wacht", "person", 360, 330, 180, 370),
           T("ballon-leeg", "bubble", 60, 60, 500, 110, "…"),
           T("caption-wat", "caption", 300, 200, 300, 90, "Wat zeg jij?")
-        ], { pauze: 3 })
+        ], { pauze: 3, plain: true }) // zonder kader: het open einde blijft hangen (McCloud H4)
       ]
     },
     {
