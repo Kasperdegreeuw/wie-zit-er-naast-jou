@@ -301,7 +301,7 @@
         P("slot", 0, 0, 1440, 900, "", [
           L("slot-sjaal", "object", 500, 190, 440, 220),
           T("slot-tekst", "text", 220, 470, 1000, 110, "Ruud was negentien. Jij was dertien. Je zoon is dertien.", { size: 34, c: "ink", center: true, fit: true }),
-          T("slot-bron", "text", 320, 600, 800, 80, "Gebaseerd op onderzoek en interviews met Nederlandse hooligans. Gemaakt door Kasper voor CMD, Hogeschool van Amsterdam, 2026.", { size: 16, c: "muted", center: true })
+          T("slot-bron", "text", 250, 600, 940, 80, "Gebaseerd op onderzoek en interviews met Nederlandse hooligans uit boeken en artikelen (onder meer Spaaij, Vos en Kievits). Gemaakt door Kasper voor CMD, Hogeschool van Amsterdam, 2026.", { size: 16, c: "muted", center: true })
         ], { plain: true })
       ]
     }
