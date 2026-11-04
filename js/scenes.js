@@ -152,6 +152,7 @@
       // Spaaij p. 106 (jongeren komen af op de reputatie); De Generaal in Vos 2006
       panels: [
         P("rennen", 80, 90, 760, 720, "ACTIE · JE EERSTE REL", [
+          L("snelheid-rennen", "object", 150, 300, 300, 360),
           L("ruud-rent", "person", 40, 260, 160, 420, { fx: "shake" }),
           L("mark-rent", "person", 200, 330, 140, 350, { fx: "shake" }),
           L("jeroen-opgepakt", "person", 450, 330, 140, 350),
