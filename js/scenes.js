@@ -252,8 +252,8 @@
         P("schermen", 820, 90, 540, 720, "CLOSE-UP · TWEE SCHERMEN", [
           L("scherm-zoon-groot", "phone", 30, 110, 230, 320),
           L("prepaid-mark", "phone", 280, 110, 230, 320, { fx: "shake" }),
-          T("bericht-zoon", "bubble", 30, 450, 230, 80, "za 14:00 · locatie volgt"),
-          T("bericht-mark", "bubble", 280, 450, 230, 80, "za 14:00 · locatie volgt"),
+          T("bericht-zoon", "bubble", 30, 450, 230, 80, "za 14:00, locatie volgt"),
+          T("bericht-mark", "bubble", 280, 450, 230, 80, "za 14:00, locatie volgt"),
           T("caption-twee", "caption", 20, 590, 500, 110, "Ze hebben hem al gevonden. Hetzelfde bericht als op jouw telefoon.")
         ])
       ]
