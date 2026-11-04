@@ -93,7 +93,7 @@
       ]
     },
     {
-      id: "03-zwart", year: 2026, label: "14:20", transition: "beat", duration: 1.8, uitzoomen: false,
+      id: "03-zwart", year: 2026, label: "14:20", transition: "beat", duration: 1.8,
       // McCloud (closure): drie momenten steeds dichterbij, dan zwart.
       panels: [
         P("afstand", 80, 90, 400, 720, "WIJD · TWINTIG METER", [
@@ -107,7 +107,7 @@
         ]),
         P("zwart", 960, 90, 400, 720, "ZWART · HET GEVECHT ZIE JE NIET", [
           T("caption-rent", "caption", 20, 300, 360, 120, "Dan rent de eerste.", { dark: true })
-        ], { dark: true, vol: true })
+        ], { dark: true })
       ]
     },
     {

@@ -49,7 +49,7 @@ window.shapeSVG = function shapeSVG(l) {
     }
     case "caption":
       return l.dark
-        ? `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" fill="#0d0d0d" stroke="#0d0d0d" stroke-width="2"/>` // op zwart: alleen de tekst
+        ? `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" fill="#18181b" stroke="#18181b" stroke-width="2"/>`
         : `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" fill="#fff" stroke="#18181b" stroke-width="2"/>`;
     default: // object
       return `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" ${F}/>` +

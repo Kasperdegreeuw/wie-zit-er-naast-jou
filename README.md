@@ -87,3 +87,4 @@ Elke versie blijft bewaard:
 - v29 (4 nov): jaartal en label schalen mee met de strip; op een laptop (1366 × 768, 1280 × 720) staan ze recht boven de panelen in plaats van ertegenaan.
 - v30 (4 nov): op kleine schermen (smaller dan 900 px of lager dan 500 px) een korte melding dat de strip voor een groter scherm is, met de knop "Toch bekijken".
 - v31 (4 nov): tekstversie voor schermlezers: alle captions en ballonnen in leesvolgorde, met per scène het jaartal als kop; tekeningen en jaartal worden overgeslagen.
+- v32 (4 nov): v28 teruggedraaid: 03-zwart weer als drie panelen naast elkaar met uitzoomen (schermvullend zwart zag er raar uit).
