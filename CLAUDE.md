@@ -50,6 +50,7 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
   - `fitText` voor losse koppen
   - de einde-knop
   - `window.__story` voor tests (`tl`, `starts`; labels `move<i>` en `c<i>-<j>` om naar een scène of paneel te scrollen)
+- Scrolllengte: `SCROLL_PER_SEC` in `main.js` (1,3 schermhoogte per seconde tijdlijn, ± 1.060 wieltikken in totaal, ± 4 min). Onderbouwing (4 nov): gangbaar is 1–3 schermhoogtes per stap en 3–5 minuten voor het hele verhaal. Tijdlijnen zijn bewust kort (2026 → 1996 ± 35 tikken).
 - Jaartal en label linksboven vervagen terwijl de strip naar de volgende scène schuift (`applyPos`).
 - Testen met Playwright op 1440 × 900. Git staat in `C:\Program Files\Git\cmd\git.exe` (niet in elke shell in het PATH).
 - `js/briefs.js`: regietekst per scène, ook te zien naast elk frame in Figma.

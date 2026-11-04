@@ -215,9 +215,10 @@
       };
       apply();
       const gap = Math.abs(scene.to - scene.from);
-      tl.to({}, { duration: 0.25 });
-      tl.to(cur, { v: scene.to, duration: 0.6 + Math.min(2.4, gap * 0.12), ease: "power1.inOut", onUpdate: apply });
-      tl.to({}, { duration: 0.5 });
+      // korter dan voorheen (v27): de tijdlijn mag voelbaar terugspoelen, maar geen kwart van de scroll innemen
+      tl.to({}, { duration: 0.15 });
+      tl.to(cur, { v: scene.to, duration: 0.5 + Math.min(1.2, gap * 0.06), ease: "power1.inOut", onUpdate: apply });
+      tl.to({}, { duration: 0.35 });
       return;
     }
 
@@ -276,14 +277,17 @@
 
   /* ---------- 4. Koppelen aan scroll ---------- */
   const total = tl.duration();
-  window.__story = { tl, starts }; // voor testen
+  // Schermhoogtes scroll per seconde tijdlijn. 1,3 geeft ± 1,5 schermhoogte per paneel of tekst
+  // (gangbaar is 1–3) en het hele verhaal in ± 4 minuten.
+  const SCROLL_PER_SEC = 1.3;
+  window.__story = { tl, starts, factor: SCROLL_PER_SEC }; // voor testen
   ScrollTrigger.create({
     animation: tl,
     trigger: "#pin",
     pin: true,
     scrub: 1,
     start: "top top",
-    end: () => "+=" + total * window.innerHeight * 1.6,
+    end: () => "+=" + total * window.innerHeight * SCROLL_PER_SEC,
     invalidateOnRefresh: true,
     onUpdate: (self) => {
       // Hint weg zodra je begint te scrollen, vóór de eerste scène inschuift

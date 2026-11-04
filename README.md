@@ -82,3 +82,4 @@ Elke versie blijft bewaard:
 - v24 (4 nov): geen 404's meer in de console: assets/svg/index.json zegt welke Figma-exports er zijn, en een lege favicon.
 - v25 (4 nov): in 01-maandag staat Mark (laag mark-collega) rechts in het paneel bij de collega; zijn ballon "Iemand juichte te wild." wijst naar hem.
 - v26 (4 nov): ballon "Voor Ruud." in 11-2014 staat boven Mark, zodat het staartje naar hem wijst.
+- v27 (4 nov): korter scrollen op basis van onderzoek naar scrollytelling (1–3 schermhoogtes per stap, 3–5 minuten totaal): factor 1,6 naar 1,3 (SCROLL_PER_SEC) en kortere tijdlijnen. Van ± 1.390 naar ± 1.060 wieltikken.
