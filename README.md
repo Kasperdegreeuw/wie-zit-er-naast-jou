@@ -86,3 +86,4 @@ Elke versie blijft bewaard:
 - v28 (4 nov): het zwart in 03 vult het hele scherm (paneloptie vol, scèneoptie uitzoomen: false); alleen "Dan rent de eerste." in wit, jaartal weg.
 - v29 (4 nov): jaartal en label schalen mee met de strip; op een laptop (1366 × 768, 1280 × 720) staan ze recht boven de panelen in plaats van ertegenaan.
 - v30 (4 nov): op kleine schermen (smaller dan 900 px of lager dan 500 px) een korte melding dat de strip voor een groter scherm is, met de knop "Toch bekijken".
+- v31 (4 nov): tekstversie voor schermlezers: alle captions en ballonnen in leesvolgorde, met per scène het jaartal als kop; tekeningen en jaartal worden overgeslagen.

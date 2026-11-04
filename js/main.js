@@ -168,6 +168,25 @@
     return { scene, svg };
   }));
 
+  /* Tekstversie voor schermlezers: alle captions en ballonnen in leesvolgorde, per scène een kop.
+     De tekeningen (SVG) en het jaartal linksboven slaat een schermlezer over. */
+  chapters.forEach(({ svg }) => svg.setAttribute("aria-hidden", "true"));
+  document.querySelector(".hud").setAttribute("aria-hidden", "true");
+  document.getElementById("hint").setAttribute("aria-hidden", "true");
+  const sr = document.createElement("article");
+  sr.className = "sr-only";
+  SCENES.forEach((scene) => {
+    // per paneel: eerst plaats en tijd (lagen plek-…), dan de rest in laagvolgorde
+    const teksten = scene.panels.flatMap((p) => { const ls = p.layers.filter((l) => l.text && !l.name.startsWith("notitie")); return [...ls.filter((l) => l.name.startsWith("plek")), ...ls.filter((l) => !l.name.startsWith("plek"))].map((l) => l.text); });
+    if (scene.hud === false && scene.id === SCENES[0].id) {
+      const h = document.createElement("h1"); h.textContent = teksten.shift(); sr.appendChild(h);
+    } else {
+      const h = document.createElement("h2"); h.textContent = scene.hud === false ? "Tot slot" : scene.year + (scene.label ? ", " + scene.label : ""); sr.appendChild(h);
+    }
+    teksten.forEach((t) => { const p = document.createElement("p"); p.textContent = t; sr.appendChild(p); });
+  });
+  document.body.prepend(sr);
+
   /* ---------- 3. Hoofdtijdlijn (gescrubd door scroll) ---------- */
   const yearObj = { v: SCENES[0].year };
   // Positie in hoofdstukken (0 = eerste). Alleen de twee hoofdstukken rond de positie worden getekend.
