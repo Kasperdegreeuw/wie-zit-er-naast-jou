@@ -73,3 +73,4 @@ Elke versie blijft bewaard:
 - v16 (4 nov): cirkel om Mark op de tribune (14-einde) is inkt in plaats van rood; rood zit nu alleen nog in de sjaal.
 - v17 (4 nov): Ruud draagt na 1996 een grijze sjaal (nieuw asset `p-ruud-later` voor ruud-rent, ruud-trein, ruud-wacht en ruud-linie). Er is nu steeds maar één rode sjaal in beeld.
 - v18 (4 nov): bericht in 12-thuis zonder middenpuntje ("za 14:00, locatie volgt").
+- v19 (4 nov): jaartal en label linksboven vervagen terwijl de strip naar de volgende scène schuift, zodat de panelen er niet onder doorlopen.

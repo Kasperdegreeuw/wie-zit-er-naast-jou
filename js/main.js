@@ -176,6 +176,9 @@
       if (show) sec.style.transform = `translate3d(0, ${(d * 100).toFixed(3)}%, 0)`;
       if (sec._show !== show) { sec.style.visibility = show ? "visible" : "hidden"; sec._show = show; }
     });
+    // Jaartal en label vervagen terwijl de strip eronder doorschuift, en komen terug als hij stilstaat
+    const hudOp = Math.max(0, 1 - Math.abs(p - Math.round(p)) * 20).toFixed(3);
+    yearEl.style.opacity = hudOp; labelEl.style.opacity = hudOp;
   };
   const fxByChapter = chapters.map(() => []);
   const renderYear = () => { yearEl.textContent = Math.round(yearObj.v); };
