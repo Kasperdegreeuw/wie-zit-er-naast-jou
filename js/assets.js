@@ -156,7 +156,7 @@
       E(16, 132, 7, 7, C.s2) + E(344, 132, 7, 7, C.s2) + R(296, 0, 6, 40, C.mid, 3) + R(288, 6, 22, 26, "#dfe6e9", 6) },
     "o-deur": { vb: [130, 680], svg: R(0, 0, 130, 680, "#c9b69c", 6) + Pth("M130 0 L100 26 L100 654 L130 680 Z", "#a8957c") + E(108, 360, 6, 6, C.s3) + R(10, 0, 4, 680, "#b3a086") },
     "o-sjaal": { vb: [240, 120], svg: R(10, 30, 220, 60, C.red, 10) + [40, 90, 140, 190].map((x) => R(x, 30, 18, 60, C.pale)).join("") + Array.from({ length: 9 }, (_, i) => R(14 + i * 3, 90, 2, 16, C.red, 1)).join("") + Array.from({ length: 9 }, (_, i) => R(200 + i * 3, 90, 2, 16, C.red, 1)).join("") + R(10, 30, 220, 12, C.red2, 6) },
-    "o-markering": { vb: [60, 60], svg: `<circle cx="30" cy="30" r="25" fill="none" stroke="${C.red}" stroke-width="5" stroke-dasharray="7 5"/>` },
+    "o-markering": { vb: [60, 60], svg: `<circle cx="30" cy="30" r="25" fill="none" stroke="${C.ink}" stroke-width="5" stroke-dasharray="7 5"/>` },
     "o-sneakers": { vb: [400, 300], svg: R(0, 180, 400, 120, "#b3aea4") + Array.from({ length: 40 }, (_, i) => E(12 + (i * 53) % 376, 200 + ((i * 37) % 90), 6 + (i % 4), 4 + (i % 3), i % 2 ? "#a19b90" : "#c7c2b8")).join("") +
       stick("M120 0 L130 170 M270 0 L262 170", C.denim, 30) + R(70, 160, 120, 46, C.white, 22) + R(70, 192, 120, 16, C.mid, 8) + E(98, 196, 10, 6, "#dfe6e9") +
       R(214, 156, 120, 46, C.white, 22) + R(214, 188, 120, 16, C.mid, 8) + E(306, 192, 10, 6, "#dfe6e9") }
