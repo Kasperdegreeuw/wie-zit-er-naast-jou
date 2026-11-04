@@ -319,6 +319,10 @@
   doFit();
   if (document.fonts) document.fonts.ready.then(() => { doFit(); ScrollTrigger.refresh(); });
 
+  // Klein scherm: "Toch bekijken" haalt de melding weg
+  const toch = document.getElementById("toch");
+  if (toch) toch.addEventListener("click", () => document.body.classList.add("toch"));
+
   // Opnieuw beginnen: scherm vervaagt, je staat weer bij de titel
   const again = document.getElementById("opnieuw");
   if (again) again.addEventListener("click", () => {
