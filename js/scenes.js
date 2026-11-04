@@ -8,7 +8,9 @@
   Laagtypes: person · hood · crowd (n, swap) · phone · object · round · bubble · caption · text (los type, size/bold/c)
   Opties laag:  suit, n, swap { cel: asset }, dark (donkere caption), tail: "right" (ballon), fx: "pulse" | "shake"
   Opties panel: shot (camera-notitie, alleen in Figma), dark (donker paneel), plain (geen kader),
-                herinnering (stippelrand in staal, figuren lichter; tekst blijft leesbaar)
+                herinnering (stippelrand in staal, figuren lichter; tekst blijft leesbaar),
+                vol (de camera vult het hele scherm met dit paneel, bijv. het zwart in 03)
+    uitzoomen: false → na het laatste paneel niet terug naar de hele pagina (de scène eindigt op dat paneel)
   Opties scène:
     transition: "assemble" | "slow" | "shock" | "beat" (harde cuts) | "cut" → hoe de camera beweegt
     duration:   hoe lang de scène blijft staan
@@ -91,7 +93,7 @@
       ]
     },
     {
-      id: "03-zwart", year: 2026, label: "14:20", transition: "beat", duration: 1.8,
+      id: "03-zwart", year: 2026, label: "14:20", transition: "beat", duration: 1.8, uitzoomen: false,
       // McCloud (closure): drie momenten steeds dichterbij, dan zwart.
       panels: [
         P("afstand", 80, 90, 400, 720, "WIJD · TWINTIG METER", [
@@ -105,7 +107,7 @@
         ]),
         P("zwart", 960, 90, 400, 720, "ZWART · HET GEVECHT ZIE JE NIET", [
           T("caption-rent", "caption", 20, 300, 360, 120, "Dan rent de eerste.", { dark: true })
-        ], { dark: true })
+        ], { dark: true, vol: true })
       ]
     },
     {

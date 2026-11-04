@@ -189,7 +189,8 @@
   const renderYear = () => { yearEl.textContent = Math.round(yearObj.v); };
   const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
   const starts = [];
-  
+  const volStart = {}; // per hoofdstuk: tijd waarop een schermvullend (zwart) paneel begint
+
   chapters.forEach(({ scene, svg }, i) => {
     const q = (sel) => { try { return svg.querySelector("#" + CSS.escape(sel)); } catch (e) { return null; } };
     const panels = scene.panels.map((p) => q(p.name)).filter(Boolean);
@@ -236,7 +237,8 @@
       const camObj = { s: 1, x: 0, y: 0 };
       const applyCam = () => cam.setAttribute("transform", `translate(${camObj.x} ${camObj.y}) scale(${camObj.s})`);
       // Paneel passend in het beeld tussen jaartal (boven) en tijdlijn (onder)
-      const fit = (p) => { const s = Math.min(1280 / p.w, 700 / p.h, 2.4); return { s, x: 720 - s * (p.x + p.w / 2), y: 455 - s * (p.y + p.h / 2) }; };
+      // vol: het paneel vult het hele scherm (zoals het zwart in 03); anders passend tussen jaartal en onderrand
+      const fit = (p) => { const s = p.vol ? Math.max(1440 / p.w, 900 / p.h) : Math.min(1280 / p.w, 700 / p.h, 2.4); return { s, x: 720 - s * (p.x + p.w / 2), y: (p.vol ? 450 : 455) - s * (p.y + p.h / 2) }; };
       const scenePanels = scene.panels.filter((p) => q(p.name));
       Object.assign(camObj, fit(scenePanels[0])); applyCam();
       gsap.set(panels, { opacity: 0 }); gsap.set(panels[0], { opacity: 1 });
@@ -246,15 +248,18 @@
           tl.to(camObj, { ...fit(p), duration: camDur, ease: camEase, onUpdate: applyCam }, `c${i}-${j}`);
           tl.to(panels[j - 1], { opacity: 0.12, duration: Math.max(camDur, 0.01), ease: "none" }, `c${i}-${j}`);
           tl.to(panels[j], { opacity: 1, duration: Math.max(camDur * 0.6, 0.01), ease: "none" }, `c${i}-${j}`);
+          if (p.vol) volStart[i] = tl.labels[`c${i}-${j}`];
         }
         const tx = textsOf(p);
         if (tx.length && mode !== "beat") tl.fromTo(tx, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.4 });
         tl.to({}, { duration: 0.45 }); // even lezen
       });
-      // Uitzoomen naar de hele pagina: nu zie je de stripbladzijde als geheel
-      tl.addLabel(`uit${i}`);
-      tl.to(camObj, { s: 1, x: 0, y: 0, duration: mode === "beat" ? 0.01 : 0.9, ease: "power2.inOut", onUpdate: applyCam }, `uit${i}`);
-      tl.to(panels, { opacity: 1, duration: mode === "beat" ? 0.01 : 0.6, ease: "none" }, `uit${i}`);
+      // Uitzoomen naar de hele pagina: nu zie je de stripbladzijde als geheel (niet als de scène op één paneel eindigt)
+      if (scene.uitzoomen !== false) {
+        tl.addLabel(`uit${i}`);
+        tl.to(camObj, { s: 1, x: 0, y: 0, duration: mode === "beat" ? 0.01 : 0.9, ease: "power2.inOut", onUpdate: applyCam }, `uit${i}`);
+        tl.to(panels, { opacity: 1, duration: mode === "beat" ? 0.01 : 0.6, ease: "none" }, `uit${i}`);
+      }
     } else if (panels.length && i > 0) {
       tl.fromTo(panels, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.inOut" }, ">-0.1");
       if (texts.length) tl.fromTo(texts, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.45 });
@@ -300,6 +305,8 @@
   tl.eventCallback("onUpdate", () => {
     const t = tl.time();
     let cur = 0; starts.forEach((s, i) => { if (t >= s) cur = i; });
+    // Schermvullend zwart: ook de randen van het scherm zwart, jaartal weg
+    document.body.classList.toggle("is-zwart", volStart[cur] != null && t >= volStart[cur]);
     if (cur === last) return; last = cur;
     labelEl.textContent = ITEMS[cur].label || "";
     document.body.classList.toggle("is-tijd", !!ITEMS[cur].tijd || ITEMS[cur].hud === false);

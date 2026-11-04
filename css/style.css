@@ -79,6 +79,10 @@ body.is-dark .hud { opacity: 0.25; }
 body.is-einde .opnieuw { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
 .ph-los.is-ink .ph-text { fill: var(--ink); }
 
+/* Schermvullend zwart (03-zwart): randen mee, jaartal weg */
+body.is-zwart { background: #0d0d0d; }
+body.is-zwart .hud { opacity: 0; }
+
 /* Herinneringen (13-keuze): stippelrand in staal, figuren lichter dan het heden */
 .is-herinnering .ph-panel { stroke: var(--muted); stroke-dasharray: 12 8; }
 .is-herinnering .vaag { opacity: 0.45; }
