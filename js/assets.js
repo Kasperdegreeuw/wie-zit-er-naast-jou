@@ -160,7 +160,7 @@
     "o-sjaal": { vb: [240, 120], svg: R(10, 30, 220, 60, C.red, 10) + [40, 90, 140, 190].map((x) => R(x, 30, 18, 60, C.pale)).join("") + Array.from({ length: 9 }, (_, i) => R(14 + i * 3, 90, 2, 16, C.red, 1)).join("") + Array.from({ length: 9 }, (_, i) => R(200 + i * 3, 90, 2, 16, C.red, 1)).join("") + R(10, 30, 220, 12, C.red2, 6) },
     // Snelheidslijnen (McCloud H4): strakke horizontale streepjes achter wie rent; grijs, nooit rood
     // wigvorm: dik bij de renner, dun en lichter naar achteren
-    "o-snelheid": { vb: [300, 360], svg: [[20, 50, 150], [50, 105, 200], [25, 170, 120], [45, 225, 210], [20, 285, 140], [60, 335, 170]].map(([x, y, l], i) => Pth(`M${x} ${y - 3} L${x + l} ${y} L${x} ${y + 3} Z`, i % 2 ? "#a9afb7" : "#c3c7cd", `opacity="${(0.9 - (i % 3) * 0.15).toFixed(2)}"`)).join("") },
+    "o-snelheid": { vb: [300, 360], svg: [[20, 50, 150], [50, 105, 200], [25, 170, 120], [45, 225, 210], [20, 285, 140], [60, 335, 170]].map(([x, y, l], i) => Pth(`M${x} ${y - 3} L${x + l} ${y} L${x} ${y + 3} Z`, i % 2 ? "#a9afb7" : "#c3c7cd", `opacity="${(0.5 - (i % 3) * 0.1).toFixed(2)}"`)).join("") },
     "o-markering": { vb: [60, 60], svg: `<circle cx="30" cy="30" r="25" fill="none" stroke="${C.ink}" stroke-width="5" stroke-dasharray="7 5"/>` },
     "o-sneakers": { vb: [400, 300], svg: R(0, 180, 400, 120, "#b3aea4") + Array.from({ length: 40 }, (_, i) => E(12 + (i * 53) % 376, 200 + ((i * 37) % 90), 6 + (i % 4), 4 + (i % 3), i % 2 ? "#a19b90" : "#c7c2b8")).join("") +
       stick("M120 0 L130 170 M270 0 L262 170", C.denim, 30) + R(70, 160, 120, 46, C.white, 22) + R(70, 192, 120, 16, C.mid, 8) + E(98, 196, 10, 6, "#dfe6e9") +
