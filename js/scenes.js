@@ -64,8 +64,9 @@
         ]),
         P("collega", 740, 450, 620, 360, "HALF-TOTAAL", [
           L("collega-persoon", "person", 30, 60, 150, 300),
-          T("ballon-collega", "bubble", 200, 40, 380, 100, "Jezus, wat is er met je oog gebeurd?"),
-          T("ballon-mark", "bubble", 200, 170, 380, 100, "Iemand juichte te wild. Elleboog.")
+          L("mark-collega", "person", 480, 60, 120, 300, { suit: true }),
+          T("ballon-collega", "bubble", 190, 30, 300, 100, "Jezus, wat is er met je oog gebeurd?"),
+          T("ballon-mark", "bubble", 160, 160, 300, 100, "Iemand juichte te wild. Elleboog.", { tail: "right" })
         ])
       ]
     },

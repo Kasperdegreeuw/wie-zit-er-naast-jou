@@ -169,7 +169,7 @@
 
   // Welke laag welk asset gebruikt. Groepen (crowd) herhalen één persoon.
   window.ASSET_MAP = {
-    spiegel: "o-spiegel", mark: "p-mark-pak", oog: "o-blauw-oog", koffie: "o-koffie", "oog-groot": "o-oog", "collega-persoon": "p-collega",
+    spiegel: "o-spiegel", mark: "p-mark-pak", "mark-collega": "p-mark-pak",oog: "o-blauw-oog", koffie: "o-koffie", "oog-groot": "o-oog", "collega-persoon": "p-collega",
     prepaid: "o-prepaid", "loods-achtergrond": "o-loods", "groep-eigen": "p-hool-achter", "mark-capuchon": "p-mark-capuchon", "groep-tegenover": "p-hool-masker",
     "groep-links": "p-hool-achter", "groep-rechts": "p-hool-masker", sneakers: "o-sneakers",
     vader: "p-man", wieg: "o-wieg", terugkomers: "p-hool-voor", "mark-13": "p-mark-jong", "mark-96": "p-mark-jong",stadion: "o-stadion", "mark-kuip": "p-mark-jong", "jeroen-kuip": "p-jeroen-jong",

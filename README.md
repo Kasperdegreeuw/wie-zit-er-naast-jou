@@ -80,3 +80,4 @@ Elke versie blijft bewaard:
 - v22 (4 nov): herinneringen in 13-keuze (echo-ruud, echo-vader) hebben een stippelrand in staal en lichtere figuren; nieuwe paneloptie herinnering: true.
 - v23 (4 nov): bronregel in 15-slot noemt dat de interviews uit boeken en artikelen komen (onder meer Spaaij, Vos en Kievits); tekstvak breder zodat hij op twee regels past.
 - v24 (4 nov): geen 404's meer in de console: assets/svg/index.json zegt welke Figma-exports er zijn, en een lege favicon.
+- v25 (4 nov): in 01-maandag staat Mark (laag mark-collega) rechts in het paneel bij de collega; zijn ballon "Iemand juichte te wild." wijst naar hem.
