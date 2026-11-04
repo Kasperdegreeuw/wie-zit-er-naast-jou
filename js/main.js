@@ -9,6 +9,9 @@
 */
 (async function () {
   gsap.registerPlugin(ScrollTrigger);
+  // Lenis maakt muiswiel-scrollen op laptop vloeiend (mobiel blijft native touch)
+  const lenis = window.Lenis ? new Lenis({ lerp: 0.085, wheelMultiplier: 0.9, smoothWheel: true }) : null;
+  if (lenis) { lenis.on("scroll", ScrollTrigger.update); gsap.ticker.add((t) => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
   const RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // minder beweging: geen lussen, camera springt
   const NS = "http://www.w3.org/2000/svg";
   const track = document.getElementById("track");
@@ -63,6 +66,27 @@
     return Math.min(l.h, Math.round(lines * size * 1.3 + 26 + (l.type === "bubble" ? 14 : 0)));
   };
 
+  // Losse koppen echt opmeten (na het laden van het lettertype) en zo nodig verkleinen of over twee regels zetten
+  const fitLayers = [];
+  function fitText({ lg, l }) {
+    const t = lg.querySelector("text"); if (!t) return;
+    const lh = l.bold ? 0.98 : 1.4;
+    let size = l.size || 24;
+    const rebuild = (lines) => { t.innerHTML = ""; lines.forEach((ln, i) => { const s = el("tspan", { x: t.getAttribute("x"), dy: i === 0 ? size : size * lh }, t); s.textContent = ln; }); t.setAttribute("font-size", size); };
+    const width = () => Math.max(...[...t.querySelectorAll("tspan")].map((n) => n.getComputedTextLength()));
+    const words = l.text.split(" ");
+    for (; size >= 12; size -= 2) {
+      // eerst één regel proberen, dan zo gelijk mogelijk over twee regels
+      rebuild([l.text]);
+      if (width() <= l.w && size <= l.h) return;
+      if (size * (1 + lh) <= l.h + size * 0.2) {
+        let best = null; // de meest gelijke verdeling over twee regels
+        for (let k = 1; k < words.length; k++) { rebuild([words.slice(0, k).join(" "), words.slice(k).join(" ")]); const w = width(); if (w <= l.w && (!best || w < best.w)) best = { k, w }; }
+        if (best) { rebuild([words.slice(0, best.k).join(" "), words.slice(best.k).join(" ")]); return; }
+      }
+    }
+  }
+
   function placeholderSvg(scene) {
     const svg = el("svg", { viewBox: "0 0 1440 900" });
     if (scene.word) { const w = el("text", { x: 1360, y: 62, "text-anchor": "end", class: "ph-word", id: "woord" }, svg); w.textContent = scene.word; }
@@ -87,8 +111,11 @@
           lg.innerHTML = window.shapeSVG(fitted);
         }
         if (l.type === "text") { // los type, zonder kader
-          wrapText(lg, l.text, 0, 0, l.w, l.size || 24, l.bold ? 0.42 : 0.54, l.bold ? 0.98 : 1.4);
-          lg.classList.add("ph-los"); if (l.bold) lg.classList.add("is-bold"); if (l.c === "muted") lg.classList.add("is-muted");
+          const fitOne = l.fit; // fit: op één regel als het kan, anders krimpen tot het past
+          wrapText(lg, l.text, l.center ? l.w / 2 : 0, 0, fitOne ? 99999 : l.w, l.size || 24, l.bold ? 0.42 : 0.54, l.bold ? 0.98 : 1.4);
+          if (l.center) lg.querySelector("text").setAttribute("text-anchor", "middle");
+          if (fitOne) fitLayers.push({ lg, l });
+          lg.classList.add("ph-los"); if (l.bold) lg.classList.add("is-bold"); if (l.c === "muted") lg.classList.add("is-muted"); if (l.c === "ink") lg.classList.add("is-ink");
         } else if (l.text) { wrapText(lg, l.text, 18, 12, l.w - 36, textSize(l)); if (l.dark) lg.classList.add("on-dark"); }
         else if (!key && (l.type === "object" || l.type === "round")) { const lab = el("text", { x: 8, y: 18, class: "ph-label" }, lg); lab.textContent = l.name; }
       }
@@ -244,12 +271,12 @@
 
   /* ---------- 4. Koppelen aan scroll ---------- */
   const total = tl.duration();
-  window.__story = { tl, starts }; // voor testen: tijdlijn en starttijden per hoofdstuk
+  window.__story = { tl, starts, lenis }; // voor testen
   ScrollTrigger.create({
     animation: tl,
     trigger: "#pin",
     pin: true,
-    scrub: 1,
+    scrub: lenis ? 0.35 : 1, // Lenis vlakt al af; dubbel afvlakken voelt traag
     start: "top top",
     end: () => "+=" + total * window.innerHeight * 1.6,
     invalidateOnRefresh: true,
@@ -266,11 +293,24 @@
     if (cur === last) return; last = cur;
     labelEl.textContent = ITEMS[cur].label || "";
     document.body.classList.toggle("is-tijd", !!ITEMS[cur].tijd || ITEMS[cur].hud === false);
+    document.body.classList.toggle("is-einde", !!ITEMS[cur].einde);
     document.body.classList.toggle("is-dark", !!ITEMS[cur].panels.some((p) => p.dark && p.w >= 1440));
     fxByChapter.forEach((list, i) => list.forEach((tw) => (i === cur ? tw.play() : tw.pause())));
   });
   renderYear(); applyPos();
-  if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
+  const doFit = () => fitLayers.forEach(fitText);
+  doFit();
+  if (document.fonts) document.fonts.ready.then(() => { doFit(); ScrollTrigger.refresh(); });
+
+  // Opnieuw beginnen: scherm vervaagt, je staat weer bij de titel
+  const again = document.getElementById("opnieuw");
+  if (again) again.addEventListener("click", () => {
+    gsap.to("#pin", { opacity: 0, duration: RM ? 0 : 0.45, onComplete: () => {
+      if (lenis) lenis.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
+      tl.progress(0); ScrollTrigger.update();
+      gsap.to("#pin", { opacity: 1, duration: RM ? 0 : 0.8, delay: 0.1 });
+    }});
+  });
   document.body.classList.toggle("is-tijd", ITEMS[0].hud === false);
   fxByChapter[0].forEach((tw) => tw.play());
 })();
