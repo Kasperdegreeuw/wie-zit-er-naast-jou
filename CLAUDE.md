@@ -66,10 +66,9 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
 - Stijlreferentie: Kaspers bestand *Prei ani assets* (`C29pMEZlfIeEdgSz6X2jaU`). Kenmerken:
   - vlakke vormen, afgeronde blokken met drie tonen, donker bovenaan
   - ovale ogen, stokjesarmen
-- De tijdlijn wordt in code getekend. Pas Kasper `tijdlijn/*` aan in Figma, neem die stijl dan over in `rulerSvg` en de `.tl-*`-CSS.
+- De tijdlijn wordt in code getekend (`rulerSvg` en de `.tl-*`-CSS). Kasper vindt hem zo goed (4 nov); `tijdlijn/*` in Figma is een kopie van de code-stijl.
 
 ## Open punten
-- De stijl van de tijdlijn uit Figma overnemen in de code zodra Kasper die heeft ontworpen.
 - Twee contextclaims zijn niet gecheckt. Ze zijn eruit gehaald, dus niet opnieuw toevoegen zonder bron.
 
 Afgerond: bronvermelding in `15-slot` is gecontroleerd door Kasper (v23): de interviews komen uit boeken en artikelen, niet uit eigen gesprekken.
