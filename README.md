@@ -92,3 +92,4 @@ Elke versie blijft bewaard:
 - v34 (4 nov): snelheidslijnen achter Ruud en Mark in 07-1997 (nieuw asset o-snelheid, laag snelheid-rennen), naar McCloud H4: beweging binnen één paneel.
 - v35 (4 nov): het antwoordpaneel in 13-keuze (jij en je zoon, "Wat zeg jij?") heeft geen kader meer: het open einde blijft hangen (McCloud H4).
 - v36 (4 nov): snelheidslijnen in 07 lichter (dekking 0,5 tot 0,3 in plaats van 0,9 tot 0,6). Laatste test: geen fouten, rood alleen in sjaals, geen overlappende kaders.
+- v37 (4 nov): close-up van de sneakers in 03: het grind begint hoger, zodat de witte schoenen niet meer wegvallen tegen het witte paneel; schaduw onder de schoenen.

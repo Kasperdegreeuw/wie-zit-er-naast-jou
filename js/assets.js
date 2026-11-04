@@ -162,7 +162,9 @@
     // wigvorm: dik bij de renner, dun en lichter naar achteren
     "o-snelheid": { vb: [300, 360], svg: [[20, 50, 150], [50, 105, 200], [25, 170, 120], [45, 225, 210], [20, 285, 140], [60, 335, 170]].map(([x, y, l], i) => Pth(`M${x} ${y - 3} L${x + l} ${y} L${x} ${y + 3} Z`, i % 2 ? "#a9afb7" : "#c3c7cd", `opacity="${(0.5 - (i % 3) * 0.1).toFixed(2)}"`)).join("") },
     "o-markering": { vb: [60, 60], svg: `<circle cx="30" cy="30" r="25" fill="none" stroke="${C.ink}" stroke-width="5" stroke-dasharray="7 5"/>` },
-    "o-sneakers": { vb: [400, 300], svg: R(0, 180, 400, 120, "#b3aea4") + Array.from({ length: 40 }, (_, i) => E(12 + (i * 53) % 376, 200 + ((i * 37) % 90), 6 + (i % 4), 4 + (i % 3), i % 2 ? "#a19b90" : "#c7c2b8")).join("") +
+    // Grind begint boven de schoenen, zodat de witte sneakers niet wegvallen tegen het witte paneel; schaduw eronder
+    "o-sneakers": { vb: [400, 300], svg: R(0, 110, 400, 190, "#b3aea4") + Array.from({ length: 48 }, (_, i) => E(12 + (i * 53) % 376, 125 + ((i * 37) % 165), 6 + (i % 4), 4 + (i % 3), i % 2 ? "#a19b90" : "#c7c2b8")).join("") +
+      E(130, 208, 72, 9, "#8f897f", 'opacity=".6"') + E(274, 204, 72, 9, "#8f897f", 'opacity=".6"') +
       stick("M120 0 L130 170 M270 0 L262 170", C.denim, 30) + R(70, 160, 120, 46, C.white, 22) + R(70, 192, 120, 16, C.mid, 8) + E(98, 196, 10, 6, "#dfe6e9") +
       R(214, 156, 120, 46, C.white, 22) + R(214, 188, 120, 16, C.mid, 8) + E(306, 192, 10, 6, "#dfe6e9") }
   };
