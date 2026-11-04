@@ -16,7 +16,10 @@
   const labelEl = document.getElementById("label");
 
   /* ---------- 1. SVG per hoofdstuk: Figma-export of placeholder ---------- */
+  // assets/svg/index.json somt de geëxporteerde scènes op, zodat we geen bestanden opvragen die er niet zijn (geen 404's)
+  const figmaIds = await fetch("assets/svg/index.json", { cache: "no-store" }).then((r) => (r.ok ? r.json() : [])).catch(() => []);
   async function loadFigmaSvg(id) {
+    if (!figmaIds.includes(id)) return null;
     try {
       const res = await fetch(`assets/svg/${id}.svg`, { cache: "no-store" });
       if (!res.ok) return null;

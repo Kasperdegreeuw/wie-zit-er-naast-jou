@@ -33,7 +33,8 @@ assets/svg/        hier komen de exports uit Figma
 2. **Houd de laagnamen gelijk** (`lift`, `oog`, `ballon-moeder` …). Daarmee vindt de code welk paneel of welke ballon moet bewegen.
 3. Selecteer het frame → Export → **SVG** → zet **Include "id" attribute** aan.
 4. Sla het op als `assets/svg/<frame-naam>.svg`, bijvoorbeeld `assets/svg/03-1996.svg`.
-5. Ververs de pagina. Bestaat het bestand, dan gebruikt de site jouw ontwerp in plaats van de grijze placeholder.
+5. Zet de naam erbij in `assets/svg/index.json`, bijvoorbeeld `["03-1996"]`. Alleen scènes in die lijst worden opgehaald.
+6. Ververs de pagina. De site gebruikt nu jouw ontwerp in plaats van de placeholder.
 
 Een nieuw paneel of een nieuwe laag die moet bewegen? Voeg hem toe in `js/scenes.js` met dezelfde naam als in Figma.
 
@@ -78,3 +79,4 @@ Elke versie blijft bewaard:
 - v21 (4 nov): in 05-1996 staat de jonge Mark (laag mark-96) rechts in het paneel bij Ruud; de ballon "Zestien." heeft zijn staartje naar hem (nieuwe ballonoptie tail: "right").
 - v22 (4 nov): herinneringen in 13-keuze (echo-ruud, echo-vader) hebben een stippelrand in staal en lichtere figuren; nieuwe paneloptie herinnering: true.
 - v23 (4 nov): bronregel in 15-slot noemt dat de interviews uit boeken en artikelen komen (onder meer Spaaij, Vos en Kievits); tekstvak breder zodat hij op twee regels past.
+- v24 (4 nov): geen 404's meer in de console: assets/svg/index.json zegt welke Figma-exports er zijn, en een lege favicon.

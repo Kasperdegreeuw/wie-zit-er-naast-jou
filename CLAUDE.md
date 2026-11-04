@@ -53,7 +53,7 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
 - Jaartal en label linksboven vervagen terwijl de strip naar de volgende scène schuift (`applyPos`).
 - Testen met Playwright op 1440 × 900. Git staat in `C:\Program Files\Git\cmd\git.exe` (niet in elke shell in het PATH).
 - `js/briefs.js`: regietekst per scène, ook te zien naast elk frame in Figma.
-- Een Figma-export `assets/svg/<scene-id>.svg` vervangt automatisch de placeholder.
+- Een Figma-export `assets/svg/<scene-id>.svg` vervangt de placeholder, mits de id in `assets/svg/index.json` staat (zo vraagt de site geen bestanden op die er niet zijn).
 - Lokaal starten: `npx serve .` of `python3 -m http.server`.
 
 ## Figma
@@ -72,7 +72,6 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
 - De stijl van de tijdlijn uit Figma overnemen in de code zodra Kasper die heeft ontworpen.
 - Captions in Figma hebben nog de oude kaderhoogte. Op de site passen ze zich aan de tekst aan.
 - Twee contextclaims zijn niet gecheckt. Ze zijn eruit gehaald, dus niet opnieuw toevoegen zonder bron.
-- Ontbrekende `assets/svg/<id>.svg` geven een 404 in de console (werkt wel, oogt rommelig).
 - Figma-teksten omzetten van Inter naar Archivo.
 
 Afgerond: bronvermelding in `15-slot` is gecontroleerd door Kasper (v23): de interviews komen uit boeken en artikelen, niet uit eigen gesprekken.
