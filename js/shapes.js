@@ -41,9 +41,11 @@ window.shapeSVG = function shapeSVG(l) {
         `<path d="M${r(w * 0.15)} ${r(h * 0.15)} L${r(w * 0.85)} ${r(h * 0.85)} M${r(w * 0.85)} ${r(h * 0.15)} L${r(w * 0.15)} ${r(h * 0.85)}" stroke="#999" stroke-width="1"/>`;
     case "bubble": {
       const bh = h - 14;
+      // tail: "right" zet het staartje rechtsonder (spreker staat rechts), anders linksonder
+      const tx = (n) => (l.tail === "right" ? w - n : n);
       return `<rect x="1" y="1" width="${w - 2}" height="${bh}" rx="22" fill="#fff" stroke="#18181b" stroke-width="2.5"/>` +
-        `<path d="M24 ${bh} L18 ${h - 1} L44 ${bh}" fill="#fff" stroke="#18181b" stroke-width="2.5" stroke-linejoin="round"/>` +
-        `<path d="M26 ${bh - 1.5} L42 ${bh - 1.5}" stroke="#fff" stroke-width="4"/>`;
+        `<path d="M${tx(24)} ${bh} L${tx(18)} ${h - 1} L${tx(44)} ${bh}" fill="#fff" stroke="#18181b" stroke-width="2.5" stroke-linejoin="round"/>` +
+        `<path d="M${tx(26)} ${bh - 1.5} L${tx(42)} ${bh - 1.5}" stroke="#fff" stroke-width="4"/>`;
     }
     case "caption":
       return l.dark

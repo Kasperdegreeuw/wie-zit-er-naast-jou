@@ -75,3 +75,4 @@ Elke versie blijft bewaard:
 - v18 (4 nov): bericht in 12-thuis zonder middenpuntje ("za 14:00, locatie volgt").
 - v19 (4 nov): jaartal en label linksboven vervagen terwijl de strip naar de volgende scène schuift, zodat de panelen er niet onder doorlopen.
 - v20 (4 nov): overlappingen weg: Mark in 01 iets kleiner (voeten boven de caption, koffie mee), sms'jes in 02 binnen het schermpje, feitencaption in 06 links naast de krant, scroll-hint verdwijnt voordat de eerste scène inschuift.
+- v21 (4 nov): in 05-1996 staat de jonge Mark (laag mark-96) rechts in het paneel bij Ruud; de ballon "Zestien." heeft zijn staartje naar hem (nieuwe ballonoptie tail: "right").

@@ -6,7 +6,7 @@
   een TIJDLIJN: een liniaal met jaren en Marks leeftijd die voorbijschuift (ook terug in de tijd).
 
   Laagtypes: person · hood · crowd (n, swap) · phone · object · round · bubble · caption · text (los type, size/bold/c)
-  Opties laag:  suit, n, swap { cel: asset }, dark (donkere caption), fx: "pulse" | "shake"
+  Opties laag:  suit, n, swap { cel: asset }, dark (donkere caption), tail: "right" (ballon), fx: "pulse" | "shake"
   Opties panel: shot (camera-notitie, alleen in Figma), dark (donker paneel), plain (geen kader)
   Opties scène:
     transition: "assemble" | "slow" | "shock" | "beat" (harde cuts) | "cut" → hoe de camera beweegt
@@ -119,7 +119,8 @@
         P("ruud-vraagt", 760, 90, 600, 340, "HALF-TOTAAL · RUUD, 19", [
           L("ruud-96", "person", 40, 40, 130, 290),
           T("ballon-ruud", "bubble", 190, 30, 380, 90, "Hoe oud ben jij?"),
-          T("ballon-mark-16", "bubble", 190, 160, 380, 90, "Zestien.")
+          L("mark-96", "person", 470, 110, 100, 220),
+          T("ballon-mark-16", "bubble", 230, 170, 220, 80, "Zestien.", { tail: "right" })
         ]),
         P("sjaal", 760, 470, 600, 340, "CLOSE-UP · DE SJAAL", [
           L("sjaal-om", "object", 160, 30, 280, 160),

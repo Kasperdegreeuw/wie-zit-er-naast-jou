@@ -172,7 +172,7 @@
     spiegel: "o-spiegel", mark: "p-mark-pak", oog: "o-blauw-oog", koffie: "o-koffie", "oog-groot": "o-oog", "collega-persoon": "p-collega",
     prepaid: "o-prepaid", "loods-achtergrond": "o-loods", "groep-eigen": "p-hool-achter", "mark-capuchon": "p-mark-capuchon", "groep-tegenover": "p-hool-masker",
     "groep-links": "p-hool-achter", "groep-rechts": "p-hool-masker", sneakers: "o-sneakers",
-    vader: "p-man", wieg: "o-wieg", terugkomers: "p-hool-voor", "mark-13": "p-mark-jong", stadion: "o-stadion", "mark-kuip": "p-mark-jong", "jeroen-kuip": "p-jeroen-jong",
+    vader: "p-man", wieg: "o-wieg", terugkomers: "p-hool-voor", "mark-13": "p-mark-jong", "mark-96": "p-mark-jong",stadion: "o-stadion", "mark-kuip": "p-mark-jong", "jeroen-kuip": "p-jeroen-jong",
     "oudere-jongens": "p-hool-voor", tafel: "o-tafel", "mark-kroeg": "p-mark-jong",
     "krant-pagina": "o-krant", "handen-vader": "o-handen",
     fluisteraars: "p-jeroen-jong", "mark-rent": "p-mark-jong-sjaal", "jeroen-opgepakt": "p-jeroen-jong", agent: "p-agent", "vader-jeroen": "p-man", "jeroen-bureau": "p-jeroen-jong",
