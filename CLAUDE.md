@@ -9,7 +9,7 @@ Ontwerp: Kasper (Figma). Code: GSAP 3.12.5 + ScrollTrigger via cdnjs, verder pla
 
 ## Harde regels
 - **Elke versie bewaren.** Commit en tag vóór elke inhoudelijke wijziging (`v16`, `v17` …) en zet een regel in README › Versies. In Figma bevries je eerst de pagina *Scènes* als *Versie N*: dupliceren en alle instances detachen.
-- **Rood (#b5534c) is alleen voor Ruuds sjaal.** Geen rood in de interface of in andere assets. Sjaals van andere figuren zijn grijs (`scarfC`).
+- **Rood (#b5534c) is alleen voor Ruuds sjaal.** Geen rood in de interface of in andere assets (ook niet de markering in 14-einde: die is inkt). Sjaals van andere figuren zijn grijs (`scarfC`). Er is steeds maar één rode sjaal in beeld: tot en met 1996 om Ruud (`p-ruud`), daarna om Mark en later om zijn zoon. Ruud draagt na 1996 een grijze (`p-ruud-later`).
 - **Geen Lenis of smooth-scroll-library.** Kasper vond het raar scrollen. Gebruik native scroll met ScrollTrigger `scrub: 1`.
 - **Laagnamen in Figma zijn gelijk aan de namen in `js/scenes.js`.** Hernoem nooit één kant zonder de andere.
 - Stijl volgens de frontend-design-skill:
@@ -27,21 +27,21 @@ Ontwerp: Kasper (Figma). Code: GSAP 3.12.5 + ScrollTrigger via cdnjs, verder pla
 | 02-zaterdag | 2026 | Prepaid-bericht, leugen tegen Lisa, loods: Feyenoord tegen Ajax |
 | 03-zwart | 2026 | Drie panelen (wijd → sneakers → zwart), camera "beat" |
 | tijdlijn | 2026 → 1996 | Spoelt terug |
-| 05-1996 | 1996 | Station; Ruud (19): "Hoe oud ben jij?" – "Zestien." Hij geeft je de sjaal |
+| 05-1996 | 1996 | Station; Ruud (19): "Hoe oud ben jij?" – Mark (13, staat rechts in het paneel) liegt: "Zestien." Hij geeft je de sjaal |
 | 06-beverwijk | 1997 | Krant, focal point; "Ruud was erbij" |
 | 07-1997 | 1997 | Eerste rel; Jeroens vader: "Jij komt daar nooit meer." |
 | 08-1999 / 09-2005 | 1999, 2005 | Broederschap, dubbelleven |
 | 10-2013 | 2013 | Zoon geboren, Ruud belt, je neemt niet op, begrafenis |
 | 11-2014 | 2014 | "Voor Ruud." Je gaat terug |
 | 12-thuis | 2026 | Zoon (13) draagt de sjaal, hetzelfde bericht |
-| 13-keuze | 2026 | Twee herinneringszinnen, een lege ballon: "Wat zeg jij?" |
+| 13-keuze | 2026 | Twee herinneringszinnen (panelen met `herinnering: true`: stippelrand, lichtere figuren), een lege ballon: "Wat zeg jij?" |
 | 14-einde | 2026 | Tribune: "Wie zit er naast jou?" |
 | 15-slot | 2026 | "Ruud was negentien. Jij was dertien. Je zoon is dertien." en de knop *Opnieuw beginnen* |
 
 Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maakt `main.js` automatisch een tijdlijn met de tekst "Mark is …".
 
 ## Code
-- `js/scenes.js`: alle scènes, panelen en lagen, met de opties uitgelegd bovenin. Paneelvolgorde = leesvolgorde (guided view).
+- `js/scenes.js`: alle scènes, panelen en lagen, met de opties uitgelegd bovenin. Paneelvolgorde = leesvolgorde (guided view). Ballonnen hebben het staartje linksonder; `tail: "right"` als de spreker rechts staat.
 - `js/assets.js`: personages en objecten als SVG. `window.ASSET_MAP` koppelt een laagnaam aan een asset. Personen zijn 100 × 240.
 - `js/main.js` bevat:
   - de placeholder-renderer
@@ -49,7 +49,9 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
   - de guided-view-camera
   - `fitText` voor losse koppen
   - de einde-knop
-  - `window.__story` voor tests
+  - `window.__story` voor tests (`tl`, `starts`; labels `move<i>` en `c<i>-<j>` om naar een scène of paneel te scrollen)
+- Jaartal en label linksboven vervagen terwijl de strip naar de volgende scène schuift (`applyPos`).
+- Testen met Playwright op 1440 × 900. Git staat in `C:\Program Files\Git\cmd\git.exe` (niet in elke shell in het PATH).
 - `js/briefs.js`: regietekst per scène, ook te zien naast elk frame in Figma.
 - Een Figma-export `assets/svg/<scene-id>.svg` vervangt automatisch de placeholder.
 - Lokaal starten: `npx serve .` of `python3 -m http.server`.
@@ -58,7 +60,9 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
 - Bestand `RCsiCUmohfI1ONO50UAJo8` met deze pagina's:
   - **Scènes**: frames `00-titel` … `15-slot` en `tijd-…`, met een kaart `beschrijving/<id>` ernaast
   - **Assets**: componenten `asset/<key>` en `tijdlijn/*`
-  - **Versie N**: bevroren kopieën
+  - **Versie N**: bevroren kopieën (laatste: Versie 21; v22 en v23 staan alleen op Scènes)
+- Lagen zijn frames met de laagnaam, met daarin een instance van `asset/<key>` (personen, objecten) of een `-vorm`-frame plus `-tekst` (ballonnen, captions).
+- Teksten in Figma staan nog in Inter; de site gebruikt Archivo.
 - Stijlreferentie: Kaspers bestand *Prei ani assets* (`C29pMEZlfIeEdgSz6X2jaU`). Kenmerken:
   - vlakke vormen, afgeronde blokken met drie tonen, donker bovenaan
   - ovale ogen, stokjesarmen
@@ -68,4 +72,7 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
 - De stijl van de tijdlijn uit Figma overnemen in de code zodra Kasper die heeft ontworpen.
 - Captions in Figma hebben nog de oude kaderhoogte. Op de site passen ze zich aan de tekst aan.
 - Twee contextclaims zijn niet gecheckt. Ze zijn eruit gehaald, dus niet opnieuw toevoegen zonder bron.
-- Naam en bronvermelding in `15-slot` laten controleren door Kasper.
+- Ontbrekende `assets/svg/<id>.svg` geven een 404 in de console (werkt wel, oogt rommelig).
+- Figma-teksten omzetten van Inter naar Archivo.
+
+Afgerond: bronvermelding in `15-slot` is gecontroleerd door Kasper (v23): de interviews komen uit boeken en artikelen, niet uit eigen gesprekken.
