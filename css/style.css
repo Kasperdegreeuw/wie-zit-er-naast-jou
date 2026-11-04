@@ -78,5 +78,3 @@ body.is-dark .hud { opacity: 0.25; }
 .opnieuw:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
 body.is-einde .opnieuw { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
 .ph-los.is-ink .ph-text { fill: var(--ink); }
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }

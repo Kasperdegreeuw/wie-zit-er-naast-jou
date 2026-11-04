@@ -9,9 +9,6 @@
 */
 (async function () {
   gsap.registerPlugin(ScrollTrigger);
-  // Lenis maakt muiswiel-scrollen op laptop vloeiend (mobiel blijft native touch)
-  const lenis = window.Lenis ? new Lenis({ lerp: 0.085, wheelMultiplier: 0.9, smoothWheel: true }) : null;
-  if (lenis) { lenis.on("scroll", ScrollTrigger.update); gsap.ticker.add((t) => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
   const RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // minder beweging: geen lussen, camera springt
   const NS = "http://www.w3.org/2000/svg";
   const track = document.getElementById("track");
@@ -271,12 +268,12 @@
 
   /* ---------- 4. Koppelen aan scroll ---------- */
   const total = tl.duration();
-  window.__story = { tl, starts, lenis }; // voor testen
+  window.__story = { tl, starts }; // voor testen
   ScrollTrigger.create({
     animation: tl,
     trigger: "#pin",
     pin: true,
-    scrub: lenis ? 0.35 : 1, // Lenis vlakt al af; dubbel afvlakken voelt traag
+    scrub: 1,
     start: "top top",
     end: () => "+=" + total * window.innerHeight * 1.6,
     invalidateOnRefresh: true,
@@ -306,7 +303,7 @@
   const again = document.getElementById("opnieuw");
   if (again) again.addEventListener("click", () => {
     gsap.to("#pin", { opacity: 0, duration: RM ? 0 : 0.45, onComplete: () => {
-      if (lenis) lenis.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
       tl.progress(0); ScrollTrigger.update();
       gsap.to("#pin", { opacity: 1, duration: RM ? 0 : 0.8, delay: 0.1 });
     }});

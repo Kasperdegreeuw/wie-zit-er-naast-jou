@@ -41,6 +41,9 @@
     else s += stick("M30 74 L16 124 M70 74 L84 124", armC, 3.6) + E(16, 126, 4.5, 4.5, skin) + E(84, 126, 4.5, 4.5, skin);
     // romp: afgerond blok met drie tonen
     const tall = o.coat ? 118 : 96;
+    // Lang haar achter het lichaam (valt op de schouders), en een hals zodat het hoofd niet zweeft
+    if (o.hairLong && !o.back) s += R(31, 11, 38, 50, o.hairLong, 16) + R(33, 40, 34, 26, o.hairLong, 10);
+    if (!o.back) s += R(45, 44, 10, 16, skin, 4);
     s += `<g>` + R(28, 56, 44, tall, t[2], 14) + R(28, 56, 44, tall * 0.62, t[1], 14) + R(28, 56, 44, tall * 0.28, t[0], 14) + R(28, 56 + tall * 0.2, 44, tall * 0.1, t[1]) + `</g>`;
     if (o.suit) s += Pth("M44 56 L50 80 L56 56 Z", C.white) + Pth("M48.2 58 L51.8 58 L53 82 L50 87 L47 82 Z", C.s4);
     if (o.pocket) s += R(38, 112, 24, 14, t[0], 5);
@@ -54,7 +57,7 @@
       s += R(35, 14, 30, 34, o.hood ? t[0] : (o.hair || C.wood), 13);
     } else {
       if (o.hood) s += R(30, 8, 40, 46, t[0], 18);
-      if (o.hairLong) s += R(32, 12, 36, 52, o.hairLong, 14);
+      if (o.hairLong) s += R(34, 11, 32, 12, o.hairLong, 10); // pony boven het gezicht
       s += R(36, 16, 28, 32, skin, 12);
       if (o.hair && !o.hood && !o.helmet) s += R(36, 14, 28, 11, o.hair, 10) + R(36, 20, 28, 4, o.hair);
       s += eyes(50, 32);
