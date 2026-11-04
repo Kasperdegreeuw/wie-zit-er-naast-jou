@@ -1,0 +1,71 @@
+# Wie zit er naast jou? – werkafspraken voor Claude
+
+CMD-opdracht (HvA) "visualisatie van een verloop over de tijd". Een scrollytelling in stripvorm over Mark, een verzonnen Feyenoord-hooligan, van 1996 tot 2026. Het verhaal is in de jij-vorm. Desktop 1440 × 900, gehost op GitHub Pages.
+Ontwerp: Kasper (Figma). Code: GSAP 3.12.5 + ScrollTrigger via cdnjs, verder plain HTML/CSS/JS zonder build-stap.
+
+## Communicatie
+- Altijd in het **Nederlands**, kort en direct.
+- Geef gerichte feedback en één concreet voorbeeld. Herschrijf zijn teksten niet zonder dat hij erom vraagt.
+
+## Harde regels
+- **Elke versie bewaren.** Commit en tag vóór elke inhoudelijke wijziging (`v16`, `v17` …) en zet een regel in README › Versies. In Figma bevries je eerst de pagina *Scènes* als *Versie N*: dupliceren en alle instances detachen.
+- **Rood (#b5534c) is alleen voor Ruuds sjaal.** Geen rood in de interface of in andere assets. Sjaals van andere figuren zijn grijs (`scarfC`).
+- **Geen Lenis of smooth-scroll-library.** Kasper vond het raar scrollen. Gebruik native scroll met ScrollTrigger `scrub: 1`.
+- **Laagnamen in Figma zijn gelijk aan de namen in `js/scenes.js`.** Hernoem nooit één kant zonder de andere.
+- Stijl volgens de frontend-design-skill:
+  - wit papier, asfalt-inkt (#1c1f23), staal (#5c636e) voor bijtekst
+  - één letterfamilie: **Archivo**. Smal en zwaar (wdth 62, 800) voor titel, jaartallen en krantenkop; normaal voor captions en ballonnen
+  - geen labels in kapitalen, geen monospace, geen middenpuntjes (`A · B`) in zichtbare tekst
+  - zinnen in sentence case
+- Geweld laat je niet zien (closure: 03-zwart). Van het echte slachtoffer van Beverwijk (1997) komen geen naam en geen beeld in de strip.
+
+## Verhaal (één draad: Ruud en zijn rode sjaal)
+| Scène | Jaar | Wat er gebeurt |
+|---|---|---|
+| 00-titel | – | Titel en sjaal, geen jaartal in beeld |
+| 01-maandag | 2026 | Blauw oog in de lift, een collega |
+| 02-zaterdag | 2026 | Prepaid-bericht, leugen tegen Lisa, loods: Feyenoord tegen Ajax |
+| 03-zwart | 2026 | Drie panelen (wijd → sneakers → zwart), camera "beat" |
+| tijdlijn | 2026 → 1996 | Spoelt terug |
+| 05-1996 | 1996 | Station; Ruud (19): "Hoe oud ben jij?" – "Zestien." Hij geeft je de sjaal |
+| 06-beverwijk | 1997 | Krant, focal point; "Ruud was erbij" |
+| 07-1997 | 1997 | Eerste rel; Jeroens vader: "Jij komt daar nooit meer." |
+| 08-1999 / 09-2005 | 1999, 2005 | Broederschap, dubbelleven |
+| 10-2013 | 2013 | Zoon geboren, Ruud belt, je neemt niet op, begrafenis |
+| 11-2014 | 2014 | "Voor Ruud." Je gaat terug |
+| 12-thuis | 2026 | Zoon (13) draagt de sjaal, hetzelfde bericht |
+| 13-keuze | 2026 | Twee herinneringszinnen, een lege ballon: "Wat zeg jij?" |
+| 14-einde | 2026 | Tribune: "Wie zit er naast jou?" |
+| 15-slot | 2026 | "Ruud was negentien. Jij was dertien. Je zoon is dertien." en de knop *Opnieuw beginnen* |
+
+Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maakt `main.js` automatisch een tijdlijn met de tekst "Mark is …".
+
+## Code
+- `js/scenes.js`: alle scènes, panelen en lagen, met de opties uitgelegd bovenin. Paneelvolgorde = leesvolgorde (guided view).
+- `js/assets.js`: personages en objecten als SVG. `window.ASSET_MAP` koppelt een laagnaam aan een asset. Personen zijn 100 × 240.
+- `js/main.js` bevat:
+  - de placeholder-renderer
+  - de tijdlijn (`rulerSvg`)
+  - de guided-view-camera
+  - `fitText` voor losse koppen
+  - de einde-knop
+  - `window.__story` voor tests
+- `js/briefs.js`: regietekst per scène, ook te zien naast elk frame in Figma.
+- Een Figma-export `assets/svg/<scene-id>.svg` vervangt automatisch de placeholder.
+- Lokaal starten: `npx serve .` of `python3 -m http.server`.
+
+## Figma
+- Bestand `RCsiCUmohfI1ONO50UAJo8` met deze pagina's:
+  - **Scènes**: frames `00-titel` … `15-slot` en `tijd-…`, met een kaart `beschrijving/<id>` ernaast
+  - **Assets**: componenten `asset/<key>` en `tijdlijn/*`
+  - **Versie N**: bevroren kopieën
+- Stijlreferentie: Kaspers bestand *Prei ani assets* (`C29pMEZlfIeEdgSz6X2jaU`). Kenmerken:
+  - vlakke vormen, afgeronde blokken met drie tonen, donker bovenaan
+  - ovale ogen, stokjesarmen
+- De tijdlijn wordt in code getekend. Pas Kasper `tijdlijn/*` aan in Figma, neem die stijl dan over in `rulerSvg` en de `.tl-*`-CSS.
+
+## Open punten
+- De stijl van de tijdlijn uit Figma overnemen in de code zodra Kasper die heeft ontworpen.
+- Captions in Figma hebben nog de oude kaderhoogte. Op de site passen ze zich aan de tekst aan.
+- Twee contextclaims zijn niet gecheckt. Ze zijn eruit gehaald, dus niet opnieuw toevoegen zonder bron.
+- Naam en bronvermelding in `15-slot` laten controleren door Kasper.
