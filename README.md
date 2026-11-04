@@ -12,7 +12,7 @@ npx serve .
 python3 -m http.server
 ```
 
-Online zetten: push naar GitHub → Settings → Pages → branch `main`, map `/root`.
+Online: https://kasperdegreeuw.github.io/wie-zit-er-naast-jou/ (GitHub Pages, branch `main`, map `/`). Elke push naar `main` zet de site binnen een minuut live.
 
 ## Mappen
 

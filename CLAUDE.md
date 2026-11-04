@@ -1,6 +1,6 @@
 # Wie zit er naast jou? – werkafspraken voor Claude
 
-CMD-opdracht (HvA) "visualisatie van een verloop over de tijd". Een scrollytelling in stripvorm over Mark, een verzonnen Feyenoord-hooligan, van 1996 tot 2026. Het verhaal is in de jij-vorm. Desktop 1440 × 900, gehost op GitHub Pages.
+CMD-opdracht (HvA) "visualisatie van een verloop over de tijd". Een scrollytelling in stripvorm over Mark, een verzonnen Feyenoord-hooligan, van 1996 tot 2026. Het verhaal is in de jij-vorm. Desktop 1440 × 900, gehost op GitHub Pages: https://kasperdegreeuw.github.io/wie-zit-er-naast-jou/ (repo `Kasperdegreeuw/wie-zit-er-naast-jou`, branch `main`; een push naar `main` zet de site live, tags apart pushen met `git push origin --tags`).
 Ontwerp: Kasper (Figma). Code: GSAP 3.12.5 + ScrollTrigger via cdnjs, verder plain HTML/CSS/JS zonder build-stap.
 
 ## Communicatie
