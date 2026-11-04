@@ -84,3 +84,4 @@ Elke versie blijft bewaard:
 - v26 (4 nov): ballon "Voor Ruud." in 11-2014 staat boven Mark, zodat het staartje naar hem wijst.
 - v27 (4 nov): korter scrollen op basis van onderzoek naar scrollytelling (1–3 schermhoogtes per stap, 3–5 minuten totaal): factor 1,6 naar 1,3 (SCROLL_PER_SEC) en kortere tijdlijnen. Van ± 1.390 naar ± 1.060 wieltikken.
 - v28 (4 nov): het zwart in 03 vult het hele scherm (paneloptie vol, scèneoptie uitzoomen: false); alleen "Dan rent de eerste." in wit, jaartal weg.
+- v29 (4 nov): jaartal en label schalen mee met de strip; op een laptop (1366 × 768, 1280 × 720) staan ze recht boven de panelen in plaats van ertegenaan.

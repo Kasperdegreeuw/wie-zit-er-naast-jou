@@ -33,9 +33,11 @@ html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: v
 .ph-word { fill: var(--ink); font: 800 48px var(--font); letter-spacing: 2px; }
 
 /* HUD */
-.hud { position: fixed; top: 20px; left: 80px; z-index: 10; pointer-events: none; display: flex; align-items: baseline; gap: 14px; }
-.hud-year { font: 800 56px/1 var(--font); font-stretch: 70%; font-variation-settings: "wdth" 70; font-variant-numeric: tabular-nums; letter-spacing: -1px; }
-.hud-label { font: 400 16px/1.4 var(--font); color: var(--muted); }
+/* Het jaartal schaalt mee met de strip (1440 × 900 = 1), zodat het op een laptop niet tegen de panelen aan komt */
+:root { --u: min(calc(100vw / 1440), calc(100vh / 900)); }
+.hud { position: fixed; top: calc(20 * var(--u)); left: calc(50vw - 640 * var(--u)); z-index: 10; pointer-events: none; display: flex; align-items: baseline; gap: calc(14 * var(--u)); }
+.hud-year { font: 800 56px/1 var(--font); font-size: calc(56 * var(--u)); font-stretch: 70%; font-variation-settings: "wdth" 70; font-variant-numeric: tabular-nums; letter-spacing: -1px; }
+.hud-label { font: 400 16px/1.4 var(--font); font-size: max(13px, calc(16 * var(--u))); color: var(--muted); }
 
 /* Tijdlijn */
 /* Tijdlijn tussen de scènes */
