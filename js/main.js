@@ -90,9 +90,11 @@
     for (const p of scene.panels) {
       // Buitenste <g> draagt de id (zoals in een Figma-export), binnenste de positie
       const g = el("g", { transform: `translate(${p.x} ${p.y})` }, el("g", { id: p.name }, svg));
+      if (p.herinnering) g.classList.add("is-herinnering");
       if (!p.plain) el("rect", { width: p.w, height: p.h, class: p.dark ? "ph-panel ph-dark" : "ph-panel" }, g);
       for (const l of p.layers) {
         const lg = el("g", { transform: `translate(${l.x} ${l.y})` }, el("g", { id: l.name }, g));
+        if (p.herinnering && !l.text) lg.classList.add("vaag"); // figuren in een herinnering lichter, tekst niet
         const key = window.ASSET_MAP && window.ASSET_MAP[l.name];
         if (key && window.ASSETS[key]) {
           // Eerste versie van het asset (zelfde tekening als het Figma-component)

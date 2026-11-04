@@ -7,7 +7,8 @@
 
   Laagtypes: person · hood · crowd (n, swap) · phone · object · round · bubble · caption · text (los type, size/bold/c)
   Opties laag:  suit, n, swap { cel: asset }, dark (donkere caption), tail: "right" (ballon), fx: "pulse" | "shake"
-  Opties panel: shot (camera-notitie, alleen in Figma), dark (donker paneel), plain (geen kader)
+  Opties panel: shot (camera-notitie, alleen in Figma), dark (donker paneel), plain (geen kader),
+                herinnering (stippelrand in staal, figuren lichter; tekst blijft leesbaar)
   Opties scène:
     transition: "assemble" | "slow" | "shock" | "beat" (harde cuts) | "cut" → hoe de camera beweegt
     duration:   hoe lang de scène blijft staan
@@ -266,11 +267,11 @@
         P("echo-ruud", 80, 90, 620, 340, "HERINNERING · 1996", [
           L("ruud-echo", "person", 40, 40, 130, 290),
           T("ballon-echo-ruud", "bubble", 200, 60, 390, 100, "Hoe oud ben jij?")
-        ]),
+        ], { herinnering: true }),
         P("echo-vader", 80, 470, 620, 340, "HERINNERING · 1997", [
           L("vader-echo", "person", 40, 30, 140, 300),
           T("ballon-echo-vader", "bubble", 200, 60, 390, 100, "Jij komt daar nooit meer.")
-        ]),
+        ], { herinnering: true }),
         P("antwoord", 740, 90, 620, 720, "POV · JIJ EN JE ZOON", [
           L("mark-rug", "hood", 60, 240, 200, 460),
           L("zoon-wacht", "person", 360, 330, 180, 370),

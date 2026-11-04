@@ -78,3 +78,7 @@ body.is-dark .hud { opacity: 0.25; }
 .opnieuw:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
 body.is-einde .opnieuw { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
 .ph-los.is-ink .ph-text { fill: var(--ink); }
+
+/* Herinneringen (13-keuze): stippelrand in staal, figuren lichter dan het heden */
+.is-herinnering .ph-panel { stroke: var(--muted); stroke-dasharray: 12 8; }
+.is-herinnering .vaag { opacity: 0.45; }
