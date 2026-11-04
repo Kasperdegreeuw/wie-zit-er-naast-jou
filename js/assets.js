@@ -91,6 +91,8 @@
     "p-mark-jong": P({ top: T.jacket, hair: C.wood, trousers: C.denim, sneakers: true, scale: 0.8 }),
     // Ruud: bomberjack, pet en de rode sjaal. De sjaal is de draad door het verhaal (1996 → 2026).
     "p-ruud": P({ top: ["#4f5a48", "#5d6955", "#6c7863"], cap: true, scarf: true, trousers: C.denim2, sneakers: true }),
+    // Ruud na 1996: de rode sjaal heeft hij aan jou gegeven, hij draagt nu een grijze.
+    "p-ruud-later": P({ top: ["#4f5a48", "#5d6955", "#6c7863"], cap: true, scarf: true, scarfC: C.s3, trousers: C.denim2, sneakers: true }),
     "p-mark-jong-sjaal": P({ top: T.jacket, hair: C.wood, scarf: true, trousers: C.denim, sneakers: true, scale: 0.8 }),
     "p-mark-sjaal": P({ top: T.hoodieGrey, hood: true, pocket: true, scarf: true, trousers: C.denim, sneakers: true }),
     "p-jeroen-jong": P({ top: T.hoodieLight, hair: "#c9a56b", pocket: true, trousers: C.denim2, sneakers: true, scale: 0.8 }),
@@ -180,8 +182,8 @@
     deur: "o-deur", zoon: "p-zoon", "telefoon-zoon": "o-telefoon", "scherm-zoon-groot": "o-telefoon-groot", "prepaid-mark": "o-prepaid", "jeroen-43": "p-jeroen-43", dochter: "p-kind",
     "tribune-mensen": "p-supporter", "mark-tribune": "o-markering",
     // Verhaal met Ruud als draad (v6)
-    "jeroen-13": "p-jeroen-jong", "ruud-96": "p-ruud", "sjaal-om": "o-sjaal", "ruud-rent": "p-ruud", "ruud-trein": "p-ruud", "mark-trein": "p-mark-sjaal",
-    "ruud-wacht": "p-ruud", "ruud-linie": "p-ruud", "telefoon-nacht": "o-telefoon", "sjaal-graf": "o-sjaal", "titel-sjaal": "o-sjaal", "slot-sjaal": "o-sjaal",
+    "jeroen-13": "p-jeroen-jong", "ruud-96": "p-ruud", "sjaal-om": "o-sjaal", "ruud-rent": "p-ruud-later", "ruud-trein": "p-ruud-later", "mark-trein": "p-mark-sjaal",
+    "ruud-wacht": "p-ruud-later", "ruud-linie": "p-ruud-later", "telefoon-nacht": "o-telefoon", "sjaal-graf": "o-sjaal", "titel-sjaal": "o-sjaal", "slot-sjaal": "o-sjaal",
     // v10: zonder hoofdstukken, met 2014 en de keuze
     "groep-terug": "p-hool-voor", "mark-terug": "p-mark-sjaal", "lisa-persoon": "p-vrouw",
     "ruud-echo": "p-ruud", "vader-echo": "p-man", "mark-rug": "p-hool-achter", "zoon-wacht": "p-zoon"

@@ -71,3 +71,4 @@ Elke versie blijft bewaard:
 - v14 (4 nov): wit papier in plaats van beton; Lenis (js/vendor) maakt muiswiel-scrollen op laptop vloeiend; teksten aangescherpt (Ruud en Lisa bij naam, plaats en regels concreet); krantenkop en titel meten zichzelf en passen altijd; echt einde met de knop "Opnieuw beginnen".
 - v15 (4 nov): Lenis weer weg (native scroll, scrub 1); personages hebben een hals, Lisa's lange haar valt nu achter haar hoofd; tijdlijn staat als componenten op de Figma-pagina Assets (tijdlijn/jaar-moment, tijdlijn/jaar-tussen, tijdlijn/lijn, tijdlijn/nu).
 - v16 (4 nov): cirkel om Mark op de tribune (14-einde) is inkt in plaats van rood; rood zit nu alleen nog in de sjaal.
+- v17 (4 nov): Ruud draagt na 1996 een grijze sjaal (nieuw asset `p-ruud-later` voor ruud-rent, ruud-trein, ruud-wacht en ruud-linie). Er is nu steeds maar één rode sjaal in beeld.
