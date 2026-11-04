@@ -53,8 +53,8 @@
       panels: [
         P("lift", 80, 90, 620, 720, "POV · SPIEGEL IN DE LIFT", [
           L("spiegel", "object", 40, 30, 540, 640),
-          L("mark", "person", 190, 120, 240, 600, { suit: true }),
-          L("koffie", "object", 372, 410, 44, 62),
+          L("mark", "person", 210, 120, 200, 470, { suit: true }),
+          L("koffie", "object", 360, 337, 36, 51),
           T("plek-maandag", "caption", 20, 20, 330, 60, "Rotterdam, maandag 08:47."),
           T("caption-mark", "caption", 20, 600, 580, 100, "Je bent Mark. Op je werk weet niemand wat je in het weekend doet.")
         ]),
@@ -75,8 +75,8 @@
         P("telefoon", 80, 90, 360, 720, "POV · TWEEDE TELEFOON", [
           T("plek-zaterdag", "caption", 20, 20, 320, 60, "Zaterdag, twee dagen eerder."),
           L("prepaid", "phone", 70, 100, 220, 450, { fx: "shake" }),
-          T("bericht-1", "bubble", 90, 190, 180, 60, "za 14:00"),
-          T("bericht-2", "bubble", 90, 270, 180, 80, "loods 7, 20 tegen 20"),
+          T("bericht-1", "bubble", 112, 148, 136, 48, "za 14:00"),
+          T("bericht-2", "bubble", 112, 200, 136, 72, "loods 7, 20 tegen 20"),
           T("ballon-leugen", "bubble", 20, 600, 320, 90, "Schat, ik ga voetbal kijken met de jongens.")
         ]),
         P("loods", 480, 90, 880, 720, "WIJD · INDUSTRIETERREIN", [
@@ -134,7 +134,7 @@
         P("krant-groot", 80, 90, 1280, 720, "SPLASH · POV KEUKENTAFEL", [
           L("krant-pagina", "object", 300, 40, 680, 560),
           T("krant-kop", "text", 340, 60, 600, 90, "Dode bij treffen Beverwijk", { size: 60, bold: true, fit: true }),
-          T("caption-vader", "caption", 340, 420, 600, 120, "Bij Beverwijk vechten hooligans van Feyenoord en Ajax. Een Ajax-supporter overlijdt. Hij was vader van twee kinderen."),
+          T("caption-vader", "caption", 20, 260, 260, 220,"Bij Beverwijk vechten hooligans van Feyenoord en Ajax. Een Ajax-supporter overlijdt. Hij was vader van twee kinderen."),
           L("handen-vader", "object", 260, 600, 760, 110),
           T("plek-beverwijk", "caption", 20, 20, 260, 90, "23 maart 1997."),
           T("caption-drie", "caption", 1000, 260, 260, 160, "Ruud was erbij. Hij zegt er niks over.")

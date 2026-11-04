@@ -281,7 +281,8 @@
     end: () => "+=" + total * window.innerHeight * 1.6,
     invalidateOnRefresh: true,
     onUpdate: (self) => {
-      document.getElementById("hint").style.opacity = self.progress > 0.02 ? 0 : 1;
+      // Hint weg zodra je begint te scrollen, vóór de eerste scène inschuift
+      document.getElementById("hint").style.opacity = self.progress * total > 0.2 ? 0 : 1;
     }
   });
 
