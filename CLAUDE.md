@@ -65,7 +65,7 @@ Mark is geboren in 1983 (`MARK_GEBOREN`). Tussen scènes met een ander jaar maak
 - Bestand `RCsiCUmohfI1ONO50UAJo8` met deze pagina's:
   - **Scènes**: frames `00-titel` … `15-slot` en `tijd-…`, met een kaart `beschrijving/<id>` ernaast
   - **Assets**: componenten `asset/<key>` en `tijdlijn/*`
-  - **Versie N**: bevroren kopieën (laatste: Versie 36)
+  - **Versie N**: bevroren kopieën (laatste: Versie 38, eindstand)
 - Lagen zijn frames met de laagnaam, met daarin een instance van `asset/<key>` (personen, objecten) of een `-vorm`-frame plus `-tekst` (ballonnen, captions).
 - Teksten in Figma staan in Archivo, net als op de site. Koppen (titel, krantenkop, slotvraag, jaartallen) zijn ExtraBold met `wdth 62`. Captions en ballonnen hebben dezelfde tekstmaat en kaderhoogte als de site (`textSize` en `fitHeight` in `main.js`).
 - Stijlreferentie: Kaspers bestand *Prei ani assets* (`C29pMEZlfIeEdgSz6X2jaU`). Kenmerken:
